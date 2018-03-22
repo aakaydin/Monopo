@@ -15,7 +15,13 @@ public class Case{
 		position = pos;
 		this.desc = desc;
 		
-		}
+	}
+	
+	//Constructeur avec position et nom 
+    	public Case(int pos , String name){
+        	nom = name; 
+        	position = pos;
+    	}
 		
 	// Constructeur avec position	
 	public Case( int pos){

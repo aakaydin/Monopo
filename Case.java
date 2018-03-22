@@ -9,7 +9,7 @@ public class Case{
 	
 
 	// Constructeur avec position + nom  
-	public Case( int pos , String name, String desc; ){
+	public Case( int pos , String name, String desc ){
 		
 		nom = name;
 		position = pos;

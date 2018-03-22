@@ -1,5 +1,5 @@
 import java.util.*;
-import javax.swing.*; 
+import javax.swing.*;               //attention cette classe n'est pas finie!!!!!!!!
 import java.awt.*; 
 
 public class MenuPrincipal extends JFrame{

@@ -1,6 +1,3 @@
-
-
-
 public class Joueur {
 	
 	
@@ -18,6 +15,7 @@ public class Joueur {
 	public  int tourEnPrison;
 	public  int dee1;
 	public  int dee2;
+	public boolean passageCaseDep = false ; 
 	
 	
 	//private avatar
@@ -76,13 +74,20 @@ public class Joueur {
 		
 		}
 	
-	public void setPos( newpos){
+	public void setPos( int newpos){
 		
 		
 		 position =newpos ;
 		
 		}
 	
+	public int getSommeDees(){
+		return dee1 + dee2 ;
+	}
+	
+	public void setCarteSortirPrison(boolean b){
+		cartePrison = b ;
+	}
 	
 	// Methode pour ajouter/retirer d'argent du joueur
 	public void setArgent( int mani){
@@ -105,16 +110,9 @@ public class Joueur {
 		
 		}
 	
-	public boolean AvoirHotel(){
-		
-		
-		
-		
-		}
-	
 	
 	// Methode inecessairement complique pour deplacer un par un 
-	public void deplacer( int newpos){  // 
+	public void deplacer( int newpos){
 		
 		
 		if( newpos > position){ 
@@ -130,7 +128,7 @@ public class Joueur {
 		}else{ 
 			
 			while(position != 0){
-			
+			passageCaseDep = true ; 
 			
 			position++;
 			
@@ -148,15 +146,31 @@ public class Joueur {
 		
 		}
 	
+	public void recevoirArgentDep(){
+		passageCaseDep = false ;
+		somme = somme + 200 ;
+	}
 	
+	public void lancerLesDes(){
+		
+		dee1 = (int)(Math.random()*6+1);
+		dee2 = (int)(Math.random()*6+1);
+	}
 	// Methode pour ded 
 	public void tuer(){
 		
 		estVivant = false;
 		
 		
-		}
+	}
+	
+	public void allerEnPrison(){
+		enPrison = true ;
+		this.setPos(7);
+	}
+	
 
-	public vendre 
+
+
 }
 

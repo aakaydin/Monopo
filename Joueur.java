@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Joueur {
 	
 	
@@ -6,11 +8,11 @@ public class Joueur {
 	private int somme;
 	private  int dette;
 	private boolean endette;
-	public	Case[] immobilier;
+	public	LinkedList<Case> immobilier = new LinkedList<Case>();
 	public  boolean estVivant = true ;
 	public  boolean sonTour;
 	public  boolean enPrison =false;
-	public  boolean cartePrison;
+	public  boolean cartePrison = false ;
 	public  boolean passerSonTour = false;
 	public  int tourEnPrison;
 	public  int dee1;
@@ -45,6 +47,7 @@ public class Joueur {
 	
 	
 	// Getteurs
+	public boolean getCarteSortirPrison(){return cartePrison;}
 	
 	public String getNom(){
 		
@@ -52,6 +55,11 @@ public class Joueur {
 		return nom;
 		
 		}
+	
+	public void addCase(Case c){
+		
+		immobilier.add(c);
+	}
 	
 	public int getPos(){
 		

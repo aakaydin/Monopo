@@ -11,15 +11,15 @@ public class MaFenetreCartePrison extends JFrame{
     public MaFenetreCartePrison(){ //des paramètres?
         super("Carte Prison"); 
         
-        setSize (500 , 300); 
+        setSize (1000 , 100); 
         
         //pas de setDefaultCloseOperation, on veut forcer à appuyer sur un bouton 
         
-        JPanel cadrePrincipal = new JPanel (new GridLayout(2,1)); 
+        JPanel cadrePrincipal = new JPanel (); 
         this.setContentPane(cadrePrincipal); 
         
         //Instructions 
-        indications = new JLabel("Vous êtes en prison or vous possédez une carte vous permettant d'en sortir! Voulez-vous l'utiliser?"); 
+        indications = new JLabel("Vous etes en prison or vous possedez une carte vous permettant d en sortir! Voulez-vous l utiliser?"); 
         cadrePrincipal.add(indications); 
         
         //Boutons 

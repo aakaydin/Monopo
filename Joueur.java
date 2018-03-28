@@ -17,6 +17,7 @@ public class Joueur {
 	public  int tourEnPrison;
 	public  int de1;
 	public  int de2;
+	private  int sommeDes; 
 	public boolean passageCaseDep = false ; 
 	
 	
@@ -89,8 +90,8 @@ public class Joueur {
 		
 		}
 	
-	public int getSommeDees(){
-		return dee1 + dee2 ;
+	public int getSommeDes(){
+		return de1 + de2 ;
 	}
 	
 	public void setCarteSortirPrison(boolean b){
@@ -116,11 +117,57 @@ public class Joueur {
 		
 		dette = dette - mani;
 		
-		}
+	}
+	
+	
+	public boolean getEnPrison(){
+        	return enPrison; 
+    	}
+    
+	
+    	public void setEnPrison(boolean b){
+        	enPrison = b; 
+    	}
+    
+	
+    	public boolean getCartePrison(){
+        	return cartePrison; 
+    	}
+    
+	
+    	public int getDe1(){
+        	return de1;
+    	}
+    
+	
+    	public int getDe2(){
+        	return de2;
+    	}
+    
+	
+    	public void setSommeDes(int val){
+        	sommeDes = 0; 
+    	}
+        
+    
+    	public int getNbToursEnPrison(){
+        	return nbToursEnPrison;
+    	}
+    
+	
+    	public Case getCaseCourante(){
+        	return caseCourante;
+    	}
+    
+	
+    	public void setSonTour(boolean b){
+        	sonTour = b; 
+    	}
+
 	
 	
 	// Methode inecessairement complique pour deplacer un par un 
-	public void deplacer( int newpos){
+	public void teleporter( int newpos){
 		
 		
 		if( newpos > position){ 
@@ -154,6 +201,12 @@ public class Joueur {
 		
 		}
 	
+	
+	public void avancer (int nbCases){
+		position = position + nbCases;
+	}
+	
+	
 	public void recevoirArgentDep(){
 		passageCaseDep = false ;
 		somme = somme + 200 ;
@@ -176,6 +229,10 @@ public class Joueur {
 		enPrison = true ;
 		this.setPos(7);
 	}
+	
+	public void resteEnPrison(){
+        	nbToursEnPrison = nbToursEnPrison + 1;
+    	}
 	
 
 

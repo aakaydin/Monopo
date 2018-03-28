@@ -18,6 +18,7 @@ o	Permet de collecter tout l’argent de la cagnotte
     public CaseCagnotte(){
         super(14 , "Cagnotte"); 
         valAccumulee = 0; 
+        setPanel();
     }
     
     

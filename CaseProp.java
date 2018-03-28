@@ -8,12 +8,12 @@ public class CaseProp extends Case implements Achetable{
 	public int couleur;
 	public boolean achete = false;
 	
-	public CaseProp( int pos, String name, int prix, Joueur propr, int coul){
+	public CaseProp( int pos, String name, int prix ){
 		
 		super(pos, name);
 		this.prix = prix;
-		propri = propr;
-		couleur = coul;
+		propri = null;
+		
 		
 		
 		
@@ -26,7 +26,7 @@ public class CaseProp extends Case implements Achetable{
 		
 		
 		propri = J;
-		J.virement(-prix);
+		J.setArgent(-prix);
 		
 		
 		}

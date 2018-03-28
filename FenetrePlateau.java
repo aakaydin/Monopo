@@ -169,8 +169,14 @@ public class FenetrePlateau extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
+    
+    public JPanel getPane(){
+		
+		return pane;
+		
+		}
 
-    public static void main(String[] a){
-        new FenetrePlateau();
-    }
+    //public static void main(String[] a){
+    //    new FenetrePlateau();
+    //}
 }

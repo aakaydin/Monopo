@@ -6,18 +6,21 @@ import java.util.*;
 public class FenetreInterface extends JFrame{
 	
 		private FenetrePlateau FP = new FenetrePlateau();
-		public Plateau P = new Plateau();
-			
+		public Plateau P = new Plateau();	
 		public JPanel panelTemp;
-		//public int pTemp = 5;
+		
 			
 		private JLabel label;
 		private JLabel label1;
 		private JLabel label2;
 			
 		private JButton btn;
-		private JButton btn1;	
+		private JButton btn1;
+		private JButton finTour;	
+		private JButton lanceDe;	
 	
+		private AffichageDe aff = new AffichageDe();
+		
 	
 	public FenetreInterface( int longue , int large ){
 	
@@ -25,30 +28,35 @@ public class FenetreInterface extends JFrame{
 		super(" Monopoly");
 		
 		this.setSize(new Dimension(longue,large));
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //ɲħ
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		
 		JPanel cadrePrincipal = new JPanel(new BorderLayout());
-		JPanel monPanelCommande = new JPanel( new FlowLayout() );
+		
+		JPanel panelEast = new JPanel( new BorderLayout());
+		JPanel panelSouth = new JPanel( new FlowLayout() );
+		JPanel panelNorth = new JPanel( new FlowLayout() );
 		JPanel plateau = FP.getPane();
 		
-		// On fait de sorte que notre fenetre soit CYAN pour les deux panels
+		// 
 		
 		cadrePrincipal.setBackground(Color.CYAN);
-		monPanelCommande.setBackground(Color.CYAN);
-		
+		panelSouth.setBackground(Color.CYAN);
+		panelNorth.setBackground(Color.CYAN);
 		
 		this.setContentPane(cadrePrincipal);
 		
 		//Creation des widgets
 		
-		label = new JLabel(" lol  ");
-		label1 = new JLabel(" rofl ");	
-		label2 = new JLabel(" lmao");	
+		label = new JLabel (" Joueur Courant:               ");
+		label1 = new JLabel(" Somme:                        ");	
+		label2 = new JLabel(" ");	
 		
 		btn = new JButton(" Next ");
 		btn1 = new JButton(" Prev");
+		finTour = new JButton(" End Turn");
+		lanceDe = new JButton(" Lancer les Des ");
 		
-		panelTemp = P.getCases().get(14).getPanel();
+		panelTemp = P.getCases().get(0).getPanel();
 		
 		
 		
@@ -58,12 +66,20 @@ public class FenetreInterface extends JFrame{
 		
 	
 		
-		// Ajout des Gadgets dans monPanelCommande
+		// Ajout des Gadgets dans les panels
 		
 		
-		monPanelCommande.add(btn1 );	// Button Prev
-		monPanelCommande.add(btn );		// Button Next
 		
+		
+		
+		
+		panelEast.add(aff , BorderLayout.CENTER );			
+		panelEast.add(lanceDe , BorderLayout.NORTH	 );	
+		
+		panelNorth.add(finTour);
+		
+		panelSouth.add(label1 );
+		panelSouth.add(label);
 		
 		
 		
@@ -73,9 +89,11 @@ public class FenetreInterface extends JFrame{
 		
 		cadrePrincipal.add(panelTemp , BorderLayout.WEST);
 		
-		cadrePrincipal.add(label1 , BorderLayout.EAST);
+		cadrePrincipal.add(panelEast , BorderLayout.EAST);
 		
-		cadrePrincipal.add(monPanelCommande , BorderLayout.SOUTH);
+		cadrePrincipal.add(panelSouth , BorderLayout.SOUTH);
+		
+		cadrePrincipal.add(panelNorth , BorderLayout.NORTH);
 		
 		 this.setVisible(true);
 		}

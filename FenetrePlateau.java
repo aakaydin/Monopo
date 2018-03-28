@@ -163,11 +163,11 @@ public class FenetrePlateau extends JFrame {
         
 
         
-       this.setContentPane(pane); 
+        //this.setContentPane(pane); 
         
-        this.setSize(800,450);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true);
+        //this.setSize(800,450);
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this.setVisible(true);
     }
     
     public JPanel getPane(){

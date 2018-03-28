@@ -15,8 +15,8 @@ public class Joueur {
 	public  boolean cartePrison = false ;
 	public  boolean passerSonTour = false;
 	public  int tourEnPrison;
-	public  int dee1;
-	public  int dee2;
+	public  int de1;
+	public  int de2;
 	public boolean passageCaseDep = false ; 
 	
 	

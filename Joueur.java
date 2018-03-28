@@ -14,7 +14,7 @@ public class Joueur {
 	public  boolean enPrison =false;
 	public  boolean cartePrison = false ;
 	public  boolean passerSonTour = false;
-	public  int tourEnPrison;
+	public  int nbToursEnPrison;
 	public  int de1;
 	public  int de2;
 	private  int sommeDes; 
@@ -214,9 +214,10 @@ public class Joueur {
 	
 	public void lancerLesDes(){
 		
-		dee1 = (int)(Math.random()*6+1);
-		dee2 = (int)(Math.random()*6+1);
+		de1 = (int)(Math.random()*6+1);
+		de2 = (int)(Math.random()*6+1);
 	}
+	
 	// Methode pour ded 
 	public void tuer(){
 		
@@ -225,10 +226,12 @@ public class Joueur {
 		
 	}
 	
+	
 	public void allerEnPrison(){
 		enPrison = true ;
 		this.setPos(7);
 	}
+	
 	
 	public void resteEnPrison(){
         	nbToursEnPrison = nbToursEnPrison + 1;

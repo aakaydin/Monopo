@@ -19,6 +19,8 @@ public class Joueur {
 	public  int de2;
 	private  int sommeDes; 
 	public boolean passageCaseDep = false ; 
+	private int nbToursEnPrison = 0;
+	private Case caseCourante;
 	
 	
 	//private avatar
@@ -204,6 +206,9 @@ public class Joueur {
 	
 	public void avancer (int nbCases){
 		position = position + nbCases;
+		if(position > 27){
+			position = position - 28;
+		} //on ne peut pas dépasser le numéro de case 27 et notre première case est la case numéro 0
 	}
 	
 	

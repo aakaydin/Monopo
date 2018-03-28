@@ -12,13 +12,12 @@ public class EcouteurLancerLesDes implements ActionListener{
 	
 	public void actionPerformed(ActionEvent ae){
 		j.lancerLesDes() ;
-		int numCaseAAvancer = j.getSommeDees() ;
-		//je concidère que 30 est le nombre de cases du plateau 
-		int numNewPosition = j.getPos() + j.getSommeDees() ;
-		if(numNewPosition > 30){
-			numNewPosition = numNewPosition - 30 ;
+		if(!j.getEnPrison()){
+			int numCaseAAvancer = j.getSommeDes() ;
+			//je considère que 30 est le nombre de cases du plateau 
+			
+			j.avancer(numCaseAAvancer) ; 
 		}
-		
-		j.deplacer(j.getPos() + j.getSommeDees()) ; 
 	}
+	
 }

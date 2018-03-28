@@ -1,4 +1,5 @@
-
+import java.awt.* ;
+import javax.swing.*;
 
 
 public class Case{
@@ -6,7 +7,7 @@ public class Case{
 	private int position;
 	private String nom;
 	private String desc;
-	
+	private JPanel panel;
 
 	// Constructeur avec position + nom  
 	public Case( int pos , String name, String desc ){
@@ -50,5 +51,6 @@ public class Case{
 		
 		}
 	
+	public JPanel getPanel(){return panel;}
 	
 }

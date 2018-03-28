@@ -24,6 +24,7 @@ public class CaseTaxe extends Case{
 	}
 	
 	public void setDescriptionPanel(Joueur j){
+		panel.removeAll();
 		JLabel lab = new JLabel("TAXE ! Vous devez payer "+valAPayer);
         panel.add(lab);
         JButton payer = new JButton("Payer");

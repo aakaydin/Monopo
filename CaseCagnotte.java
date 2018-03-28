@@ -18,7 +18,7 @@ o	Permet de collecter tout l’argent de la cagnotte
     public CaseCagnotte(){
         super(14 , "Cagnotte"); 
         valAccumulee = 0; 
-        setPanel();
+        //setPanel(); pourquoi Aydin ?
     }
     
     
@@ -36,6 +36,7 @@ o	Permet de collecter tout l’argent de la cagnotte
     }
     
     public void setPanel(){
+	    	panel.removeAll();
 		JLabel lab = new JLabel("Vous avez de la chance, vous gagnez "+valAccumulee);
 		panel.add(lab);
 	}

@@ -50,9 +50,7 @@ public class CaseProp extends Case{
 				acheter = new JButton("Acheter");
 				acheter.addActionListener(new EcouteurAcheter(j, this));
 				panel.add(acheter);
-				nepasacheter = new JButton("Non merci");
-				nepasacheter.addActionListener(new EcouteurPasAcheter(j, this));
-				panel.add(nepasacheter);
+				
 			} else if(j == propri){
 				panel.add(labpropri);
 			} else {

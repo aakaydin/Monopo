@@ -131,7 +131,3 @@ public class AffichageDe extends JPanel{
 		
 		}		
 }
-							
-			
-		
-			

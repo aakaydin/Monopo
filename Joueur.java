@@ -14,11 +14,12 @@ public class Joueur {
 	public  boolean enPrison =false;
 	public  boolean cartePrison = false ;
 	public  boolean passerSonTour = false;
+	public  int nbToursEnPrison = 0;
 	public  int de1;
 	public  int de2;
 	private  int sommeDes; 
 	public boolean passageCaseDep = false ; 
-	private int nbToursEnPrison = 0;
+	
 	private Case caseCourante;
 	
 	
@@ -58,7 +59,7 @@ public class Joueur {
 		
 		}
 	
-	public void addCaseProp(Case c){
+	public void addCase(Case c){
 		
 		immobilier.add(c);
 	}
@@ -164,10 +165,6 @@ public class Joueur {
     	public void setSonTour(boolean b){
         	sonTour = b; 
     	}
-	
-	public void devientProprietaire(Case caseProp){
-            immobilier.add(caseProp);
-        }
 
 	
 	

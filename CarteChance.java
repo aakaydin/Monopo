@@ -99,7 +99,7 @@ public class CarteChance {
 	public void cartePayerFacture(){
 		description = "Il faut payer dans la vie, les factures notamment. Merci de verser 1000 monopolies au système de collecte des factures.";
 		JButton payer = new JButton("Payer");
-		payer.addActionListener(new EcouteurPayer(joueur, -1000));
+		payer.addActionListener(new EcouteurPayerTaxe(joueur, -1000));
 		panelCarteChance.add(payer, BorderLayout.SOUTH); 
 	}
 	public void carteSortirPrison(){

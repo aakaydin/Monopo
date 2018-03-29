@@ -164,6 +164,10 @@ public class Joueur {
     	public void setSonTour(boolean b){
         	sonTour = b; 
     	}
+	
+	public void devientProprietaire(Case caseProp){
+            immobilier.add(caseProp);
+        }
 
 	
 	

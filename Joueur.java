@@ -58,7 +58,7 @@ public class Joueur {
 		
 		}
 	
-	public void addCase(Case c){
+	public void addCaseProp(Case c){
 		
 		immobilier.add(c);
 	}

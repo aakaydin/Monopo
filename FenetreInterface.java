@@ -22,12 +22,9 @@ public class FenetreInterface extends JFrame{
 		private JButton btn1;
 		private JButton finTour;	
 		private JButton lanceDe;	
-		
-		JPanel cadrePrincipal = new JPanel(new BorderLayout());
-		
 	
 		public AffichageDe aff = new AffichageDe( 1 , 1);
-		
+		JPanel cadrePrincipal = new JPanel(new BorderLayout());
 	
 	public FenetreInterface( int longue , int large ){
 	
@@ -37,7 +34,7 @@ public class FenetreInterface extends JFrame{
 		this.setSize(new Dimension(longue,large));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		
-		JPanel cadrePrincipal = new JPanel(new BorderLayout());
+		
 		
 		JPanel panelEast = new JPanel( new BorderLayout());
 		JPanel panelSouth = new JPanel( new FlowLayout() );
@@ -110,9 +107,9 @@ public class FenetreInterface extends JFrame{
 		
 		 this.setVisible(true);
 		}
-	
-	
-	public void changerPanel(JPanel p){
+		
+		//ne fonctionne pas 
+		public void changerPanel(JPanel p){
 			panelTemp.removeAll();
 			panelTemp = p ;
 			
@@ -120,12 +117,8 @@ public class FenetreInterface extends JFrame{
 			panelTemp.updateUI();
 			cadrePrincipal.add(panelTemp, BorderLayout.WEST);
 			
-	}
-	
-	
-	
-	
-	
+		}
+		
     public static void main(String[] a){
 		FenetreInterface fi = new FenetreInterface( 1200, 600 );
 		
@@ -134,7 +127,8 @@ public class FenetreInterface extends JFrame{
 		
 		fi.changerPanel(p);
 		
-	    
+		
+		
     }
 	
 	
@@ -142,4 +136,4 @@ public class FenetreInterface extends JFrame{
 	
 	
 	
-	}
+}

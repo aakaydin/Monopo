@@ -8,19 +8,27 @@ public class Jouer{
     int position;
     //boolean joueEncore = true;  
     boolean rejouera = false; 
-    Case caseCourante ;
-	//Principal
-	Plateau plateau = new Plateau(); //il faudra ensuite utiliser celui de Partie
+    Case caseCourante = new Case(0,"c","a");
+	
+	
 	JPanel panelCase ;
 	JPanel lancerLesDes = new JPanel();
+	JLabel lab = new JLabel("Vous pouvez lancer les des");
+
+	JLabel lab2 = new JLabel("Finir tour");
+	JPanel finirtour = new JPanel();
+	
+	//Partie partie ;
+	Plateau plateau = new Plateau(); //il faudra ensuite utiliser celui de Partie
     
     
     //Constructeur 
-    public Jouer(){
+    public Jouer(){//mettre une partie en argument pour récupérer le joueur courant de la partie 
         //joueurCourant = partie.getJoueurCourant(); 
-        JButton lancerDes = new JButton("Lancer les des");
-        lancerDes.addActionListener(new EcouteurLancerLesDes(joueurCourant));
-        lancerLesDes.add(lancerDes);
+        lancerLesDes.add(lab);
+        finirtour.add(lab2);
+        //fen = f ; quand on aura fait partie
+        
         
     }
     
@@ -29,47 +37,53 @@ public class Jouer{
      
      
     //On teste l'état du joueur : en prison ou non 
-    if(joueurCourant.getEnPrison() == true){
-        if(joueurCourant.getCartePrison() == true){
+		if(joueurCourant.getEnPrison() == true){
+			if(joueurCourant.getCartePrison() == true){
             
-            MaFenetreCartePrison fenCartePrison = new MaFenetreCartePrison(); 
-            boolean reponse = fenCartePrison.getReponse(); //ecouteur ok? Boolean false par défaut -> pose problème? quel ordre des étapes? 
+				MaFenetreCartePrison fenCartePrison = new MaFenetreCartePrison(); 
+				boolean reponse = fenCartePrison.getReponse(); //ecouteur ok? Boolean false par défaut -> pose problème? quel ordre des étapes? 
             
-            if(reponse == true){
-                joueurCourant.setEnPrison(false); 
-            }else if (reponse == false){
-                //faire setMethode de la classe principale pour que le Panel changeant soit celui de lancer des dés 
-                //si on ne clique pas sur le bouton est-ce qu'on passe quand même aux lignes suivantes 
-                //est-ce qu'on fait un boolean a choisi puis un while tant que le joueur n'a pas lancer les des ... 
+				if(reponse == true){
+					joueurCourant.setEnPrison(false); 
+					
                 
-                if(joueurCourant.getDe1() == joueurCourant.getDe2()){
-                    joueurCourant.setEnPrison(false); 
-                }else if(joueurCourant.getDe1() != joueurCourant.getDe2() && joueurCourant.getNbToursEnPrison() >= 3){
-                    joueurCourant.setArgent(-50000); //est-ce la somme que l'on choisit?
-                    joueurCourant.setEnPrison(false); 
-                }else{
-                    joueurCourant.resteEnPrison();
-                    /*joueEncore = false; */ //inutile pour le moment
-                }
-                //afficher sur le panel changeant si on est sorti de prison où non 
-            }
-        }
-    }
-}
+				}
+			}
+		}
+		
+		//régler le panel de la fenêtre qui doit afficher lancerlesdes 
+		//rendre actif les dés 
+		
+		
+	}
+
 	
 		
-		
+	public void traitementEstEnPrison(){
+		if(joueurCourant.getDe1() == joueurCourant.getDe2()){
+			joueurCourant.setEnPrison(false); 
+                    
+                    joueurCourant.avancer(joueurCourant.getDe1() + joueurCourant.getDe2()); //fait avancer
+                    //appel méthode traitementCase
+                    this.Tour();
+                 
+		}else if(joueurCourant.getDe1() != joueurCourant.getDe2() && joueurCourant.getNbToursEnPrison() >= 3){
+			joueurCourant.setArgent(-50000); //est-ce la somme que l'on choisit?
+			joueurCourant.setEnPrison(false); 
+                    
+                    joueurCourant.avancer(joueurCourant.getDe1() + joueurCourant.getDe2()); //fait avancer
+                    this.Tour();
+                    //appel méthode traitementCase
+		}else{
+                    joueurCourant.resteEnPrison();
+                    
+                    //afficher changement panel dans la fenêtre qui doit afficher finir tour 
+                    //rend actif le bouton finir tour 
+		}
+                
+	}
     //Un tour : 
     public void Tour(){
-     
-    joueurCourant.setSommeDes(0); 
-	
-	if(joueurCourant.getEnPrison() == false){
-        if(joueurCourant.getSommeDes() == 0 ){
-			//faire setMethode de la classe principale pour que le Panel changeant soit celui de lancer des dés 
-                //si on ne clique pas sur le bouton est-ce qu'on passe quand même aux lignes suivantes 
-                //est-ce qu'on fait un boolean a choisi puis un while tant que le joueur n'a pas lancer les des ... 
-        }
         
         /*if(joueurCourant.getDe1() == joueurCourant.getDe2()){
             rejouera = true; 
@@ -93,11 +107,11 @@ public class Jouer{
         
         if (caseCourante instanceof CaseTaxe){
 			//ces lignes de code serait plutot dans la classe caseTaxe 
-            CaseTaxe caseCourante = (CaseTaxe) caseCourante;
-            caseCourante.setDescriptionPanel(joueurCourant);
+            CaseTaxe caseCour = (CaseTaxe) caseCourante;
+            caseCour.setDescriptionPanel(joueurCourant);
             panelCase = caseCourante.getPanel();
-            int val = caseCourante.getValAPayer(); 
-            caseCourante.setDescriptionPanel(joueurCourant);
+            int val = caseCour.getValAPayer(); 
+            caseCour.setDescriptionPanel(joueurCourant);
             panelCase = caseCourante.getPanel();
             //pour getter les cases il va falloir les numéroter
             
@@ -105,42 +119,45 @@ public class Jouer{
         }
         
         if(caseCourante instanceof CaseCagnotte){
-            CaseCagnotte caseCourante = (CaseCagnotte) caseCourante;
-            caseCourante.setPanel() ;
+            CaseCagnotte caseCour = (CaseCagnotte) caseCourante;
+            caseCour.setPanel() ;
             panelCase = caseCourante.getPanel();
-            caseCourante.recupereCagnotte(joueurCourant); 
+            caseCour.recupereCagnotte(joueurCourant); 
         }
         
         if(caseCourante instanceof CaseChance){ 
-            CaseChance caseCourante = (CaseChance) caseCourante;
-            CarteChance carteChance = caseCourante.creerCarteChance(joueurCourant);
+            CaseChance caseCour = (CaseChance) caseCourante;
+            CarteChance carteChance = caseCour.creerCarteChance(joueurCourant);
             carteChance.tirerCarte(); 
 			panelCase = carteChance.getPanel();
         }
         
         
         if(caseCourante instanceof CaseDepart){
-            CaseDepart caseCourante = (CaseDepart) caseCourante;
-            panelCase = caseCourante.getPanel();
-            caseCourante.action(joueurCourant);
+            CaseDepart caseCour = (CaseDepart) caseCourante;
+            panelCase = caseCour.getPanel();
+            caseCour.action(joueurCourant);
         }
         //il faut rajouter si on tombe sur la case prison
         if(caseCourante instanceof CasePrison){
-			CasePrison caseCourante = (CasePrison) caseCourante;
-			panelCase = caseCourante.getPanel();
+			CasePrison caseCour = (CasePrison) caseCourante;
+			panelCase = caseCour.getPanel();
 			joueurCourant.setEnPrison(true);
 		}
         
         if(caseCourante instanceof CaseProp){
-			CaseProp caseCourante = (CaseProp) caseCourante ;
-			caseCourante.setDescriptionPanel(joueurCourant);
-			panelCase = caseCourante.getPanel() ; 
+			CaseProp caseCour = (CaseProp) caseCourante ;
+			caseCour.setDescriptionPanel(joueurCourant);
+			panelCase = caseCour.getPanel() ; 
 		}
             
 		
 		 
             
-            
+     joueurCourant.setSommeDes(0);  
+     //rendre actif fin tour
+    
+     //faire changement d'affcihage dans la fenêtre qui doit afficher finir tour 
        
     
     
@@ -159,7 +176,7 @@ public class Jouer{
     //acheter une maison qui s'active quand le joueurCurrent n'a pas sa liste de maison vide (immobilier != 0) 
     //abandonner la partie 
     
-    }
-}
+
+	}
 
 }

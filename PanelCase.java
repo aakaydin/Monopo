@@ -17,7 +17,7 @@ public class PanelCase extends JPanel {
 	
 	private JPanel affichageJoueur = new JPanel() ;
 	
-	public PanelCase(Color col, JLabel n, FenetrePlateau f){
+	public PanelCase(Color col, JLabel n, FenetrePlateau f ){
 		super();
 		
 		c = col ;
@@ -57,8 +57,8 @@ public class PanelCase extends JPanel {
 		//Color c = j.getCouleur() ; en commentaire pour pouvoir faire les tests
 		JLabel jl = new JLabel("J1 ");
 		jl.setOpaque(true);
-		jl.setForeground(Color.WHITE);
-		jl.setBackground(Color.BLUE);
+		jl.setForeground(Color.BLACK);
+		jl.setBackground(Color.WHITE);
 		affichageJoueur.add(jl);
 		this.repaint(); 
 	}

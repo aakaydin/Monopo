@@ -178,5 +178,5 @@ public class FenetrePlateau extends JFrame {
 
     //public static void main(String[] a){
     //    new FenetrePlateau();
-    //}
+//}
 }

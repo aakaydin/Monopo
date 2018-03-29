@@ -91,9 +91,8 @@ public class CarteChance {
 	
 	public void carteRelancerDes(){
 		description = "Vous pouvez rejouer !";
-		JButton lancerDes = new JButton("Lancer les des");
-		panelCarteChance.add(lancerDes, BorderLayout.SOUTH);
-		lancerDes.addActionListener(new EcouteurLancerLesDes(joueur)) ;
+		//rend actif le bouton pour relancer les des 
+		
 	}
 	
 	public void cartePayerFacture(){

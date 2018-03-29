@@ -9,9 +9,9 @@ public class EcouteurLancerLesDes implements ActionListener{
 	FenetreInterface fen ;
 	
 	
-	public EcouteurLancerLesDes(Joueur jj, FenetreInterface f){
+	public EcouteurLancerLesDes(Joueur jj, FenetreInterface f, Plateau p){
 		j = jj ;
-		jouer = new Jouer();
+		jouer = new Jouer(p, f, j);
 		//jouer = f.getPartie().getJouer() ; 
 		fen = f;
 	}

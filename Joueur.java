@@ -106,6 +106,8 @@ public class Joueur {
 		somme = somme + mani;
 		
 		}
+		
+	public boolean estVivant(){return estVivant;}
 	
 	public void sedEndette(){
 		
@@ -165,6 +167,8 @@ public class Joueur {
     	public void setSonTour(boolean b){
         	sonTour = b; 
     	}
+    	
+    	public boolean getSonTour(){return sonTour;}
 
 	
 	

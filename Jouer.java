@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Jouer{
     
-    Joueur joueurCourant = new Joueur("Camille",0,0); //pour les tests 
+    
     int position;
     //boolean joueEncore = true;  
     boolean rejouera = false; 
@@ -19,12 +19,15 @@ public class Jouer{
 	JPanel finirtour = new JPanel();
 	
 	//Partie partie ;
-	Plateau plateau = new Plateau(); //il faudra ensuite utiliser celui de Partie
-    
+	Plateau plateau ; //il faudra ensuite utiliser celui de Partie
+	FenetreInterface fen ;
+    Joueur joueurCourant ; //pour les tests 
     
     //Constructeur 
-    public Jouer(){//mettre une partie en argument pour récupérer le joueur courant de la partie 
-        //joueurCourant = partie.getJoueurCourant(); 
+    public Jouer(Plateau p, FenetreInterface f, Joueur j){//va prendre en parametre un plateau, un joueur courant et une fenetre 
+        joueurCourant = j;
+        plateau = p;
+        joueurCourant = j;
         lancerLesDes.add(lab);
         finirtour.add(lab2);
         //fen = f ; quand on aura fait partie
@@ -32,7 +35,7 @@ public class Jouer{
         
     }
     
-    public void TesterPrison(){
+    public void testerPrison(){
 		joueurCourant.setSommeDes(0); 
      
      
@@ -51,7 +54,7 @@ public class Jouer{
 			}
 		}
 		
-		//régler le panel de la fenêtre qui doit afficher lancerlesdes 
+		fen.changerPanel(lancerLesDes);
 		//rendre actif les dés 
 		
 		
@@ -77,7 +80,7 @@ public class Jouer{
 		}else{
                     joueurCourant.resteEnPrison();
                     
-                    //afficher changement panel dans la fenêtre qui doit afficher finir tour 
+                    fen.changerPanel(finirtour);
                     //rend actif le bouton finir tour 
 		}
                 
@@ -155,18 +158,12 @@ public class Jouer{
 		 
             
      joueurCourant.setSommeDes(0);  
-     //rendre actif fin tour
+
+	fen.changerPanel(finirtour);
     
      //faire changement d'affcihage dans la fenêtre qui doit afficher finir tour 
        
-    
-    
-    
-    //faire affichage de la case
-    
-    //[...] est-ce que toutes les actions sont contenues dans les classes de cases associées 
-    
-    
+  
     
     joueurCourant.setSonTour(false); //faire setSonTour ou faire une méthode fin du tour qui passe directement la main au prochain joueur du tableau
     
@@ -178,5 +175,7 @@ public class Jouer{
     
 
 	}
+	
+	public Joueur getJoueur(){return joueurCourant;}
 
 }

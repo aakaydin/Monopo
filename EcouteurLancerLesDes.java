@@ -4,19 +4,24 @@ import java.util.* ;
 public class EcouteurLancerLesDes implements ActionListener{
 	
 	Joueur j ; 
-	FenetreInterface fen;
+	//il faudra récupérer jouer pour passer d'un tour à l'autre mais ne pourra être fait que quand partie aura pu être fait 
+	Jouer jouer ;
+	FenetreInterface fen ;
 	
-	public EcouteurLancerLesDes(Joueur jj , FenetreInterface f ){
-		
+	
+	public EcouteurLancerLesDes(Joueur jj, FenetreInterface f){
 		j = jj ;
+		jouer = new Jouer();
+		//jouer = f.getPartie().getJouer() ; 
 		fen = f;
 	}
 	
 	public void actionPerformed(ActionEvent ae){
-		j.lancerLesDes() ;
-		fen.aff.setDes(j.de1 , j.de2);
-		fen.aff.repaint();
-		if(!j.getEnPrison()){
+		//if(this.estActif() == true){
+			j.lancerLesDes() ;
+			fen.aff.setDes(j.de1 , j.de2);
+			fen.aff.repaint();
+			
 			if(!j.getEnPrison()){
 				int numCaseAAvancer = j.getSommeDes() ;
 				//je considère que 30 est le nombre de cases du plateau 
@@ -28,11 +33,8 @@ public class EcouteurLancerLesDes implements ActionListener{
 				//appeler méthode traitement quand je suis en prison
 				//jouer.traitementEstEnPriosn();
 			}
-		}
-		
-		System.out.println( j.de1 );
-		System.out.println( j.de2 );
-		
+			//this.setActif(false); 
+		//}
 	}
 	
 }

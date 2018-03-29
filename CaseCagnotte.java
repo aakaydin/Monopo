@@ -24,9 +24,9 @@ o	Permet de collecter tout l’argent de la cagnotte
     
     public JPanel getPanel(){ return panel;}
     
-    public void ajoutCagnotte(int somme , Joueur joueur){
+    public void ajoutCagnotte(int somme){
         valAccumulee = valAccumulee + somme; 
-        joueur.setArgent(-somme);
+       
     }
     
     

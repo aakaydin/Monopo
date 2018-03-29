@@ -22,6 +22,9 @@ public class FenetreInterface extends JFrame{
 		private JButton btn1;
 		private JButton finTour;	
 		private JButton lanceDe;	
+		
+		JPanel cadrePrincipal = new JPanel(new BorderLayout());
+		
 	
 		public AffichageDe aff = new AffichageDe( 1 , 1);
 		
@@ -109,14 +112,29 @@ public class FenetreInterface extends JFrame{
 		}
 	
 	
-
+	public void changerPanel(JPanel p){
+			panelTemp.removeAll();
+			panelTemp = p ;
+			
+			cadrePrincipal.remove(panelTemp);
+			panelTemp.updateUI();
+			cadrePrincipal.add(panelTemp, BorderLayout.WEST);
+			
+	}
 	
 	
 	
 	
 	
     public static void main(String[] a){
-		new FenetreInterface( 1200, 600 );
+		FenetreInterface fi = new FenetreInterface( 1200, 600 );
+		
+		JPanel p = new JPanel();
+		p.add(new JLabel("dguileza"));
+		
+		fi.changerPanel(p);
+		
+	    
     }
 	
 	

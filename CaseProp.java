@@ -36,7 +36,7 @@ public class CaseProp extends Case{
 	
 	public void setProprietaire(Joueur j){
 		propri = j;
-		j.devientProprietaire(this);
+		j.addCaseProp(this);
 	}
 	
 	public int getPrix(){return prix;}

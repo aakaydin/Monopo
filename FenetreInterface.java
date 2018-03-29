@@ -7,6 +7,10 @@ public class FenetreInterface extends JFrame{
 	
 		private FenetrePlateau FP = new FenetrePlateau();
 		public Plateau P = new Plateau();	
+		//private Joueur jTour = new Jouer();
+		//private Joueur[] jojo = new Joueur[2];  
+		private Joueur JC = new Joueur("Camille",0,0);
+		
 		public JPanel panelTemp;
 		
 			
@@ -19,7 +23,7 @@ public class FenetreInterface extends JFrame{
 		private JButton finTour;	
 		private JButton lanceDe;	
 	
-		private AffichageDe aff = new AffichageDe();
+		public AffichageDe aff = new AffichageDe( 1 , 1);
 		
 	
 	public FenetreInterface( int longue , int large ){
@@ -47,9 +51,10 @@ public class FenetreInterface extends JFrame{
 		
 		//Creation des widgets
 		
-		label = new JLabel (" Joueur Courant:               ");
-		label1 = new JLabel(" Somme:                        ");	
+		label1 = new JLabel(" Somme: " +JC.getSomme() );
+		label = new JLabel (" Joueur Courant: " + JC.getNom());	
 		label2 = new JLabel(" ");	
+		
 		
 		btn = new JButton(" Next ");
 		btn1 = new JButton(" Prev");
@@ -58,13 +63,17 @@ public class FenetreInterface extends JFrame{
 		
 		panelTemp = P.getCases().get(0).getPanel();
 		
+		aff = new AffichageDe( JC.de1 , JC.de2);
+		
 		
 		
 		// Lien entre les buttons et les listeners
 		
-		btn.addActionListener( new EcouteurNext( this) );
+		//btn.addActionListener( new EcouteurNext( this) );
+		lanceDe.addActionListener( new EcouteurLancerLesDes(JC , this) );
 		
-	
+		
+		
 		
 		// Ajout des Gadgets dans les panels
 		
@@ -83,7 +92,8 @@ public class FenetreInterface extends JFrame{
 		
 		
 		
-		// Ajout de monPanel avec tout les widgets dans un case de borderLayout
+		
+		// Ajout des panels avec tout les widgets dans un case de borderLayout
 		
 		cadrePrincipal.add(plateau , BorderLayout.CENTER);
 		

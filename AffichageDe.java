@@ -13,11 +13,10 @@ public class AffichageDe extends JPanel{
 		private int rayon = cote/5;
 		
 		
-	public AffichageDe(){
+	public AffichageDe( int d1 , int d2){
 		
 	
-		de1 = 5;
-		de2 = 6	;
+		setDes( d1 , d2);
 		
 		}
 
@@ -35,22 +34,22 @@ public class AffichageDe extends JPanel{
 					 
 					 if(de1 == 1  )  g.fillOval(  25 , 25    , rayon , rayon) ; 
 					 
-					 if(de2 == 1  )  g.fillOval( 25 + cote + 5 , 25  , rayon , rayon) ; 
+			
 					
-					 if(de1 == 2  ){  
+					 else if(de1 == 2  ){  
 						 
 						 g.fillOval( 15 , 15  , rayon , rayon) ; 
 						 g.fillOval( 35 , 35  , rayon , rayon) ;
 					 }
 					 
-					 if(de1 == 3  ){  
+					 else if(de1 == 3  ){  
 						 
 						 g.fillOval( 15 , 15  , rayon , rayon) ; 
 						 g.fillOval(  25 , 25  , rayon , rayon) ;
 						 g.fillOval( 35 , 35  , rayon , rayon) ;
 					 }
 					 
-					 if(de1 == 4  ){  
+					 else if(de1 == 4  ){  
 						 
 						 g.fillOval( 15 , 15  , rayon , rayon) ; 
 						 g.fillOval( 15 , 35  , rayon , rayon) ; 
@@ -58,7 +57,7 @@ public class AffichageDe extends JPanel{
 						 g.fillOval( 35 , 15  , rayon , rayon) ; 
 					 }
 					 
-					  if(de1 == 5  ){  
+					 else if(de1 == 5  ){  
 						 
 						 g.fillOval( 15 , 15  , rayon , rayon) ; 
 						 g.fillOval( 15 , 35  , rayon , rayon) ; 
@@ -67,7 +66,7 @@ public class AffichageDe extends JPanel{
 						 g.fillOval( 35 , 15  , rayon , rayon) ; 
 					 }
 					 
-					   if(de1 == 6  ){  
+					  else if(de1 == 6  ){  
 						 
 						 g.fillOval( 15 , 15  , rayon , rayon) ; 
 						 g.fillOval( 15 , 35  , rayon , rayon) ; 
@@ -77,21 +76,23 @@ public class AffichageDe extends JPanel{
 						 g.fillOval( 35 , 15  , rayon , rayon) ; 
 						  
 					 }
+			
+					  if(de2 == 1  )  g.fillOval( 25 + cote + 5 , 25  , rayon , rayon) ; 
 					 
-					  if(de2 == 2  ){  
+					 else if(de2 == 2  ){  
 						 
 						 g.fillOval( 15 + cote + 5, 15  , rayon , rayon) ; 
 						 g.fillOval( 35 + cote + 5, 35  , rayon , rayon) ;
 					 }
 					 
-					 if(de2 == 3  ){  
+					else if(de2 == 3  ){  
 						 
 						 g.fillOval( 15 + cote + 5, 15  , rayon , rayon) ; 
 						 g.fillOval( 25 + cote + 5, 25  , rayon , rayon) ;
 						 g.fillOval( 35 + cote + 5, 35  , rayon , rayon) ;
 					 }
 					 
-					 if(de2 == 4  ){  
+					else if(de2 == 4  ){  
 						 
 						 g.fillOval( 15 + cote + 5, 15  , rayon , rayon) ; 
 						 g.fillOval( 15 + cote + 5, 35  , rayon , rayon) ; 
@@ -99,7 +100,7 @@ public class AffichageDe extends JPanel{
 						 g.fillOval( 35 + cote + 5, 15  , rayon , rayon) ; 
 					 }
 					 
-					  if(de2 == 5  ){  
+					 else if(de2 == 5  ){  
 						 
 						 g.fillOval( 15 + cote + 5, 15  , rayon , rayon) ; 
 						 g.fillOval( 15 + cote + 5, 35  , rayon , rayon) ; 
@@ -108,7 +109,7 @@ public class AffichageDe extends JPanel{
 						 g.fillOval( 35 + cote + 5, 15  , rayon , rayon) ; 
 					 }
 					 
-					   if(de2 == 6  ){  
+					  else if(de2 == 6  ){  
 						 
 						 g.fillOval( 15 + cote + 5 , 15  , rayon , rayon) ; 
 						 g.fillOval( 15 + cote + 5 , 35  , rayon , rayon) ; 
@@ -121,6 +122,14 @@ public class AffichageDe extends JPanel{
 				
 			}
 			
+			
+	public void setDes( int d1 , int  d2){
+		
+		de1 = d1;
+		de2 = d2;
+		
+		
+		}		
 }
 							
 			

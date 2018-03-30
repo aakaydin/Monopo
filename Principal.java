@@ -31,6 +31,7 @@ public class Principal {
 				fen.changerPanelJoueur(jcourant);
 				
 				jouer.testerPrison();
+				//c'est l'écouteur fin de tour qui rend le tour du joueur false 
 			}
 			
 			rangJoueur = (rangJoueur + 1)%nbJoueurs ;

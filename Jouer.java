@@ -164,8 +164,8 @@ public class Jouer{
      //faire changement d'affcihage dans la fenêtre qui doit afficher finir tour 
        
   
-    
-    joueurCourant.setSonTour(false); //faire setSonTour ou faire une méthode fin du tour qui passe directement la main au prochain joueur du tableau
+    //la ligne suivante doit se trouver dans l'écouteur du bouton fintour
+    //joueurCourant.setSonTour(false); //faire setSonTour ou faire une méthode fin du tour qui passe directement la main au prochain joueur du tableau
     
     
     //ne pas oublier le bouton 

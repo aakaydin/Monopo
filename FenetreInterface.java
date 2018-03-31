@@ -5,7 +5,7 @@ import java.util.*;
 
 public class FenetreInterface extends JFrame{
 	
-		private FenetrePlateau FP = new FenetrePlateau();
+		private PanelPlateau plateau = new PanelPlateau();
 		//private PanelPlateau plateau = new PanelPlateau();
 		public Plateau p ;	
 		//private Joueur jTour = new Jouer();
@@ -38,7 +38,7 @@ public class FenetreInterface extends JFrame{
 		super(" Monopoly");
 		
 		p = pl ;
-		JPanel plateau = FP.getPane();
+		
 		
 		this.setSize(new Dimension(longue,large));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 

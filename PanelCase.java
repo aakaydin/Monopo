@@ -13,11 +13,11 @@ public class PanelCase extends JPanel {
 	private Color c ; 
 	private JLabel nom ;
 	
-	private FenetrePlateau fen ;
+	private PanelPlateau fen ;
 	
 	private JPanel affichageJoueur = new JPanel() ;
 	
-	public PanelCase(Color col, JLabel n, FenetrePlateau f ){
+	public PanelCase(Color col, JLabel n, PanelPlateau f ){
 		super();
 		
 		c = col ;

@@ -1,4 +1,8 @@
 import java.util.*;
+import java.awt.*;
+
+import javax.swing.*;
+
 
 public class Joueur {
 	
@@ -19,6 +23,7 @@ public class Joueur {
 	public  int de2;
 	private  int sommeDes; 
 	public boolean passageCaseDep = false ; 
+	private JLabel label ;
 	
 	private Case caseCourante;
 	
@@ -33,6 +38,10 @@ public class Joueur {
 		nom = name;
 		somme = mani;
 		position = pos;
+		label = new JLabel(nom);
+		label.setOpaque(true);
+		label.setForeground(Color.BLACK);
+		label.setBackground(Color.WHITE);
 		}
 	
 	// Constructeur avec nom + somme 
@@ -40,16 +49,26 @@ public class Joueur {
 		
 		nom = name;
 		somme = mani;
+		label = new JLabel(nom);
+		label.setOpaque(true);
+		label.setForeground(Color.BLACK);
+		label.setBackground(Color.WHITE);
 		}
 	
 	// Constructeur avec nom 
 	public Joueur( String name ){
 		
 		nom = name;
+		label = new JLabel(nom);
+		label.setOpaque(true);
+		label.setForeground(Color.BLACK);
+		label.setBackground(Color.WHITE);
 		}
 	
 	
 	// Getteurs
+	public JLabel getLabel(){return label;}
+	
 	public boolean getCarteSortirPrison(){return cartePrison;}
 	
 	public String getNom(){
@@ -239,6 +258,7 @@ public class Joueur {
 	public void allerEnPrison(){
 		enPrison = true ;
 		this.setPos(7);
+		//il faut redessiner le joueur 
 	}
 	
 	

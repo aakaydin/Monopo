@@ -14,12 +14,15 @@ public class PanelCase extends JPanel {
 	private JLabel nom ;
 	
 	private PanelPlateau fen ;
+	private JLabel joueur ;
 	
 	private JPanel affichageJoueur = new JPanel() ;
+	int place ;
 	
-	public PanelCase(Color col, JLabel n, PanelPlateau f ){
+	public PanelCase(Color col, JLabel n, PanelPlateau f, int i ){
 		super();
 		
+		place = i;
 		c = col ;
 		nom = n ;
 		fen = f;
@@ -44,22 +47,17 @@ public class PanelCase extends JPanel {
 	}
 	
 	//deux méthode pour les test car Joueur n'est pas encore fonctionnel 
-	public void dessinerJoueur(/*Joueur j*/){
+	
+	public int getPlace(){return place;}
+	public void dessinerJoueur(Joueur j){
 		//Color c = j.getCouleur() ; en commentaire pour pouvoir faire les tests
-		JLabel jl = new JLabel(" ");
-		jl.setOpaque(true);
-		jl.setBackground(Color.MAGENTA);
-		affichageJoueur.add(jl);
-		this.repaint();
+		
+		affichageJoueur.add(j.getLabel());
+		this.repaint(); 
 	}
 	
-	public void dessinerJoueur2(/*Joueur j*/){
-		//Color c = j.getCouleur() ; en commentaire pour pouvoir faire les tests
-		JLabel jl = new JLabel("J1 ");
-		jl.setOpaque(true);
-		jl.setForeground(Color.BLACK);
-		jl.setBackground(Color.WHITE);
-		affichageJoueur.add(jl);
+	public void retirerJoueur(Joueur j){
+		affichageJoueur.remove(j.getLabel());
 		this.repaint(); 
 	}
 	

@@ -105,7 +105,11 @@ public class Jouer{
         if (caseCourante instanceof CaseAllerPrison){ 
             caseCourante = (CaseAllerPrison) caseCourante;
             panelCase = caseCourante.getPanel();
-            joueurCourant.allerEnPrison(); //problème de downcast? 
+            fen.getPanelCase(joueurCourant.getPos()).retirerJoueur(joueurCourant);
+            
+            joueurCourant.allerEnPrison(); //problème de downcast?
+            fen.getPanelCase(joueurCourant.getPos()).dessinerJoueur(joueurCourant);
+			fen.getPanelPlateau().repaint(); 
         }
         
         if (caseCourante instanceof CaseTaxe){

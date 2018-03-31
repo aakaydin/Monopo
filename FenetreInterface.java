@@ -94,7 +94,8 @@ public class FenetreInterface extends JFrame{
 		panelSouth.add(label1 );
 		panelSouth.add(label);
 		
-		
+		//ligne de test
+		plateau.getPanelCase(JC.getPos()).dessinerJoueur(JC);
 		
 		
 		// Ajout des panels avec tout les widgets dans un case de borderLayout
@@ -110,7 +111,11 @@ public class FenetreInterface extends JFrame{
 		cadrePrincipal.add(panelNorth , BorderLayout.NORTH);
 		
 		 this.setVisible(true);
+		 
+		 
 		}
+		
+		public PanelPlateau getPanelPlateau(){return plateau;}
 		
 		//ne fonctionne pas 
 		public void changerPanel(JPanel p){
@@ -129,6 +134,7 @@ public class FenetreInterface extends JFrame{
 			cadrePrincipal.remove(panelSouth);
 			panelTemp.updateUI();
 			cadrePrincipal.add(panelSouth, BorderLayout.SOUTH);
+			this.repaint();
 		}
 		
 		public void changerJoueur(Joueur j){
@@ -138,9 +144,13 @@ public class FenetreInterface extends JFrame{
 			lanceDe = new JButton("Lancer les des");
 			lanceDe.addActionListener(new EcouteurLancerLesDes(JC, this, p)); 
 			panelEast.add(lanceDe,  BorderLayout.NORTH);
+			this.repaint();
 			
 		}
-			
+		
+		public PanelCase getPanelCase(int i){
+			return plateau.getPanelCase(i);
+		}
 		
     public static void main(String[] a){
 		FenetreInterface fi = new FenetreInterface( 1200, 600, new Plateau() );

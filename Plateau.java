@@ -92,6 +92,8 @@ public class Plateau  {
 	public LinkedList<Case> getCases(){return cases;}
 	
 	public int getNbCase(){ return cases.size() ;}
+	
+	
 	   
        
 	

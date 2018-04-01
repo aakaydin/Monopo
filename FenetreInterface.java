@@ -10,7 +10,7 @@ public class FenetreInterface extends JFrame{
 		public Plateau p ;	
 		//private Joueur jTour = new Jouer();
 		//private Joueur[] jojo = new Joueur[2];  
-		private Joueur JC = new Joueur("Camille",0,0);
+		//private Joueur JC = new Joueur("Camille",0,0);
 		
 		public JPanel panelTemp;
 		
@@ -28,16 +28,19 @@ public class FenetreInterface extends JFrame{
 		private JButton btn1;
 		private JButton finTour;	
 		private JButton lanceDe;	
+		
+		private Joueur jcourant; 
 	
 		public AffichageDe aff = new AffichageDe( 1 , 1);
 		JPanel cadrePrincipal = new JPanel(new BorderLayout());
 	
-	public FenetreInterface( int longue , int large, Plateau pl){
+	public FenetreInterface( int longue , int large, Plateau pl, Joueur jcourant){
 	
 		
 		super(" Monopoly");
 		
 		p = pl ;
+		this.jcourant = jcourant; 
 		
 		
 		this.setSize(new Dimension(longue,large));
@@ -55,26 +58,27 @@ public class FenetreInterface extends JFrame{
 		
 		//Creation des widgets
 		
-		label1 = new JLabel(" Somme: " +JC.getSomme() );
-		label = new JLabel (" Joueur Courant: " + JC.getNom());	
+		label1 = new JLabel(" Somme: " +jcourant.getSomme() );
+		label = new JLabel (" Joueur Courant: " + jcourant.getNom());	
 		label2 = new JLabel(" ");	
 		
 		
 		btn = new JButton(" Next ");
 		btn1 = new JButton(" Prev");
 		finTour = new JButton(" End Turn");
+		finTour.addActionListener(new EcouteurFinTour(this,jcourant));
 		lanceDe = new JButton(" Lancer les Des ");
 		
 		panelTemp = p.getCases().get(0).getPanel();
 		
-		aff = new AffichageDe( JC.de1 , JC.de2);
+		aff = new AffichageDe( jcourant.de1 , jcourant.de2);
 		
 		
 		
 		// Lien entre les buttons et les listeners
 		
 		//btn.addActionListener( new EcouteurNext( this) );
-		lanceDe.addActionListener( new EcouteurLancerLesDes(JC, this, p) ); //est-ce que mon écouteur va bien changer son joueur quand je change le joueur de la fenêtre ? rep Aydin : non 
+		lanceDe.addActionListener( new EcouteurLancerLesDes(jcourant, this, p) ); //est-ce que mon écouteur va bien changer son joueur quand je change le joueur de la fenêtre ? rep Aydin : non 
 		
 		
 		
@@ -95,7 +99,7 @@ public class FenetreInterface extends JFrame{
 		panelSouth.add(label);
 		
 		//ligne de test
-		plateau.getPanelCase(JC.getPos()).dessinerJoueur(JC);
+		plateau.getPanelCase(jcourant.getPos()).dessinerJoueur(jcourant);
 		
 		
 		// Ajout des panels avec tout les widgets dans un case de borderLayout
@@ -129,7 +133,7 @@ public class FenetreInterface extends JFrame{
 		}
 		
 		public void changerPanelJoueur(Joueur j){
-			JC = j;
+			jcourant = j;
 			panelSouth.removeAll();
 			cadrePrincipal.remove(panelSouth);
 			panelTemp.updateUI();
@@ -139,10 +143,10 @@ public class FenetreInterface extends JFrame{
 		
 		public void changerJoueur(Joueur j){
 			//il faut changer le bouton des des 
-			JC = j;
+			jcourant = j;
 			panelEast.remove(lanceDe);
 			lanceDe = new JButton("Lancer les des");
-			lanceDe.addActionListener(new EcouteurLancerLesDes(JC, this, p)); 
+			lanceDe.addActionListener(new EcouteurLancerLesDes(jcourant, this, p)); 
 			panelEast.add(lanceDe,  BorderLayout.NORTH);
 			this.repaint();
 			
@@ -152,8 +156,8 @@ public class FenetreInterface extends JFrame{
 			return plateau.getPanelCase(i);
 		}
 		
-    public static void main(String[] a){
-		FenetreInterface fi = new FenetreInterface( 1200, 600, new Plateau() );
+   /* public static void main(String[] a){
+		FenetreInterface fi = new FenetreInterface( 1200, 600, new Plateau(), );
 		
 		JPanel p = new JPanel();
 		p.add(new JLabel("dguileza"));
@@ -162,7 +166,7 @@ public class FenetreInterface extends JFrame{
 		
 		
 		
-    }
+    } **/
 	
 	
 	

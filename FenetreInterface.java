@@ -179,15 +179,11 @@ public class FenetreInterface extends JFrame{
 		fi.changerPanel(p2);
 		Joueur claire = new Joueur("Claire", 0,0);
 		claire.setArgent(1000);
-		fi.setJoueur(claire);
+		fi.changerPanelJoueur(claire);
+		claire.setArgent(05);
+		System.out.println(claire.getSomme());
+		fi.changerPanelJoueur(claire);
 		
 		//fi.changerPanel(p);
 		
     } 
-	
-	
-	
-	
-	
-	
-}

@@ -162,7 +162,8 @@ public class Jouer{
 		 
             
      joueurCourant.setSommeDes(0);  
-
+	    //change l'affichage du panel joueur au cas où la somme de celui-ci auariat changer 
+	fen.changerPanelJoueur(joueurCourant);
 	fen.changerPanel(finirtour);
     
      //faire changement d'affcihage dans la fenêtre qui doit afficher finir tour 

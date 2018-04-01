@@ -12,7 +12,7 @@ public class FenetreInterface extends JFrame{
 		//private Joueur[] jojo = new Joueur[2];  
 		//private Joueur JC = new Joueur("Camille",0,0);
 		
-		public JPanel panelTemp;
+		public JPanel panelTemp = new JPanel();
 		
 		
 		JPanel panelEast = new JPanel( new BorderLayout());
@@ -58,8 +58,9 @@ public class FenetreInterface extends JFrame{
 		
 		//Creation des widgets
 		
-		label1 = new JLabel(" Somme: " +jcourant.getSomme() );
-		label = new JLabel (" Joueur Courant: " + jcourant.getNom());	
+		
+		label = new JLabel (" Joueur : " + jcourant.getNom());
+		label1 = new JLabel(" Somme: " +jcourant.getSomme() );	
 		label2 = new JLabel(" ");	
 		
 		
@@ -123,25 +124,33 @@ public class FenetreInterface extends JFrame{
 		
 		//ne fonctionne pas 
 		public void changerPanel(JPanel p){
-			panelTemp.removeAll();
-			panelTemp = p ;
 			
 			cadrePrincipal.remove(panelTemp);
-			panelTemp.updateUI();
-			cadrePrincipal.add(panelTemp, BorderLayout.WEST);
+			
+			panelTemp = p ;	
+				
+			panelTemp.repaint();
+			
+			cadrePrincipal.add(panelTemp, BorderLayout.WEST);	
+			
+		}
+		
+		public void setJoueur(Joueur j){
+			
+			jcourant = j;
 			
 		}
 		
 		public void changerPanelJoueur(Joueur j){
-			jcourant = j;
 			panelSouth.removeAll();
-			cadrePrincipal.remove(panelSouth);
-			panelTemp.updateUI();
+			panelSouth.add(new JLabel("Joueur : " +j.getNom()));
+			panelSouth.add(new JLabel("Somme : "+j.getSomme()));
+			panelSouth.repaint();
 			cadrePrincipal.add(panelSouth, BorderLayout.SOUTH);
 			this.repaint();
 		}
 		
-		public void changerJoueur(Joueur j){
+		public void changerJoueurEcouteurDe(Joueur j){
 			//il faut changer le bouton des des 
 			jcourant = j;
 			panelEast.remove(lanceDe);
@@ -156,17 +165,25 @@ public class FenetreInterface extends JFrame{
 			return plateau.getPanelCase(i);
 		}
 		
-   /* public static void main(String[] a){
-		FenetreInterface fi = new FenetreInterface( 1200, 600, new Plateau(), );
+   public static void main(String[] a){
+	   
+		FenetreInterface fi = new FenetreInterface( 1200, 600, new Plateau(), new Joueur("Cam",0,0) );
 		
 		JPanel p = new JPanel();
 		p.add(new JLabel("dguileza"));
 		
 		fi.changerPanel(p);
+		JPanel p2 = new JPanel();
 		
+		p2.add(new JLabel("dge"));
+		fi.changerPanel(p2);
+		Joueur claire = new Joueur("Claire", 0,0);
+		claire.setArgent(1000);
+		fi.setJoueur(claire);
 		
+		//fi.changerPanel(p);
 		
-    } **/
+    } 
 	
 	
 	

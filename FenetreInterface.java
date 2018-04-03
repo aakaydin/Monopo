@@ -23,19 +23,20 @@ public class FenetreInterface extends JFrame{
 		private JLabel label;
 		private JLabel label1;
 		private JLabel label2;
-			
-		private JButton btn;
-		private JButton btn1;
-		private JButton finTour;	
-		private JButton lanceDe;	
+	
+		public JButton finTour;	
+		public JButton lanceDe;	
+		public JButton abandonner;	
 		
-		private Joueur jcourant; 
+		public Joueur jcourant; 
 	
 		public AffichageDe aff = new AffichageDe( 1 , 1);
 		JPanel cadrePrincipal = new JPanel(new BorderLayout());
 		
 		private LinkedList<Joueur> ListJoueur = new LinkedList<Joueur>();
 		
+		//public boolean activeFin = false;
+		//public boolean acitveDes = false;
 		
 	
 	public FenetreInterface( int longue , int large, Plateau pl, Joueur jcourant, LinkedList<Joueur> LJ){
@@ -69,11 +70,9 @@ public class FenetreInterface extends JFrame{
 		label2 = new JLabel(" ");	
 		
 		
-		btn = new JButton(" Next ");
-		btn1 = new JButton(" Prev");
 		finTour = new JButton(" End Turn");
-		finTour.addActionListener(new EcouteurFinTour(this,jcourant, ListJoueur));
 		lanceDe = new JButton(" Lancer les Des ");
+		abandonner = new JButton(" Abandonner ");
 		
 		panelTemp = p.getCases().get(0).getPanel();
 		
@@ -83,9 +82,14 @@ public class FenetreInterface extends JFrame{
 		
 		// Lien entre les buttons et les listeners
 		
-		//btn.addActionListener( new EcouteurNext( this) );
-		lanceDe.addActionListener( new EcouteurLancerLesDes(jcourant, this, p) ); //est-ce que mon écouteur va bien changer son joueur quand je change le joueur de la fenêtre ? rep Aydin : non 
 		
+		lanceDe.addActionListener( new EcouteurLancerLesDes(jcourant, this, p) ); //est-ce que mon écouteur va bien changer son joueur quand je change le joueur de la fenêtre ? rep Aydin : non 
+		finTour.addActionListener(new EcouteurFinTour(this,jcourant, ListJoueur));
+		abandonner.addActionListener(new EcouteurAbandonner(this));
+		
+		
+		finTour.setEnabled( false);
+		lanceDe.setEnabled( true);
 		
 		
 		
@@ -98,11 +102,14 @@ public class FenetreInterface extends JFrame{
 		
 		panelEast.add(aff , BorderLayout.CENTER );			
 		panelEast.add(lanceDe , BorderLayout.NORTH	 );	
+		panelEast.add(abandonner , BorderLayout.SOUTH );	
 		
 		panelNorth.add(finTour);
 		
 		panelSouth.add(label1 );
 		panelSouth.add(label);
+		//panelSouth.add(abandonner);	
+		
 		
 		//ligne de test
 		plateau.getPanelCase(jcourant.getPos()).dessinerJoueur(jcourant);
@@ -162,12 +169,13 @@ public class FenetreInterface extends JFrame{
 		
 		public void changerJoueurEcouteurDe(Joueur j){
 			//il faut changer le bouton des des 
+			panelEast.repaint();
 			jcourant = j;
 			panelEast.remove(lanceDe);
 			lanceDe = new JButton("Lancer les des");
 			lanceDe.addActionListener(new EcouteurLancerLesDes(jcourant, this, p)); 
 			panelEast.add(lanceDe,  BorderLayout.NORTH);
-			panelEast.repaint();
+			
 			
 			
 		}
@@ -175,6 +183,8 @@ public class FenetreInterface extends JFrame{
 		public PanelCase getPanelCase(int i){
 			return plateau.getPanelCase(i);
 		}
+	
+	/**
 		
    public static void main(String[] a){
 	    
@@ -208,7 +218,7 @@ public class FenetreInterface extends JFrame{
 		
     } 
 	
-	
+	*/
 	
 	
 	

@@ -25,6 +25,10 @@ public class EcouteurFinTour implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e){ 
 		
+		fen.finTour.setEnabled( false );
+		fen.lanceDe.setEnabled( true );
+		
+		
 		if(!jcourant.estVivant()){
 			//fin de la partie
 		}
@@ -39,12 +43,12 @@ public class EcouteurFinTour implements ActionListener {
 		Jouer jouer = new Jouer(fen.getPlateau(), fen, jcourant);
 		fen.setJoueur(jcourant);
 		fen.changerJoueurEcouteurDe(jcourant);
+		fen.panelEast.repaint();
 		fen.changerPanelJoueur(jcourant);
 		jouer.testerPrison();
 		
-			
-	
-			
+		
+		
 		
 	 
 	}

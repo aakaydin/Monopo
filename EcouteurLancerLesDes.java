@@ -17,6 +17,10 @@ public class EcouteurLancerLesDes implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent ae){
+		
+		fen.finTour.setEnabled(true);
+		fen.lanceDe.setEnabled(false);
+		
 		//if(this.estActif() == true){
 		//dans le cas où le joueur n'est pas en prison il faut l'enlever de sa position précédente 
 		if(!j.getEnPrison()){
@@ -47,6 +51,8 @@ public class EcouteurLancerLesDes implements ActionListener{
 			}
 			//this.setActif(false); 
 		//}
+		
+		
 	}
 	
 }

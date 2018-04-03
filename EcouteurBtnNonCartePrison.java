@@ -9,7 +9,7 @@ public class EcouteurBtnNonCartePrison implements ActionListener{
     }
         
     public void actionPerformed(ActionEvent ae){
-        fen.setReponse(false);
+        
         fen.dispose();
     }
 }

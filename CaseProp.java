@@ -45,7 +45,7 @@ public class CaseProp extends Case{
 	public void setDescriptionPanel(Joueur j){
 		panel.removeAll();
 		if(!achete){
-			labavantachat = new JLabel(this.getNom() + " : vous pouvez acheter cette propriete pour "+ prix);
+			labavantachat = new JLabel(this.getNom() + " - PRIX : "+ prix);
 			panel.add(labavantachat, BorderLayout.NORTH);
 			acheter = new JButton("Acheter");
 			acheter.addActionListener(new EcouteurAcheter(j, this));
@@ -61,7 +61,11 @@ public class CaseProp extends Case{
 			panel.add(payer, BorderLayout.CENTER);
 		}
 		panel.repaint();
-	}				
+	}		
+	
+	public void setAchete(boolean b){
+		achete = b ;
+	}		
 
 
 	}

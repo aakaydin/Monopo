@@ -28,6 +28,7 @@ public class EcouteurAbandonner implements ActionListener {
 		fen.jcourant.tuer();
 		
 		System.out.println("  Your ded 2 me " );
+		//cet ecouteur devrait se faire afficher une fenetre fin de la partie
 		
 		
 	 

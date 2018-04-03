@@ -16,9 +16,9 @@ public class Joueur {
 	public  boolean estVivant = true ;
 	public  boolean sonTour;
 	public  boolean enPrison =false;
-	public  boolean cartePrison = false ;
+	public  boolean cartePrison = false; //a changer
 	public  boolean passerSonTour = false;
-	public  int nbToursEnPrison = 0;
+	public  int nbToursEnPrison = 2;
 	public  int de1;
 	public  int de2;
 	private  int sommeDes; 
@@ -231,6 +231,7 @@ public class Joueur {
 		position = position + nbCases;
 		if(position > 27){
 			position = position - 28;
+			this.setArgent(10000); //moitier de ce qu'on recoit quand on tombe sur la case départ
 		} //on ne peut pas dépasser le numéro de case 27 et notre première case est la case numéro 0
 	}
 	

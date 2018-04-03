@@ -112,6 +112,8 @@ public class CarteChance {
 	public void carteMourir(){
 		description = "Fin de la partie ! :(";
 		joueur.tuer() ; 
+		//devrait se faire ouvrir une fenêtre fin de partie
+		//ou alors faire changer une variable et en début du tour suivant si cette variable est vrai alors ecouteur fin tour ouvre fenetre fin jeu
 	}
 	
 	//une méthode tirerCarte qui va sélectionner une méthode parmi les autres ; il faut que les méthodes aient des possibilités différentes de sortir, on fait une liste d'entiers avec 5 valeurs différentes, chacune de ces 5 valeurs correspond à une méthode 

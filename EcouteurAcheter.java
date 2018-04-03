@@ -15,5 +15,6 @@ public class EcouteurAcheter implements ActionListener{
 		j.setArgent(-c.getPrix());
 		j.addCase(c);
 		c.setProprietaire(j);
+		c.setAchete(true);
 	}
 }

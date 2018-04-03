@@ -16,7 +16,20 @@ public class Jouer{
 	JPanel lancerLesDes = new JPanel();
 	
 	JLabel lab = new JLabel("Vous pouvez lancer les des");
-
+	
+	JLabel labprison = new JLabel("Vous sortez de prison, lancez les des");
+	
+	JPanel sortirprison = new JPanel();
+	
+	JPanel panlancerdesprison = new JPanel();
+	
+	JLabel lablancerdesprison = new JLabel("Faites un double pour sortir de prison");
+	
+	JPanel panpayersortirprison = new JPanel();
+	
+	JLabel labpayersortirprison = new JLabel("3 tours en prison : payez 50000 et oust");
+	
+	//voir comment faire un JPanel de commentaires spéciaux 
 	
 	
 	
@@ -32,6 +45,8 @@ public class Jouer{
         plateau = p;
         joueurCourant = j;
         lancerLesDes.add(lab);
+        sortirprison.add(labprison);
+        panlancerdesprison.add(lablancerdesprison);
         
         fen = f ;
      
@@ -45,18 +60,18 @@ public class Jouer{
 		if(joueurCourant.getEnPrison() == true){
 			if(joueurCourant.getCartePrison() == true){
             
-				MaFenetreCartePrison fenCartePrison = new MaFenetreCartePrison(); 
-				boolean reponse = fenCartePrison.getReponse(); //ecouteur ok? Boolean false par défaut -> pose problème? quel ordre des étapes? 
-            
-				if(reponse == true){
-					joueurCourant.setEnPrison(false); 
-					
-                
-				}
+				MaFenetreCartePrison fenCartePrison = new MaFenetreCartePrison(joueurCourant); 
+				if(!joueurCourant.getEnPrison()){
+					fen.changerPanel(sortirprison);
+				} else {
+					fen.changerPanel(panlancerdesprison);
+				}	
+			}else{
+				fen.changerPanel(panlancerdesprison);
 			}
+		}else{
+			fen.changerPanel(lancerLesDes);
 		}
-		
-		fen.changerPanel(lancerLesDes);
 		//rendre actif les dés 
 
 	}
@@ -66,20 +81,28 @@ public class Jouer{
 	public void traitementEstEnPrison(){
 		if(joueurCourant.getDe1() == joueurCourant.getDe2()){
 			joueurCourant.setEnPrison(false); 
-                    
-                    joueurCourant.avancer(joueurCourant.getDe1() + joueurCourant.getDe2()); //fait avancer
-                    //appel méthode traitementCase
-                    this.Tour();
+			joueurCourant.avancer(joueurCourant.getDe1() + joueurCourant.getDe2()); //fait avancer
+			//appel méthode traitementCasefen.getPanelCase(j.getPos()).dessinerJoueur(j);
+			fen.getPanelCase(joueurCourant.getPos()).dessinerJoueur(joueurCourant);
+			fen.getPanelPlateau().repaint();
+			
+			
+			this.Tour();
                  
 		}else if(joueurCourant.getDe1() != joueurCourant.getDe2() && joueurCourant.getNbToursEnPrison() >= 3){
 			joueurCourant.setArgent(-50000); //est-ce la somme que l'on choisit?
 			joueurCourant.setEnPrison(false); 
                     
-                    joueurCourant.avancer(joueurCourant.getDe1() + joueurCourant.getDe2()); //fait avancer
-                    this.Tour();
+            joueurCourant.avancer(joueurCourant.getDe1() + joueurCourant.getDe2()); //fait avancer
+			//appel méthode traitementCasefen.getPanelCase(j.getPos()).dessinerJoueur(j);
+			fen.getPanelCase(joueurCourant.getPos()).dessinerJoueur(joueurCourant);
+			fen.getPanelPlateau().repaint();
+            this.Tour();
                     //appel méthode traitementCase
 		}else{
-                    joueurCourant.resteEnPrison();
+			joueurCourant.resteEnPrison();
+			fen.getPanelCase(joueurCourant.getPos()).dessinerJoueur(joueurCourant);
+			fen.getPanelPlateau().repaint();
                     
                     
 		}

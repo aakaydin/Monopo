@@ -151,6 +151,10 @@ public class FenetreInterface extends JFrame{
 			
 		}
 		
+		public Joueur getJoueur(){
+			return jcourant;
+		}
+		
 		public void setJoueur(Joueur j){
 			
 			jcourant = j;

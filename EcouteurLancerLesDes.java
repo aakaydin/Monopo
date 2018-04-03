@@ -23,10 +23,10 @@ public class EcouteurLancerLesDes implements ActionListener{
 		
 		//if(this.estActif() == true){
 		//dans le cas où le joueur n'est pas en prison il faut l'enlever de sa position précédente 
-		if(!j.getEnPrison()){
+		//if(!j.getEnPrison()){
 			fen.getPanelCase(j.getPos()).retirerJoueur(j);
 			fen.getPanelPlateau().repaint();
-		}
+		//}
 		
 			j.lancerLesDes() ;
 			fen.aff.setDes(j.de1 , j.de2);
@@ -47,7 +47,7 @@ public class EcouteurLancerLesDes implements ActionListener{
 				//dans la cas où le joueur atteri en prison il faut le redessiner : fait dans méthode  
 			}else{
 				//appeler méthode traitement quand je suis en prison
-				//jouer.traitementEstEnPriosn();
+				jouer.traitementEstEnPrison();
 			}
 			//this.setActif(false); 
 		//}

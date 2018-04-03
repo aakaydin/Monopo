@@ -10,7 +10,7 @@ public class EcouteurBtnOuiCartePrison implements ActionListener {
     }
     
     public void actionPerformed(ActionEvent ae){
-        fen.setReponse(true);
+        fen.getJoueur().setEnPrison(false);
         fen.dispose();
     }
 }

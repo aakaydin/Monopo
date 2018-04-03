@@ -6,12 +6,16 @@ public class MaFenetreCartePrison extends JFrame{
     private JLabel indications; 
     private JButton btnOui; 
     private JButton btnNon;
-    private boolean reponse;  
+    private boolean reponse = false;  
     
-    public MaFenetreCartePrison(){ //des paramètres?
+    private Joueur jcourant ;
+    
+    public MaFenetreCartePrison(Joueur j){ //des paramètres?
         super("Carte Prison"); 
         
         setSize (1000 , 100); 
+        
+        jcourant = j;
         
         //pas de setDefaultCloseOperation, on veut forcer à appuyer sur un bouton 
         
@@ -44,5 +48,9 @@ public class MaFenetreCartePrison extends JFrame{
     public boolean getReponse(){
         return reponse;
     }
+    
+    public Joueur getJoueur(){
+		return jcourant;
+	}
     
 }

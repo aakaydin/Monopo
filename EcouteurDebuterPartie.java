@@ -53,6 +53,10 @@ public class EcouteurDebuterPartie implements ActionListener {
 			
 			System.out.println("etat tour du joueur"+jcourant.getSonTour()); 
 			//while(jcourant.getSonTour()==true){
+			
+				
+				
+				
 				
 				Jouer jouer = new Jouer(plateau, fen, jcourant);
 				fen.changerPanelJoueur(jcourant);

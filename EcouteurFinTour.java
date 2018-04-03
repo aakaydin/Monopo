@@ -31,6 +31,7 @@ public class EcouteurFinTour implements ActionListener {
 		
 		if(!jcourant.estVivant()){
 			//fin de la partie
+			//creer une fenêtre fin de la partie
 		}
 		System.out.println(""+rangJoueur); 
 		if(rangJoueur + 1 >= nbJoueur ){
@@ -46,10 +47,7 @@ public class EcouteurFinTour implements ActionListener {
 		fen.panelEast.repaint();
 		fen.changerPanelJoueur(jcourant);
 		jouer.testerPrison();
-		
-		
-		
-		
+	
 	 
 	}
 }

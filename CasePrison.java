@@ -21,7 +21,7 @@ public class CasePrison extends Case{
 	//j'ai l'impression que l'affichage dans le cas du déjà en prison a été pris en compte par Lisa, il fadra discuter de où on met le code
 	//soit on fait en sorte de ne récupérer que lui et l'autre partie du code (beaucoup plus conséquente) est dans la classe jouer soit on récupère les deux et on place une condition en paramètre sur l'état du joueur
 		
-	public JPanel getPanelArrivePrison(){
+	public JPanel getPanel(){
 		return panel ;
 	}
 	

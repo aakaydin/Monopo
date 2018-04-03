@@ -18,7 +18,7 @@ public class Joueur {
 	public  boolean enPrison =false;
 	public  boolean cartePrison = false; //a changer
 	public  boolean passerSonTour = false;
-	public  int nbToursEnPrison = 2;
+	public  int nbToursEnPrison = 0;
 	public  int de1;
 	public  int de2;
 	private  int sommeDes; 

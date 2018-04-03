@@ -33,14 +33,19 @@ public class FenetreInterface extends JFrame{
 	
 		public AffichageDe aff = new AffichageDe( 1 , 1);
 		JPanel cadrePrincipal = new JPanel(new BorderLayout());
+		
+		private LinkedList<Joueur> ListJoueur = new LinkedList<Joueur>();
+		
+		
 	
-	public FenetreInterface( int longue , int large, Plateau pl, Joueur jcourant){
+	public FenetreInterface( int longue , int large, Plateau pl, Joueur jcourant, LinkedList<Joueur> LJ){
 	
 		
 		super(" Monopoly");
 		
 		p = pl ;
 		this.jcourant = jcourant; 
+		ListJoueur = LJ;
 		
 		
 		this.setSize(new Dimension(longue,large));
@@ -67,7 +72,7 @@ public class FenetreInterface extends JFrame{
 		btn = new JButton(" Next ");
 		btn1 = new JButton(" Prev");
 		finTour = new JButton(" End Turn");
-		finTour.addActionListener(new EcouteurFinTour(this,jcourant));
+		finTour.addActionListener(new EcouteurFinTour(this,jcourant, ListJoueur));
 		lanceDe = new JButton(" Lancer les Des ");
 		
 		panelTemp = p.getCases().get(0).getPanel();
@@ -121,6 +126,10 @@ public class FenetreInterface extends JFrame{
 		}
 		
 		public PanelPlateau getPanelPlateau(){return plateau;}
+		public Plateau getPlateau(){return p;}
+		public JPanel getPanelTemp(){return panelTemp;}
+		public JPanel getPanelSouth(){return panelSouth;}
+		public JPanel getPanelEast(){return panelEast;}
 		
 		//ne fonctionne pas 
 		public void changerPanel(JPanel p){
@@ -145,9 +154,10 @@ public class FenetreInterface extends JFrame{
 			panelSouth.removeAll();
 			panelSouth.add(new JLabel("Joueur : " +j.getNom()));
 			panelSouth.add(new JLabel("Somme : "+j.getSomme()));
-			panelSouth.repaint();
+			
 			cadrePrincipal.add(panelSouth, BorderLayout.SOUTH);
-			this.repaint();
+			panelSouth.repaint();
+			
 		}
 		
 		public void changerJoueurEcouteurDe(Joueur j){
@@ -157,7 +167,8 @@ public class FenetreInterface extends JFrame{
 			lanceDe = new JButton("Lancer les des");
 			lanceDe.addActionListener(new EcouteurLancerLesDes(jcourant, this, p)); 
 			panelEast.add(lanceDe,  BorderLayout.NORTH);
-			this.repaint();
+			panelEast.repaint();
+			
 			
 		}
 		
@@ -166,8 +177,12 @@ public class FenetreInterface extends JFrame{
 		}
 		
    public static void main(String[] a){
+	    
+	   LinkedList lj = new LinkedList<Joueur>();
+	   lj.add(new Joueur("Cam",0,0));
+	   lj.add(new Joueur("Lisa",10,2));
 	   
-		FenetreInterface fi = new FenetreInterface( 1200, 600, new Plateau(), new Joueur("Cam",0,0) );
+		FenetreInterface fi = new FenetreInterface( 1200, 600, new Plateau(), new Joueur("Cam",0,4), lj );
 		
 		JPanel p = new JPanel();
 		p.add(new JLabel("dguileza"));
@@ -186,4 +201,16 @@ public class FenetreInterface extends JFrame{
 		
 		//fi.changerPanel(p);
 		
+		//test carte chance panel
+		
+		
+		
+		
     } 
+	
+	
+	
+	
+	
+	
+}

@@ -85,8 +85,8 @@ public class CarteChance {
 	//une méthode par type de carte chance 
 	//pour l'instant les méthode s'executent toutes seuls mais on pourra peut être faire 
 	public void carteAllerEnPrison(){
-		description = "La malchance fait partie de la vie ... et justement pas de chance, vous allez très certainement passer quelque temps derrière les barreaux prochainement.";
-		joueur.allerEnPrison() ;
+		description = "Direction la prison !";
+		joueur.setEnPrison(true) ;
 	}
 	
 	public void carteRelancerDes(){
@@ -96,19 +96,21 @@ public class CarteChance {
 	}
 	
 	public void cartePayerFacture(){
-		description = "Il faut payer dans la vie, les factures notamment. Merci de verser 1000 monopolies au système de collecte des factures.";
+		
+		description = "Versez 1000 M au systeme de collecte des factures.";
 		JButton payer = new JButton("Payer");
 		payer.addActionListener(new EcouteurPayerTaxe(joueur, -1000));
-		panelCarteChance.add(payer, BorderLayout.SOUTH); 
+		panelCarteChance.add(payer, BorderLayout.CENTER); 
+		panelCarteChance.repaint();
 	}
 	public void carteSortirPrison(){
-		description = "Vous possédez à présent une carte qui vous permet de sortir de prison, vou spourrez l'utiliser quand vous le souhaitez la prochaine fois que vos mauvaises actions vous mèneront derrière les barreaux.";
+		description = "Carte sortir de prison";
 		
 		joueur.setCarteSortirPrison(true) ;
 	}
 	
 	public void carteMourir(){
-		description = "Fin de la partie pour vous !";
+		description = "Fin de la partie ! :(";
 		joueur.tuer() ; 
 	}
 	

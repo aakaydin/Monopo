@@ -14,12 +14,12 @@ public class CaseDepart extends Case {
 	JPanel panel = new JPanel();
 	
 	public CaseDepart(){
-		super(0, "Case départ") ; 
+		super(0, "Case depart") ; 
 		x = 20000 ;
-		String desription = "Vous passez par la case départ et vous recevez " + x + " M.";
+		//String desription = "Vous passez par la case départ et vous recevez " + x + " M.";
 		//couleur = Color.GREY //les couleurs devraient être dans Case 
 		//texteAffiche = "CASE DEPART" ; //le texte affcie devrait être dans Case 
-		JLabel lab = new JLabel("Vous êtes sur la case départ.");
+		JLabel lab = new JLabel("Vous etes sur la case depart.");
 		panel.add(lab); 
 	}
 	

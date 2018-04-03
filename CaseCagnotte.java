@@ -39,6 +39,7 @@ o	Permet de collecter tout l’argent de la cagnotte
 	    	panel.removeAll();
 		JLabel lab = new JLabel("Vous avez de la chance, vous gagnez "+valAccumulee);
 		panel.add(lab);
+		panel.repaint(); 
 	}
     
     

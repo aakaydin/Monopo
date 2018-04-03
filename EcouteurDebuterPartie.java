@@ -20,6 +20,8 @@ public class EcouteurDebuterPartie implements ActionListener {
 		
 	} 
 	
+	public LinkedList<Joueur> getListJoueur(){return ListJoueur;}
+	
 	public void actionPerformed(ActionEvent e){ 
 		//créaton de l'interface à compléter : 
 		text = m2.getTextField(); 
@@ -44,29 +46,29 @@ public class EcouteurDebuterPartie implements ActionListener {
 		
 		//afficage du jeu
 		Plateau plateau = new Plateau() ; 
-		FenetreInterface fen = new FenetreInterface(1200,600,plateau,jcourant) ; 
+		FenetreInterface fen = new FenetreInterface(1200,600,plateau,jcourant, ListJoueur) ; 
 		
 		//on fait un while tant que joueurCourant est vivant
-		while(jcourant.estVivant()){
+		
 			
 			System.out.println("etat tour du joueur"+jcourant.getSonTour()); 
-			while(jcourant.getSonTour()==true){
+			//while(jcourant.getSonTour()==true){
 				
 				Jouer jouer = new Jouer(plateau, fen, jcourant);
 				fen.changerPanelJoueur(jcourant);
+				for(Joueur jj : ListJoueur){
+					fen.getPanelCase(jj.getPos()).dessinerJoueur(jj);
+					fen.getPanelPlateau().repaint();
+				}
 				
 				
 				jouer.testerPrison();
 				System.out.println("etat tour du joueur"+jcourant.getSonTour()); 
 				//c'est l'écouteur fin de tour qui rend le tour du joueur false 
 				
-			}
-			System.out.println(""+rangJoueur); 
-			rangJoueur = (rangJoueur + 1)%nbJoueur ;
-			System.out.println(""+rangJoueur); 
-			jcourant = ListJoueur.get(rangJoueur);
-			fen.changerJoueur(jcourant);
-		}
+			//}
+			
+		
 	
 	
 		

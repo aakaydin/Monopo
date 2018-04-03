@@ -23,31 +23,31 @@ public class PanelPlateau extends JPanel {
         pane = new JPanel(new GridLayout(0,8));
         JPanel pgris = new JPanel();
         
-        panecase = new PanelCase(Color.GRAY, new JLabel(" CAGNOTTE"), this, 15); 
+        panecase = new PanelCase(Color.GRAY, new JLabel(" CAGNOTTE"), this, 14); 
         listepanelcases[panecase.getPlace()] = panecase;
         pane.add(panecase); 
-        panecase = new PanelCase(Color.RED, new JLabel(" Matignon"), this, 16); 
+        panecase = new PanelCase(Color.RED, new JLabel(" Matignon"), this, 15); 
         listepanelcases[panecase.getPlace()] = panecase;
         pane.add(panecase); 
-        panecase = new PanelCase(Color.RED, new JLabel(" Malesherbes"), this,17); 
+        panecase = new PanelCase(Color.RED, new JLabel(" Malesherbes"), this,16); 
         listepanelcases[panecase.getPlace()] = panecase;
         pane.add(panecase); 
-        panecase = new PanelCase(Color.RED, new JLabel(" Henri-Martin"), this,18); 
+        panecase = new PanelCase(Color.RED, new JLabel(" Henri-Martin"), this,17); 
         listepanelcases[panecase.getPlace()] = panecase;
         pane.add(panecase); 
-        panecase = new PanelCase(Color.GRAY, new JLabel(" CHANCE"), this,19); 
+        panecase = new PanelCase(Color.GRAY, new JLabel(" CHANCE"), this,18); 
         listepanelcases[panecase.getPlace()] = panecase;
         pane.add(panecase); 
-        panecase = new PanelCase(Color.YELLOW, new JLabel(" Saint-Honore"), this,20); 
+        panecase = new PanelCase(Color.YELLOW, new JLabel(" Saint-Honore"), this,19); 
         listepanelcases[panecase.getPlace()] = panecase;
         pane.add(panecase); 
-         panecase = new PanelCase(Color.YELLOW, new JLabel(" La bourse"), this,21); 
+         panecase = new PanelCase(Color.YELLOW, new JLabel(" La bourse"), this,20); 
         listepanelcases[panecase.getPlace()] = panecase;
         pane.add(panecase); 
-         panecase = new PanelCase(Color.GRAY, new JLabel(" Allez en prison"), this,22); 
+         panecase = new PanelCase(Color.GRAY, new JLabel(" Allez en prison"), this,21); 
         listepanelcases[panecase.getPlace()] = panecase;
         pane.add(panecase); 
-        panecase = new PanelCase(Color.ORANGE, new JLabel(" Pigalle"), this,14); 
+        panecase = new PanelCase(Color.ORANGE, new JLabel(" Pigalle"), this,13); 
         listepanelcases[panecase.getPlace()] = panecase;
         pane.add(panecase);
         
@@ -58,10 +58,10 @@ public class PanelPlateau extends JPanel {
 		pane.add(new JPanel());
 		pane.add(new JPanel());
 		
-		panecase = new PanelCase(Color.GREEN, new JLabel(" Breteuil"), this,23); 
+		panecase = new PanelCase(Color.GREEN, new JLabel(" Breteuil"), this,22); 
 		listepanelcases[panecase.getPlace()] = panecase;
         pane.add(panecase);
-        panecase = new PanelCase(Color.ORANGE, new JLabel(" Saint-Michel"), this,13); 
+        panecase = new PanelCase(Color.ORANGE, new JLabel(" Saint-Michel"), this,12); 
         listepanelcases[panecase.getPlace()] = panecase;
         pane.add(panecase);
         
@@ -72,10 +72,10 @@ public class PanelPlateau extends JPanel {
 		pane.add(new JPanel());
 		pane.add(new JPanel());
 		
-		panecase = new PanelCase(Color.GREEN, new JLabel(" Foch"), this,24); 
+		panecase = new PanelCase(Color.GREEN, new JLabel(" Foch"), this,23); 
 		listepanelcases[panecase.getPlace()] = panecase;
         pane.add(panecase);
-        panecase = new PanelCase(Color.ORANGE, new JLabel(" Mozart"), this,12);
+        panecase = new PanelCase(Color.ORANGE, new JLabel(" Mozart"), this,11);
         listepanelcases[panecase.getPlace()] = panecase;
         pane.add(panecase);
         
@@ -86,10 +86,10 @@ public class PanelPlateau extends JPanel {
 		pane.add(new JPanel());
 		pane.add(new JPanel());
 		
-		panecase = new PanelCase(Color.GREEN, new JLabel(" Capucines"), this,25); 
+		panecase = new PanelCase(Color.GREEN, new JLabel(" Capucines"), this,24); 
 		listepanelcases[panecase.getPlace()] = panecase;
         pane.add(panecase);
-        panecase = new PanelCase(Color.GRAY, new JLabel(" TAXE"), this,11); 
+        panecase = new PanelCase(Color.GRAY, new JLabel(" TAXE"), this,10); 
         listepanelcases[panecase.getPlace()] = panecase;
         pane.add(panecase);
         
@@ -100,10 +100,10 @@ public class PanelPlateau extends JPanel {
 		pane.add(new JPanel());
 		pane.add(new JPanel());
 		
-		panecase = new PanelCase(Color.GRAY, new JLabel(" Chance"), this,26); 
+		panecase = new PanelCase(Color.GRAY, new JLabel(" Chance"), this,25); 
 		listepanelcases[panecase.getPlace()] = panecase;
         pane.add(panecase);
-        panecase = new PanelCase(Color.PINK, new JLabel(" Paradis"), this,10);
+        panecase = new PanelCase(Color.PINK, new JLabel(" Paradis"), this,9);
         listepanelcases[panecase.getPlace()] = panecase;
         pane.add(panecase);
         
@@ -114,10 +114,10 @@ public class PanelPlateau extends JPanel {
 		pane.add(new JPanel());
 		pane.add(new JPanel());
 		
-		panecase = new PanelCase(Color.BLUE, new JLabel(" Champs-Elysees"), this,27); 
+		panecase = new PanelCase(Color.BLUE, new JLabel(" Champs-Elysees"), this,26); 
 		listepanelcases[panecase.getPlace()] = panecase;
         pane.add(panecase);
-        panecase = new PanelCase(Color.PINK, new JLabel(" Neuilly"), this,9); 
+        panecase = new PanelCase(Color.PINK, new JLabel(" Neuilly"), this,8); 
         listepanelcases[panecase.getPlace()] = panecase;
         pane.add(panecase);
         
@@ -128,7 +128,7 @@ public class PanelPlateau extends JPanel {
 		pane.add(new JPanel());
 		pane.add(new JPanel());
 		
-		panecase = new PanelCase(Color.BLUE, new JLabel(" Paix"), this,8); 
+		panecase = new PanelCase(Color.BLUE, new JLabel(" Paix"), this,27); 
 		listepanelcases[panecase.getPlace()] = panecase;
         pane.add(panecase);
         
@@ -157,20 +157,9 @@ public class PanelPlateau extends JPanel {
         listepanelcases[panecase.getPlace()] = panecase;
         pane.add(panecase); 
         
-        //test affichage joueur
-        Joueur j = new Joueur("Camille", 0,0);
-        listepanelcases[10].dessinerJoueur(j) ; 
-        listepanelcases[10].dessinerJoueur(new Joueur("M", 0,0)) ; 
-        listepanelcases[10].retirerJoueur(j);
-        
         
 		this.add(pane, BorderLayout.CENTER);
         
-        //this.setContentPane(pane); 
-        
-        //this.setSize(800,450);
-        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //this.setVisible(true);
     }
     
     public JPanel getPane(){

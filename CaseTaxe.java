@@ -5,7 +5,7 @@ public class CaseTaxe extends Case{
 
     //Attributs
     int valAPayer; 
-    JPanel panel = new JPanel() ;
+    JPanel panel = new JPanel(new BorderLayout()) ;
     
     //Constructeur 
     public CaseTaxe(String nom , int position, int valeur){
@@ -26,9 +26,11 @@ public class CaseTaxe extends Case{
 	public void setDescriptionPanel(Joueur j){
 		panel.removeAll();
 		JLabel lab = new JLabel("TAXE ! Vous devez payer "+valAPayer);
-        panel.add(lab);
+        panel.add(lab, BorderLayout.NORTH);
         JButton payer = new JButton("Payer");
         payer.addActionListener(new EcouteurPayerTaxe(j, valAPayer));
+        panel.add(payer, BorderLayout.SOUTH);
+        panel.repaint();
 	}
 		
     

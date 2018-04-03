@@ -12,34 +12,36 @@ public class Jouer{
 	
 	
 	JPanel panelCase ;
+	
 	JPanel lancerLesDes = new JPanel();
+	
 	JLabel lab = new JLabel("Vous pouvez lancer les des");
 
-	JLabel lab2 = new JLabel("Finir tour");
-	JPanel finirtour = new JPanel();
+	
+	
 	
 	//Partie partie ;
-	Plateau plateau ; //il faudra ensuite utiliser celui de Partie
+	Plateau plateau ; 
 	FenetreInterface fen ;
-    Joueur joueurCourant ; //pour les tests 
+	
+    Joueur joueurCourant ; 
     
     //Constructeur 
-    public Jouer(Plateau p, FenetreInterface f, Joueur j){//va prendre en parametre un plateau, un joueur courant et une fenetre 
+    public Jouer(Plateau p, FenetreInterface f, Joueur j){
         joueurCourant = j;
         plateau = p;
         joueurCourant = j;
         lancerLesDes.add(lab);
-        finirtour.add(lab2);
-        //fen = f ; quand on aura fait partie
         
-        
+        fen = f ;
+     
     }
     
     public void testerPrison(){
 		joueurCourant.setSommeDes(0); 
      
-     
-    //On teste l'état du joueur : en prison ou non 
+		
+		//On teste l'état du joueur : en prison ou non 
 		if(joueurCourant.getEnPrison() == true){
 			if(joueurCourant.getCartePrison() == true){
             
@@ -56,8 +58,7 @@ public class Jouer{
 		
 		fen.changerPanel(lancerLesDes);
 		//rendre actif les dés 
-		
-		
+
 	}
 
 	
@@ -80,8 +81,7 @@ public class Jouer{
 		}else{
                     joueurCourant.resteEnPrison();
                     
-                    fen.changerPanel(finirtour);
-                    //rend actif le bouton finir tour 
+                    
 		}
                 
 	}
@@ -103,8 +103,12 @@ public class Jouer{
         /*Si on pouvait getter toutes les cases du plateau ce serait bien. Comme ça par exemple pour cagnotte on pourrait directement reverser l'argent*/ 
         /*Faire tous les affichages, faire tous les boutons : pour les différentes cases (pas que chance)*/
         if (caseCourante instanceof CaseAllerPrison){ 
-            caseCourante = (CaseAllerPrison) caseCourante;
-            panelCase = caseCourante.getPanel();
+            CaseAllerPrison caseCour = (CaseAllerPrison) caseCourante;
+            panelCase = caseCour.getPanel();
+            fen.changerPanel(panelCase);
+            
+            fen.getPanelTemp().repaint();
+            
             fen.getPanelCase(joueurCourant.getPos()).retirerJoueur(joueurCourant);
             
             joueurCourant.allerEnPrison(); //problème de downcast?
@@ -115,11 +119,14 @@ public class Jouer{
         if (caseCourante instanceof CaseTaxe){
 			//ces lignes de code serait plutot dans la classe caseTaxe 
             CaseTaxe caseCour = (CaseTaxe) caseCourante;
-            caseCour.setDescriptionPanel(joueurCourant);
-            panelCase = caseCourante.getPanel();
+            
+    
             int val = caseCour.getValAPayer(); 
             caseCour.setDescriptionPanel(joueurCourant);
-            panelCase = caseCourante.getPanel();
+            panelCase = caseCourante.getPanel();   
+            fen.changerPanel(panelCase);
+            fen.getPanelTemp().repaint();
+
             //pour getter les cases il va falloir les numéroter
             
             ((CaseCagnotte)plateau.getCases().get(14)).ajoutCagnotte(val);
@@ -129,6 +136,9 @@ public class Jouer{
             CaseCagnotte caseCour = (CaseCagnotte) caseCourante;
             caseCour.setPanel() ;
             panelCase = caseCourante.getPanel();
+            fen.changerPanel(panelCase);
+            fen.getPanelTemp().repaint();
+            
             caseCour.recupereCagnotte(joueurCourant); 
         }
         
@@ -137,6 +147,14 @@ public class Jouer{
             CarteChance carteChance = caseCour.creerCarteChance(joueurCourant);
             carteChance.tirerCarte(); 
 			panelCase = carteChance.getPanel();
+			fen.changerPanel(panelCase);
+			fen.getPanelTemp().repaint();
+			if(joueurCourant.getEnPrison()){
+				fen.getPanelCase(joueurCourant.getPos()).retirerJoueur(joueurCourant);
+				joueurCourant.setPos(7);
+				fen.getPanelCase(joueurCourant.getPos()).dessinerJoueur(joueurCourant);
+				fen.getPanelPlateau().repaint(); 
+			}
         }
         
         
@@ -144,27 +162,35 @@ public class Jouer{
             CaseDepart caseCour = (CaseDepart) caseCourante;
             panelCase = caseCour.getPanel();
             caseCour.action(joueurCourant);
+            fen.changerPanel(panelCase);
+            fen.getPanelTemp().repaint();
         }
-        //il faut rajouter si on tombe sur la case prison
+        
         if(caseCourante instanceof CasePrison){
 			CasePrison caseCour = (CasePrison) caseCourante;
 			panelCase = caseCour.getPanel();
 			joueurCourant.setEnPrison(true);
+			fen.changerPanel(panelCase);
+			fen.getPanelTemp().repaint();
 		}
         
         if(caseCourante instanceof CaseProp){
 			CaseProp caseCour = (CaseProp) caseCourante ;
 			caseCour.setDescriptionPanel(joueurCourant);
 			panelCase = caseCour.getPanel() ; 
+			fen.changerPanel(panelCase);
+			fen.getPanelTemp().repaint();
 		}
             
 		
 		 
             
      joueurCourant.setSommeDes(0);  
-	    //change l'affichage du panel joueur au cas où la somme de celui-ci auariat changer 
-	fen.changerPanelJoueur(joueurCourant);
-	fen.changerPanel(finirtour);
+     //changer l'affichage du panel joueur au cas oùla somme de celui-ci aurait changer 
+     fen.changerPanelJoueur(joueurCourant);
+     fen.getPanelSouth().repaint();
+
+		
     
      //faire changement d'affcihage dans la fenêtre qui doit afficher finir tour 
        

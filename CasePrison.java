@@ -5,8 +5,8 @@ public class CasePrison extends Case{
 
     //Pas de nouvel attribut 
         
-    JPanel paneldejaenprison = new JPanel() ;
-    JPanel arriveenprison = new JPanel();
+    
+    
     JPanel panel = new JPanel() ;
     
     Joueur j ;
@@ -14,6 +14,7 @@ public class CasePrison extends Case{
     public CasePrison(){
         super(7 , "Prison"); 
         JLabel arriveprison = new JLabel("Pas de chance, vous tombez en prison");
+        panel.add(arriveprison);
     }
     
     //il va y avoir deux cas de Panel différent 
@@ -21,7 +22,7 @@ public class CasePrison extends Case{
 	//soit on fait en sorte de ne récupérer que lui et l'autre partie du code (beaucoup plus conséquente) est dans la classe jouer soit on récupère les deux et on place une condition en paramètre sur l'état du joueur
 		
 	public JPanel getPanelArrivePrison(){
-		return arriveenprison ;
+		return panel ;
 	}
 	
 

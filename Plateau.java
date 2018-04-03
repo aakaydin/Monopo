@@ -22,7 +22,7 @@ public class Plateau  {
 		p = new CaseProp(2, "Lecourbe", 6000);
 		cases.add(p);
 		
-		CaseChance cch = new CaseChance(4, "CHANCE");
+		CaseChance cch = new CaseChance(3, "CHANCE");
 		cases.add(cch);
 		
 		p = new CaseProp(4, "Vaugirard", 10000 );

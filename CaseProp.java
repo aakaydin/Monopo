@@ -48,7 +48,7 @@ public class CaseProp extends Case{
 			labavantachat = new JLabel(this.getNom() + " - PRIX : "+ prix);
 			panel.add(labavantachat, BorderLayout.NORTH);
 			acheter = new JButton("Acheter");
-			acheter.addActionListener(new EcouteurAcheter(j, this));
+			acheter.addActionListener(new EcouteurAcheter(j, this , acheter));
 			panel.add(acheter, BorderLayout.CENTER);
 			
 		} else if(j == propri){

@@ -12,15 +12,20 @@ public class CarteChance {
 	public String description ; 
 	public JPanel panelCarteChance = new JPanel(new BorderLayout());
 	
+	public EcouteurPayerTaxe ecouteurTaxe ;
+	
+	public FenetreInterface fen ;
+	
 	public Joueur joueur ;
 	//liste d'entiers qui permet de faire le tirage au sort de la méthode qui va s'appliquer au tirage 
 	ArrayList<Integer> listCart = new ArrayList<Integer>() ; 
 	int i = 0 ; //va donner la valeur de la méthode utilisée 
 	
 	//quand un joueur arrive sur une case il va créer une carte chance avec en attribut se joueur pour que les méthodes puisse s'executer 
-	public CarteChance(Joueur j){
+	public CarteChance(Joueur j, FenetreInterface f){
 		description = "" ; 
 		joueur = j ;
+		fen = f ;
  
 		/* 1: sortir de prison (20%)
 		 * 2: aller en prison (25%)
@@ -40,7 +45,7 @@ public class CarteChance {
 		 for(int i =70; i <95; i ++){
 			 listCart.add(4);
 		 }
-		 for(int i =95; i <5 ; i ++){
+		 for(int i =95; i <100 ; i ++){
 			 listCart.add(5);
 		 }
 	}
@@ -57,11 +62,8 @@ public class CarteChance {
 		return description ;
 	}
 	
-	public JPanel getPanel(){
-		return panelCarteChance ;
-	}
 	
-	public int tirerCarte(){	
+	public int tirerCarte(){
 		int random = (int)(Math.random()*listCart.size()) ;
 		i = listCart.get(random); 
 		if(i ==1){
@@ -101,8 +103,9 @@ public class CarteChance {
 		
 		description = "Versez 1000 M au systeme de collecte des factures.";
 		JButton payer = new JButton("Payer");
-		payer.addActionListener(new EcouteurPayerTaxe(joueur, -1000));
-		panelCarteChance.add(payer, BorderLayout.CENTER); 
+		ecouteurTaxe = new EcouteurPayerTaxe(joueur, -1000, fen);
+		payer.addActionListener(ecouteurTaxe);
+		panelCarteChance.add(payer, BorderLayout.SOUTH); //problème, ce bouton ne s'affiche pas 
 		panelCarteChance.repaint();
 	}
 	public void carteSortirPrison(){
@@ -114,9 +117,16 @@ public class CarteChance {
 	public void carteMourir(){
 		description = "Fin de la partie ! :(";
 		joueur.tuer() ; 
+		fen.dispose();
+		FenetreFinPartie finpartie = new FenetreFinPartie(fen.getLesJoueurs());
 		//devrait se faire ouvrir une fenêtre fin de partie
 		//ou alors faire changer une variable et en début du tour suivant si cette variable est vrai alors ecouteur fin tour ouvre fenetre fin jeu
 	}
+	
+	public JPanel getPanel(){
+		return panelCarteChance ;
+	}
+	
 	
 	//une méthode tirerCarte qui va sélectionner une méthode parmi les autres ; il faut que les méthodes aient des possibilités différentes de sortir, on fait une liste d'entiers avec 5 valeurs différentes, chacune de ces 5 valeurs correspond à une méthode 
 

@@ -23,12 +23,12 @@ public class CaseTaxe extends Case{
 		return panel ;
 	}
 	
-	public void setDescriptionPanel(Joueur j){
+	public void setDescriptionPanel(Joueur j, FenetreInterface f){
 		panel.removeAll();
 		JLabel lab = new JLabel("TAXE ! Vous devez payer "+valAPayer);
         panel.add(lab, BorderLayout.NORTH);
         JButton payer = new JButton("Payer");
-        payer.addActionListener(new EcouteurPayerTaxe(j, valAPayer));
+        payer.addActionListener(new EcouteurPayerTaxe(j, -valAPayer, f));
         panel.add(payer, BorderLayout.SOUTH);
         panel.repaint();
 	}

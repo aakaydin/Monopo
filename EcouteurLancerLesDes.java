@@ -16,8 +16,11 @@ public class EcouteurLancerLesDes implements ActionListener{
 		fen = f;
 	}
 	
+	public void setJoueur(Joueur jj){
+		j = jj;
+	}
+	
 	public void actionPerformed(ActionEvent ae){
-		
 		j.lancerLesDes() ; 
 		
 		if( j.de1 != j.de2){	
@@ -41,8 +44,7 @@ public class EcouteurLancerLesDes implements ActionListener{
 		
 			
 			fen.aff.setDes(j.de1 , j.de2);
-			fen.aff.repaint();
-			
+fen.aff.repaint();
 			if(!j.getEnPrison()){
 				int numCaseAAvancer = j.getSommeDes() ;
 				
@@ -50,7 +52,7 @@ public class EcouteurLancerLesDes implements ActionListener{
 				//il faut redessiner la position du joueur sur le plateau 
 				
 				fen.getPanelCase(j.getPos()).dessinerJoueur(j);
-				fen.getPanelPlateau().repaint();
+				//fen.getPanelPlateau().repaint();
 				System.out.println(j.getSommeDes());
 				//appeler méthode traitement case dans le cas où je ne suis pas en prison 
 				jouer.Tour() ; 
@@ -60,6 +62,7 @@ public class EcouteurLancerLesDes implements ActionListener{
 				//appeler méthode traitement quand je suis en prison
 				jouer.traitementEstEnPrison();
 			}
+			//fen.getPanelPlateau().repaint();
 			//this.setActif(false); 
 		//}
 		

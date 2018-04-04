@@ -4,7 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 
 
-public class Joueur {
+public class Joueur implements Comparable {
 	
 	
 	private String nom;
@@ -266,6 +266,40 @@ public class Joueur {
 	public void resteEnPrison(){
         	nbToursEnPrison = nbToursEnPrison + 1;
     	}
+    	
+    public LinkedList<Case> getCases(){
+		return immobilier ;
+	}
+	
+	public int getValImmobilier(){
+		int somme = 0;
+		for(Case c : immobilier){
+			CaseProp cp = (CaseProp)c;
+			somme = somme + cp.getPrix() ;
+		}
+		return somme ;
+	}
+	
+	public int compareTo(Object o){
+		Joueur j = (Joueur)o;
+		if(this.getSomme() > j.getSomme()){
+			return -1 ;
+		} else if (this.getSomme() < j.getSomme()){
+			return 1;
+		} else {
+			if(this.getValImmobilier() > j.getValImmobilier()){
+				return -1 ;
+			} else if(this.getValImmobilier() < j.getValImmobilier()){
+				return 1;
+			} else {
+				return 0;
+			}
+		}
+	}
+	
+	public String toString(){
+		return "	Joueur "+ getNom()+"   Somme : "+getSomme()+"   Valeur immobilier : "+getValImmobilier();
+	}
 	
 
 

@@ -14,6 +14,8 @@ public class FenetreInterface extends JFrame{
 		
 		public JPanel panelTemp = new JPanel();
 		
+		public EcouteurLancerLesDes ecouteurdes ;
+		
 		
 		JPanel panelEast = new JPanel( new BorderLayout());
 		JPanel panelSouth = new JPanel( new FlowLayout() );
@@ -38,6 +40,8 @@ public class FenetreInterface extends JFrame{
 		//public boolean activeFin = false;
 		//public boolean acitveDes = false;
 		
+		
+		
 	
 	public FenetreInterface( int longue , int large, Plateau pl, Joueur jcourant, LinkedList<Joueur> LJ){
 	
@@ -47,6 +51,8 @@ public class FenetreInterface extends JFrame{
 		p = pl ;
 		this.jcourant = jcourant; 
 		ListJoueur = LJ;
+		
+		ecouteurdes = new EcouteurLancerLesDes(jcourant, this, p);
 		
 		
 		this.setSize(new Dimension(longue,large));
@@ -83,7 +89,7 @@ public class FenetreInterface extends JFrame{
 		// Lien entre les buttons et les listeners
 		
 		
-		lanceDe.addActionListener( new EcouteurLancerLesDes(jcourant, this, p) ); //est-ce que mon écouteur va bien changer son joueur quand je change le joueur de la fenêtre ? rep Aydin : non 
+		lanceDe.addActionListener( ecouteurdes ); //est-ce que mon écouteur va bien changer son joueur quand je change le joueur de la fenêtre ? rep Aydin : non 
 		finTour.addActionListener(new EcouteurFinTour(this,jcourant, ListJoueur));
 		abandonner.addActionListener(new EcouteurAbandonner(this));
 		
@@ -145,7 +151,7 @@ public class FenetreInterface extends JFrame{
 			
 			panelTemp = p ;	
 				
-			panelTemp.repaint();
+			//panelTemp.repaint();
 			
 			cadrePrincipal.add(panelTemp, BorderLayout.WEST);	
 			
@@ -155,6 +161,10 @@ public class FenetreInterface extends JFrame{
 			return jcourant;
 		}
 		
+		public LinkedList<Joueur> getLesJoueurs(){
+			return ListJoueur ;
+		}
+		
 		public void setJoueur(Joueur j){
 			
 			jcourant = j;
@@ -162,11 +172,10 @@ public class FenetreInterface extends JFrame{
 		}
 		
 		public void changerPanelJoueur(Joueur j){
-			panelSouth.removeAll();
-			panelSouth.add(new JLabel("Joueur : " +j.getNom()));
-			panelSouth.add(new JLabel("Somme : "+j.getSomme()));
 			
-			cadrePrincipal.add(panelSouth, BorderLayout.SOUTH);
+			//ce code fonctionne
+			label.setText("Joueur : " +j.getNom());
+			label1.setText("Somme : " +j.getSomme());
 			panelSouth.repaint();
 			
 		}
@@ -179,6 +188,8 @@ public class FenetreInterface extends JFrame{
 			lanceDe = new JButton("Lancer les des");
 			lanceDe.addActionListener(new EcouteurLancerLesDes(jcourant, this, p)); 
 			panelEast.add(lanceDe,  BorderLayout.NORTH);
+			/*ecouteurdes.setJoueur(j);
+			panelEast.repaint();*/
 			
 			
 			

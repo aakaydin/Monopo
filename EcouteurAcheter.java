@@ -13,7 +13,7 @@ public class EcouteurAcheter implements ActionListener{
 	
 	public void actionPerformed(ActionEvent ae){
 		
-		this.setEnabled(false);
+		
 		
 		j.setArgent(-c.getPrix());
 		j.addCase(c);

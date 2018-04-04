@@ -61,7 +61,7 @@ public class CarteChance {
 		return panelCarteChance ;
 	}
 	
-	public void tirerCarte(){
+	public int tirerCarte(){	
 		int random = (int)(Math.random()*listCart.size()) ;
 		i = listCart.get(random); 
 		if(i ==1){
@@ -80,6 +80,8 @@ public class CarteChance {
 		JLabel d1 = new JLabel(texteAffiche) ;
 		panelCarteChance.add(d1, BorderLayout.NORTH);
 		panelCarteChance.add(d2, BorderLayout.CENTER);
+		
+		return i;
 	}
 	
 	//une méthode par type de carte chance 

@@ -84,7 +84,7 @@ public class Jouer{
 			joueurCourant.avancer(joueurCourant.getDe1() + joueurCourant.getDe2()); //fait avancer
 			//appel méthode traitementCasefen.getPanelCase(j.getPos()).dessinerJoueur(j);
 			fen.getPanelCase(joueurCourant.getPos()).dessinerJoueur(joueurCourant);
-			fen.getPanelPlateau().repaint();
+			//fen.getPanelPlateau().repaint();
 			
 			
 			this.Tour();
@@ -96,16 +96,18 @@ public class Jouer{
             joueurCourant.avancer(joueurCourant.getDe1() + joueurCourant.getDe2()); //fait avancer
 			//appel méthode traitementCasefen.getPanelCase(j.getPos()).dessinerJoueur(j);
 			fen.getPanelCase(joueurCourant.getPos()).dessinerJoueur(joueurCourant);
-			fen.getPanelPlateau().repaint();
+			//fen.getPanelPlateau().repaint();
             this.Tour();
                     //appel méthode traitementCase
 		}else{
 			joueurCourant.resteEnPrison();
 			fen.getPanelCase(joueurCourant.getPos()).dessinerJoueur(joueurCourant);
-			fen.getPanelPlateau().repaint();
+			//fen.getPanelPlateau().repaint();
                     
                     
 		}
+		fen.repaint();
+		fen.pack();
                 
 	}
     //Un tour : 
@@ -130,13 +132,13 @@ public class Jouer{
             panelCase = caseCour.getPanel();
             fen.changerPanel(panelCase);
             
-            fen.getPanelTemp().repaint();
+           // fen.getPanelTemp().repaint();
             
             fen.getPanelCase(joueurCourant.getPos()).retirerJoueur(joueurCourant);
             
             joueurCourant.allerEnPrison(); //problème de downcast?
             fen.getPanelCase(joueurCourant.getPos()).dessinerJoueur(joueurCourant);
-			fen.getPanelPlateau().repaint(); 
+			//fen.getPanelPlateau().repaint(); 
         }
         
         if (caseCourante instanceof CaseTaxe){
@@ -148,7 +150,7 @@ public class Jouer{
             caseCour.setDescriptionPanel(joueurCourant);
             panelCase = caseCourante.getPanel();   
             fen.changerPanel(panelCase);
-            fen.getPanelTemp().repaint();
+            //fen.getPanelTemp().repaint();
 
             //pour getter les cases il va falloir les numéroter
             
@@ -160,7 +162,7 @@ public class Jouer{
             caseCour.setPanel() ;
             panelCase = caseCourante.getPanel();
             fen.changerPanel(panelCase);
-            fen.getPanelTemp().repaint();
+            //fen.getPanelTemp().repaint();
             
             caseCour.recupereCagnotte(joueurCourant); 
         }
@@ -171,12 +173,12 @@ public class Jouer{
             carteChance.tirerCarte(); 
 			panelCase = carteChance.getPanel();
 			fen.changerPanel(panelCase);
-			fen.getPanelTemp().repaint();
+			//fen.getPanelTemp().repaint();
 			if(joueurCourant.getEnPrison()){
 				fen.getPanelCase(joueurCourant.getPos()).retirerJoueur(joueurCourant);
 				joueurCourant.setPos(7);
 				fen.getPanelCase(joueurCourant.getPos()).dessinerJoueur(joueurCourant);
-				fen.getPanelPlateau().repaint(); 
+				//fen.getPanelPlateau().repaint(); 
 			}
         }
         
@@ -186,7 +188,7 @@ public class Jouer{
             panelCase = caseCour.getPanel();
             caseCour.action(joueurCourant);
             fen.changerPanel(panelCase);
-            fen.getPanelTemp().repaint();
+            //fen.getPanelTemp().repaint();
         }
         
         if(caseCourante instanceof CasePrison){
@@ -194,7 +196,7 @@ public class Jouer{
 			panelCase = caseCour.getPanel();
 			joueurCourant.setEnPrison(true);
 			fen.changerPanel(panelCase);
-			fen.getPanelTemp().repaint();
+			//fen.getPanelTemp().repaint();
 		}
         
         if(caseCourante instanceof CaseProp){
@@ -202,7 +204,7 @@ public class Jouer{
 			caseCour.setDescriptionPanel(joueurCourant);
 			panelCase = caseCour.getPanel() ; 
 			fen.changerPanel(panelCase);
-			fen.getPanelTemp().repaint();
+			//fen.getPanelTemp().repaint();
 		}
             
 		
@@ -211,7 +213,9 @@ public class Jouer{
      joueurCourant.setSommeDes(0);  
      //changer l'affichage du panel joueur au cas oùla somme de celui-ci aurait changer 
      fen.changerPanelJoueur(joueurCourant);
-     fen.getPanelSouth().repaint();
+     //fen.getPanelSouth().repaint();
+	    fen.repaint();
+	    fen.pack();
 
 		
     

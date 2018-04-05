@@ -4,10 +4,7 @@ import javax.swing.*;
 public class CaseProp extends Case{
 	
 	private int prix; 
-	//prend en attribut le propriétaire
 	private Joueur propri;
-	//possède aussi un attribut du joueur se trouvant sur la case 
-	private Joueur joueurcase ;
 	private int couleur;
 	private boolean achete = false;
 	
@@ -16,18 +13,12 @@ public class CaseProp extends Case{
 	
 	private JLabel labavantachat ;
 	private JLabel apresachat ;
-	private JButton acheter = new JButton("Acheter"); 
+	private JButton acheter ; 
 	
 	private JButton payer ;
 	private JLabel labpropri = new JLabel("Vous etes chez vous");
 	private JLabel danspropri ;
-	
-	EcouteurAcheter ecouteurAcheter ;
-	EcouteurPayerJoueur ecouteurPayerJoueur ;
-	
-	
-
-	
+	private int PrixHypotheque =(int)(prix*0.5); 
 	
 		
 		
@@ -36,7 +27,7 @@ public class CaseProp extends Case{
 		
 		super(pos, name);
 		this.prix = prix;
-		propri = new Joueur("a",0,0) ; //joueur aléatoire juste pour l'instanciation
+		propri = null ; 
 
 	}
 		
@@ -53,15 +44,12 @@ public class CaseProp extends Case{
 
 		
 	public void setDescriptionPanel(Joueur j){
-		joueurcase = j ;
-		ecouteurAcheter = new EcouteurAcheter(j, this, acheter) ;
-		ecouteurPayerJoueur = new EcouteurPayerJoueur(propri, j, this) ;
 		panel.removeAll();
 		if(!achete){
 			labavantachat = new JLabel(this.getNom() + " - PRIX : "+ prix);
 			panel.add(labavantachat, BorderLayout.NORTH);
-			
-			acheter.addActionListener(ecouteurAcheter);
+			acheter = new JButton("Acheter");
+			acheter.addActionListener(new EcouteurAcheter(j, this));
 			panel.add(acheter, BorderLayout.CENTER);
 			
 		} else if(j == propri){
@@ -70,7 +58,7 @@ public class CaseProp extends Case{
 			danspropri = new JLabel("Vous etes chez "+propri.getNom()+", vous lui devez "+prix);
 			panel.add(danspropri, BorderLayout.NORTH);
 			payer = new JButton("Payer");
-			payer.addActionListener(ecouteurPayerJoueur);
+			payer.addActionListener(new EcouteurPayerJoueur(propri, j, this));
 			panel.add(payer, BorderLayout.CENTER);
 		}
 		panel.repaint();
@@ -80,14 +68,9 @@ public class CaseProp extends Case{
 		achete = b ;
 	}		
 	
-	public void setFenetreEcouteurAcheter(FenetreInterface f){
-		ecouteurAcheter.setFenetreInterface(f);
+	public int getPrixHypotheque(){ 
+		return PrixHypotheque; 
 	}
-	
-	public void setFenetreEcouteurPayerJoueur(FenetreInterface f){
-		ecouteurPayerJoueur.setFenetreInterface(f);
-	}
-	
 
 
 	}

@@ -75,7 +75,7 @@ public class EcouteurDebuterPartie implements ActionListener {
 		
 	
 	
-		
+		m2.setVisible(false); 
 		
 	}
 	

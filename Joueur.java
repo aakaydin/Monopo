@@ -23,31 +23,31 @@ public class Joueur implements Comparable {
 	public  int de2;
 	private  int sommeDes; 
 	public boolean passageCaseDep = false ; 
-	private JLabel label ;	
+	private JLabel label ;
+	private int sommeTransfere;
+	private LinkedList<Hotel> MesHotels; 
+	private LinkedList<MaisonVerte> MesMaisons;  
+	private LinkedList<CaseProp> MesProprietes;  
+	private boolean vivre = true; 
+	private int mensualite = 0;      //remboursement du credit par tour; 
+	
 	private Case caseCourante;
 	
 	
-	///////////////////////////////
-	public Color col;
-	public static int rn = 0;
-	
+	//private avatar
 	
 		
 		
 	// Constructeur avec nom + somme + position	
 	public Joueur( String name , int mani, int pos){
 		
-		rn++;
 		nom = name;
 		somme = mani;
 		position = pos;
-		
-		col = Color.WHITE;
-		//if( rn == 1 ){  };
 		label = new JLabel(nom);
 		label.setOpaque(true);
 		label.setForeground(Color.BLACK);
-		label.setBackground(col);
+		label.setBackground(Color.WHITE);
 		}
 	
 	// Constructeur avec nom + somme 
@@ -134,9 +134,9 @@ public class Joueur implements Comparable {
 		
 	public boolean estVivant(){return estVivant;}
 	
-	public void sedEndette(){
+	public void setEndette(boolean b){
 		
-		endette = true;
+		endette = b;
 		
 		
 		}
@@ -144,7 +144,7 @@ public class Joueur implements Comparable {
 	
 	public void setDette( int mani){
 		
-		dette = dette - mani;
+		dette = dette + mani;
 		
 	}
 	
@@ -272,8 +272,102 @@ public class Joueur implements Comparable {
 	public void resteEnPrison(){
         	nbToursEnPrison = nbToursEnPrison + 1;
     	}
-    	
-    public LinkedList<Case> getCases(){
+    
+    public void setSommeTransfert(int somme){ 
+		sommeTransfere =somme; 
+	}
+	public int getSommeTransfere(){
+		return sommeTransfere; 
+	}
+    public void transfere(Joueur j2){ 
+		j2.setArgent(this.getSommeTransfere()); 
+	}
+	
+	public LinkedList<Hotel> getMesHotels(){ 
+		return MesHotels;
+	}
+	public LinkedList<MaisonVerte> getMesMaisons(){ 
+		return MesMaisons;
+	}
+	public LinkedList<CaseProp> getMesProprietes(){ 
+		return MesProprietes;
+	}
+	
+	public boolean avoirHotel(){ 				 //vérifie si j'ai des hotels
+		if(this.getMesHotels()!=null){ 
+			return true; 
+		}else{ 
+			return false; 
+		}
+	}
+	
+	
+	public boolean avoirMaison(){                 //vérifie si j'ai des maisons
+		if(this.getMesMaisons()!=null){ 
+			return true; 
+		}else{ 
+			return false; 
+		}
+	}
+	
+	public boolean avoirPropriete(){                 //vérifie si j'ai des maisons
+		if(this.getMesProprietes()!=null){ 
+			return true; 
+		}else{ 
+			return false; 
+		}
+	}
+	
+	public Hotel getHotelPlusChere(){ 
+		Hotel H = new Hotel(0,0,0); 
+		for(int i = 0; i<MesHotels.size(); i++){
+			Hotel h = MesHotels.get(i);
+			if(H.getPrixHypotheque()<h.getPrixHypotheque()){ 
+				H = h; 
+			} 
+		}
+		return H; 
+	}
+	
+	public MaisonVerte getMaisonPlusChere(){ 
+		MaisonVerte M = new MaisonVerte(0,0,0); 
+		for(int i = 0; i<MesMaisons.size(); i++){
+			MaisonVerte m = MesMaisons.get(i);
+			if(M.getPrixHypotheque()<m.getPrixHypotheque()){ 
+				M = m; 
+			} 
+		}
+		return M; 
+	}
+	
+	public CaseProp getProprietePlusChere(){ 
+		CaseProp P = new CaseProp(0,"coucou",0); 
+		for(int i = 0; i<MesMaisons.size(); i++){
+			CaseProp p = MesProprietes.get(i);
+			if(P.getPrixHypotheque()<p.getPrixHypotheque()){ 
+				P = p; 
+			} 
+		}
+		return P; 
+	}
+	
+	public void remboursementTour(int remboursement){
+		somme = somme-remboursement;
+	}
+	
+	public int  getMensualite(){
+		return mensualite;
+	}
+	public void  setMensualite(int m){
+		mensualite = m;
+	}
+	
+	public void setAbandon(){ 
+		vivre = false; 
+	}
+		
+		 	
+	public LinkedList<Case> getCases(){
 		return immobilier ;
 	}
 	
@@ -305,10 +399,56 @@ public class Joueur implements Comparable {
 	
 	public String toString(){
 		return "	Joueur "+ getNom()+"   Somme : "+getSomme()+"   Valeur immobilier : "+getValImmobilier();
+	}	
+	
+	public void credit(int somme){ 
+			if(this.getSomme()>1000000){ 
+				if(somme <= 1000000 ){ 
+					this.setArgent(somme); // on crédite le compte de la somme
+					double taux = 0.07;
+					int tour = 7;
+					int remboursement = (int)(12*(somme * (taux/12))/(1-Math.pow(1+(taux/12),-tour*12)));  
+					this.setMensualite(remboursement); //le joueur doit rembourser cette somme a chaque tour
+					this.setDette(remboursement*7); //on doit rembourser en 7 tours.
+				}
+			}else if(this.getSomme()>100000){ 
+				if (somme <= 100000){ 
+					double taux  = 0.05;         
+					int tour = 7;
+					int remboursement = (int)(12*(somme * (taux/12))/(1-Math.pow(1+(taux/12),-tour*12))); 
+					this.setArgent(somme);
+					this.setMensualite(remboursement);
+					this.setDette(remboursement*7); 
+					  
+				}
+			}else if(this.getSomme()>10000){ 
+				if (somme <= 10000){ 
+					double taux = 0.03;         
+					int tour = 7;
+					int remboursement = (int)(12*(somme * (taux/12))/(1-Math.pow(1+(taux/12),-tour*12))); 
+					this.setArgent(somme);
+					this.setMensualite(remboursement);
+					this.setDette(remboursement*7);
+				}
+			}else if(this.getSomme()>1000){ 
+				if (somme <= 1000){ 
+					double taux = 0.03;         
+					int tour = 7;
+					int remboursement = (int)(12*(somme * (taux/12))/(1-Math.pow(1+(taux/12),-tour*12))); 
+					this.setArgent(somme);
+					this.setMensualite(remboursement);
+					this.setDette(remboursement*7);
+				}
+			}
+			this.setEndette(true); 
+		} 
+		 
+			 
 	}
+	
 	
 
 
 
-}
+
 

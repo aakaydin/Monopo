@@ -32,6 +32,7 @@ public class MenuBanque extends JFrame{
 		commande1.add(b2); 
 		commande2.add(b3);
 		b1.addActionListener(new EcouteurTransfert(this));
+		b2.addActionListener(new EcouteurCredit(this));
 		b3.addActionListener(new EcouteurRetourBanque(this)); 
 		cadrePrincipal.add(commande1,BorderLayout.NORTH); 
 		cadrePrincipal.add(commande2,BorderLayout.SOUTH); 

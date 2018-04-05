@@ -31,6 +31,7 @@ public class EcouteurSuivant1 implements ActionListener {
 		m2.setNbIA(nbIA); 
 		m2.FinishFrame(nbJoueur, nbIA); 
 		m2.setVisible(true); 
+		m1.setVisible(false); 
 	}
 	
 	public int getnbJoueur(){

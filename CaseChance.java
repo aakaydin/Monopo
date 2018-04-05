@@ -8,13 +8,13 @@ public class CaseChance extends Case {
 		}
 	
 	//première méthode inutile, juste au cas où
-	public CarteChance creerCarteChance(Joueur j, FenetreInterface f){
-		CarteChance cartelucky = new CarteChance(j,f);
+	public CarteChance creerCarteChance(Joueur j){
+		CarteChance cartelucky = new CarteChance(j);
 		return cartelucky; 
 	}
 	
-	public void tirerCarte(Joueur j, FenetreInterface f){
-		CarteChance cartelucky = new CarteChance(j,f);
+	public void tirerCarte(Joueur j){
+		CarteChance cartelucky = new CarteChance(j);
 		cartelucky.tirerCarte();
 	}
 }

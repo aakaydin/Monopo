@@ -106,9 +106,6 @@ public class Jouer{
                     
                     
 		}
-		
-		fen.changerPanelJoueur(joueurCourant);
-		fen.getPanelTemp().repaint();
                 
 	}
     //Un tour : 
@@ -148,7 +145,7 @@ public class Jouer{
             
     
             int val = caseCour.getValAPayer(); 
-            caseCour.setDescriptionPanel(joueurCourant, fen);
+            caseCour.setDescriptionPanel(joueurCourant);
             panelCase = caseCourante.getPanel();   
             fen.changerPanel(panelCase);
             fen.getPanelTemp().repaint();
@@ -170,7 +167,7 @@ public class Jouer{
         
         if(caseCourante instanceof CaseChance){ 
             CaseChance caseCour = (CaseChance) caseCourante;
-            CarteChance carteChance = caseCour.creerCarteChance(joueurCourant, fen);
+            CarteChance carteChance = caseCour.creerCarteChance(joueurCourant);
             carteChance.tirerCarte(); 
 			panelCase = carteChance.getPanel();
 			fen.changerPanel(panelCase);
@@ -204,15 +201,32 @@ public class Jouer{
 			CaseProp caseCour = (CaseProp) caseCourante ;
 			caseCour.setDescriptionPanel(joueurCourant);
 			panelCase = caseCour.getPanel() ; 
-			caseCour.setFenetreEcouteurAcheter(fen);
-			caseCour.setFenetreEcouteurPayerJoueur(fen);
 			fen.changerPanel(panelCase);
 			fen.getPanelTemp().repaint();
 		}
             
-	
+		
+		 
+            
      joueurCourant.setSommeDes(0);  
-        
+     //changer l'affichage du panel joueur au cas oùla somme de celui-ci aurait changer 
+     fen.changerPanelJoueur(joueurCourant);
+     fen.getPanelSouth().repaint();
+
+		
+    
+     //faire changement d'affcihage dans la fenêtre qui doit afficher finir tour 
+       
+  
+    //la ligne suivante doit se trouver dans l'écouteur du bouton fintour
+    //joueurCourant.setSonTour(false); //faire setSonTour ou faire une méthode fin du tour qui passe directement la main au prochain joueur du tableau
+    
+    
+    //ne pas oublier le bouton 
+    //tour terminé 
+    //acheter une maison qui s'active quand le joueurCurrent n'a pas sa liste de maison vide (immobilier != 0) 
+    //abandonner la partie 
+    
 
 	}
 	

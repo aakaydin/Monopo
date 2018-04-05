@@ -11,7 +11,6 @@ public class EcouteurBtnOuiCartePrison implements ActionListener {
     
     public void actionPerformed(ActionEvent ae){
         fen.getJoueur().setEnPrison(false);
-        fen.getJoueur().setCarteSortirPrison(false);
         fen.dispose();
     }
 }

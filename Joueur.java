@@ -24,6 +24,11 @@ public class Joueur implements Comparable {
 	private  int sommeDes; 
 	public boolean passageCaseDep = false ; 
 	private JLabel label ;
+	private int sommeTransfere;
+	private LinkedList<Hotel> MesHotels; 
+	private LinkedList<MaisonVerte> MesMaisons;  
+	private LinkedList<CaseProp> MesProprietes;  
+	private boolean vivre = true; 
 	
 	private Case caseCourante;
 	
@@ -128,9 +133,9 @@ public class Joueur implements Comparable {
 		
 	public boolean estVivant(){return estVivant;}
 	
-	public void sedEndette(){
+	public void setEndette(boolean b){
 		
-		endette = true;
+		endette = b;
 		
 		
 		}
@@ -266,8 +271,95 @@ public class Joueur implements Comparable {
 	public void resteEnPrison(){
         	nbToursEnPrison = nbToursEnPrison + 1;
     	}
-    	
-    public LinkedList<Case> getCases(){
+    
+    public void setSommeTransfert(int somme){ 
+		sommeTransfere =somme; 
+	}
+	public int getSommeTransfere(){
+		return sommeTransfere; 
+	}
+    public void transfere(Joueur j2){ 
+		j2.setArgent(this.getSommeTransfere()); 
+	}
+	
+	public LinkedList<Hotel> getMesHotels(){ 
+		return MesHotels;
+	}
+	public LinkedList<MaisonVerte> getMesMaisons(){ 
+		return MesMaisons;
+	}
+	public LinkedList<CaseProp> getMesProprietes(){ 
+		return MesProprietes;
+	}
+	
+	public boolean avoirHotel(){ 				 //vérifie si j'ai des hotels
+		if(this.getMesHotels()!=null){ 
+			return true; 
+		}else{ 
+			return false; 
+		}
+	}
+	
+	
+	public boolean avoirMaison(){                 //vérifie si j'ai des maisons
+		if(this.getMesMaisons()!=null){ 
+			return true; 
+		}else{ 
+			return false; 
+		}
+	}
+	
+	public boolean avoirPropriete(){                 //vérifie si j'ai des maisons
+		if(this.getMesProprietes()!=null){ 
+			return true; 
+		}else{ 
+			return false; 
+		}
+	}
+	
+	public Hotel getHotelPlusChere(){ 
+		Hotel H = new Hotel(0,0,0); 
+		for(int i = 0; i<MesHotels.size(); i++){
+			Hotel h = MesHotels.get(i);
+			if(H.getPrixHypotheque()<h.getPrixHypotheque()){ 
+				H = h; 
+			} 
+		}
+		return H; 
+	}
+	
+	public MaisonVerte getMaisonPlusChere(){ 
+		MaisonVerte M = new MaisonVerte(0,0,0); 
+		for(int i = 0; i<MesMaisons.size(); i++){
+			MaisonVerte m = MesMaisons.get(i);
+			if(M.getPrixHypotheque()<m.getPrixHypotheque()){ 
+				M = m; 
+			} 
+		}
+		return M; 
+	}
+	
+	public CaseProp getProprietePlusChere(){ 
+		CaseProp P = new CaseProp(0,"coucou",0); 
+		for(int i = 0; i<MesMaisons.size(); i++){
+			CaseProp p = MesProprietes.get(i);
+			if(P.getPrixHypotheque()<p.getPrixHypotheque()){ 
+				P = p; 
+			} 
+		}
+		return P; 
+	}
+	
+	public void remboursementTour(int remboursement){
+		somme = somme-remboursement;
+	}
+	
+	public void setAbandon(){ 
+		vivre = false; 
+	}
+		
+		 	
+	public LinkedList<Case> getCases(){
 		return immobilier ;
 	}
 	
@@ -299,10 +391,13 @@ public class Joueur implements Comparable {
 	
 	public String toString(){
 		return "	Joueur "+ getNom()+"   Somme : "+getSomme()+"   Valeur immobilier : "+getValImmobilier();
+	}	 
+			 
 	}
+	
 	
 
 
 
-}
+
 

@@ -28,12 +28,10 @@ public class EcouteurFinTour implements ActionListener {
 		fen.finTour.setEnabled( false );
 		fen.lanceDe.setEnabled( true );
 		
-		//on met la méthode j.getSomme en début de tour car on autorise un tour d'endettement 
-		if(!jcourant.estVivant() || jcourant.getSomme() < 0){
-			fen.dispose();
+		
+		if(!jcourant.estVivant()){
 			//fin de la partie
 			//creer une fenêtre fin de la partie
-			FenetreFinPartie finpartie = new FenetreFinPartie(ListJoueur);
 		}
 		System.out.println(""+rangJoueur); 
 		if(rangJoueur + 1 >= nbJoueur ){
@@ -46,7 +44,7 @@ public class EcouteurFinTour implements ActionListener {
 		Jouer jouer = new Jouer(fen.getPlateau(), fen, jcourant);
 		fen.setJoueur(jcourant);
 		fen.changerJoueurEcouteurDe(jcourant);
-		//fen.panelEast.repaint();
+		fen.panelEast.repaint();
 		fen.changerPanelJoueur(jcourant);
 		jouer.testerPrison();
 	

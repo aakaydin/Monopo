@@ -15,6 +15,7 @@ public class PanelCase extends JPanel {
 	
 	private PanelPlateau fen ;
 	private JLabel joueur ;
+	private Joueur jc; 
 	
 	private JPanel affichageJoueur = new JPanel() ;
 	int place ;
@@ -31,12 +32,11 @@ public class PanelCase extends JPanel {
 		p.setOpaque(true);
 		p.setBackground(c);
 		this.add(p, BorderLayout.NORTH);
-		
 		this.add(nom, BorderLayout.CENTER);
 		LineBorder blackline = new LineBorder(Color.BLACK, 1);
 		this.setBorder(blackline);
 		
-		this.add(affichageJoueur, BorderLayout.EAST);
+		this.add(affichageJoueur, BorderLayout.SOUTH);
 	}
 	
 	protected void paintComponent(Graphics g){
@@ -49,14 +49,17 @@ public class PanelCase extends JPanel {
 	//deux méthode pour les test car Joueur n'est pas encore fonctionnel 
 	
 	public int getPlace(){return place;}
+	
 	public void dessinerJoueur(Joueur j){
 		//Color c = j.getCouleur() ; en commentaire pour pouvoir faire les tests
 		
+		jc = j;
 		affichageJoueur.add(j.getLabel());
 		//this.repaint(); 
 	}
 	
 	public void retirerJoueur(Joueur j){
+		jc = j;
 		affichageJoueur.remove(j.getLabel());
 		//this.repaint(); 
 	}
@@ -71,5 +74,16 @@ public class PanelCase extends JPanel {
 		affichageJoueur.add(jl);
 		this.repaint();
 	}*/
+	
+	
+	/////////////////////////////////////
+	
+	public void setCouleurProp( Color c){
+		
+		
+			nom.setForeground(c);
+	
+		
+		}
 	
 }

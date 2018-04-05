@@ -5,7 +5,7 @@ import java.util.*;
 
 public class FenetreInterface extends JFrame{
 	
-		private PanelPlateau plateau = new PanelPlateau();
+		public PanelPlateau plateau = new PanelPlateau();
 		//private PanelPlateau plateau = new PanelPlateau();
 		public Plateau p ;	
 		//private Joueur jTour = new Jouer();
@@ -13,10 +13,11 @@ public class FenetreInterface extends JFrame{
 		//private Joueur JC = new Joueur("Camille",0,0);
 		
 		public JPanel panelTemp = new JPanel();
+		
 		public EcouteurLancerLesDes ecouteurdes ;
 		
 		
-		JPanel panelEast = new JPanel( new GridLayout(4,1));
+		JPanel panelEast = new JPanel( new BorderLayout());
 		JPanel panelSouth = new JPanel( new FlowLayout() );
 		JPanel panelNorth = new JPanel( new FlowLayout() );
 		
@@ -24,12 +25,11 @@ public class FenetreInterface extends JFrame{
 		private JLabel label;
 		private JLabel label1;
 		private JLabel label2;
-		
 	
 		public JButton finTour;	
 		public JButton lanceDe;	
 		public JButton abandonner;	
-		public JButton banquier; 
+		
 		public Joueur jcourant; 
 	
 		public AffichageDe aff = new AffichageDe( 1 , 1);
@@ -40,6 +40,8 @@ public class FenetreInterface extends JFrame{
 		//public boolean activeFin = false;
 		//public boolean acitveDes = false;
 		
+		
+		
 	
 	public FenetreInterface( int longue , int large, Plateau pl, Joueur jcourant, LinkedList<Joueur> LJ){
 	
@@ -49,6 +51,7 @@ public class FenetreInterface extends JFrame{
 		p = pl ;
 		this.jcourant = jcourant; 
 		ListJoueur = LJ;
+		
 		ecouteurdes = new EcouteurLancerLesDes(jcourant, this, p);
 		
 		
@@ -76,7 +79,6 @@ public class FenetreInterface extends JFrame{
 		finTour = new JButton(" End Turn");
 		lanceDe = new JButton(" Lancer les Des ");
 		abandonner = new JButton(" Abandonner ");
-		banquier = new JButton("Banque"); 
 		
 		panelTemp = p.getCases().get(0).getPanel();
 		
@@ -90,7 +92,6 @@ public class FenetreInterface extends JFrame{
 		lanceDe.addActionListener( ecouteurdes ); //est-ce que mon écouteur va bien changer son joueur quand je change le joueur de la fenêtre ? rep Aydin : non 
 		finTour.addActionListener(new EcouteurFinTour(this,jcourant, ListJoueur));
 		abandonner.addActionListener(new EcouteurAbandonner(this));
-		banquier.addActionListener(new EcouteurBanque(this)); 
 		
 		
 		finTour.setEnabled( false);
@@ -105,13 +106,9 @@ public class FenetreInterface extends JFrame{
 		
 		
 		
-		panelEast.add(banquier); 	
-		panelEast.add(abandonner);
-		panelEast.add(aff);	
-		panelEast.add(lanceDe);
-				
-			
-		
+		panelEast.add(aff , BorderLayout.CENTER );			
+		panelEast.add(lanceDe , BorderLayout.NORTH	 );	
+		panelEast.add(abandonner , BorderLayout.SOUTH );	
 		
 		panelNorth.add(finTour);
 		
@@ -156,7 +153,6 @@ public class FenetreInterface extends JFrame{
 				
 			//panelTemp.repaint();
 			
-			
 			cadrePrincipal.add(panelTemp, BorderLayout.WEST);	
 			
 		}
@@ -164,8 +160,9 @@ public class FenetreInterface extends JFrame{
 		public Joueur getJoueur(){
 			return jcourant;
 		}
-		public LinkedList<Joueur>  getLesJoueurs(){
-			return ListJoueur;
+		
+		public LinkedList<Joueur> getLesJoueurs(){
+			return ListJoueur ;
 		}
 		
 		public void setJoueur(Joueur j){
@@ -175,15 +172,11 @@ public class FenetreInterface extends JFrame{
 		}
 		
 		public void changerPanelJoueur(Joueur j){
-			panelSouth.removeAll();
-			panelSouth.add(new JLabel("Joueur : " +j.getNom()));
-			panelSouth.add(new JLabel("Somme : "+j.getSomme()));
 			
-			cadrePrincipal.add(panelSouth, BorderLayout.SOUTH);
+			//ce code fonctionne
 			label.setText("Joueur : " +j.getNom());
 			label1.setText("Somme : " +j.getSomme());
 			panelSouth.repaint();
-			
 			
 		}
 		
@@ -196,9 +189,11 @@ public class FenetreInterface extends JFrame{
 			lanceDe.addActionListener(new EcouteurLancerLesDes(jcourant, this, p)); 
 			panelEast.add(lanceDe,  BorderLayout.NORTH);
 			/*ecouteurdes.setJoueur(j);
-+			panelEast.repaint();*/
+			panelEast.repaint();*/
+			
+			
+			
 		}
-		
 		
 		public PanelCase getPanelCase(int i){
 			return plateau.getPanelCase(i);

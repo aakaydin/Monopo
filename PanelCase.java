@@ -53,12 +53,12 @@ public class PanelCase extends JPanel {
 		//Color c = j.getCouleur() ; en commentaire pour pouvoir faire les tests
 		
 		affichageJoueur.add(j.getLabel());
-		this.repaint(); 
+		//this.repaint(); 
 	}
 	
 	public void retirerJoueur(Joueur j){
 		affichageJoueur.remove(j.getLabel());
-		this.repaint(); 
+		//this.repaint(); 
 	}
 	
 	//vrai méthode pour dessiner joueur

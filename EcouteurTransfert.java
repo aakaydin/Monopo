@@ -14,7 +14,7 @@ public class EcouteurTransfert implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent ae){
-		MenuTransfert t = new MenuTransfert(400,300,mb.getJoueurCourant(),mb.getListJoueur());  
+		MenuTransfert t = new MenuTransfert(400,300,mb.getJoueurCourant(),mb.getListJoueur(),mb.getFenetre());  
 	}
 }
 

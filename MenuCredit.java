@@ -14,15 +14,17 @@ public class MenuCredit extends JFrame{
 	private JPanel commande2;
 	private JPanel commande3; 
 	private Joueur jcourant; 
+	private FenetreInterface fen; 
 	
 	  
 	
-	public MenuCredit(int longueur, int largeur,Joueur jcourant){
+	public MenuCredit(int longueur, int largeur,Joueur jcourant,FenetreInterface f){
 		
 		super("Menu Credit"); 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		this.setSize(new Dimension(longueur,largeur));
-		this.jcourant = jcourant;   
+		this.jcourant = jcourant; 
+		fen = f;   
 	
 		
 		cadrePrincipal = new JPanel(new GridLayout(4,1));
@@ -59,6 +61,9 @@ public class MenuCredit extends JFrame{
 	}
 	public JLabel getL2(){ 
 		return l2; 
+	}
+	public FenetreInterface getFenetre(){ 
+		return fen; 
 	}
 	
 }

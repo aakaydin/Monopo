@@ -14,14 +14,16 @@ public class MenuBanque extends JFrame{
 	private JPanel commande2;  
 	private Joueur jcourant; 
 	private LinkedList<Joueur> ListJoueur; 
+	private FenetreInterface fen;
 	
-	public MenuBanque(int longueur, int largeur,Joueur j,LinkedList<Joueur> tab){
+	public MenuBanque(int longueur, int largeur,Joueur j,LinkedList<Joueur> tab,FenetreInterface f){
 		
 		super("Menu Banque"); 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		this.setSize(new Dimension(longueur,largeur)); 
 		jcourant = j; 
 		ListJoueur = tab; 
+		fen = f; 
 		
 		cadrePrincipal = new JPanel(new BorderLayout());
 		commande1 = new JPanel(new FlowLayout());
@@ -47,4 +49,7 @@ public class MenuBanque extends JFrame{
 	public LinkedList<Joueur>  getListJoueur(){
 			return ListJoueur;
 		}
+	public FenetreInterface getFenetre(){ 
+		return fen; 
+	}
 }

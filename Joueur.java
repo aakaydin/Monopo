@@ -281,7 +281,12 @@ public class Joueur implements Comparable {
 	}
     public void transfere(Joueur j2){ 
 		j2.setArgent(this.getSommeTransfere()); 
+		this.setArgent(-(this.getSommeTransfere())); 
 	}
+	//public void payerCredit(int mensualite){
+		//this.setDette(-(mensualite)); 
+		//this.setArgent(-(mensualite));
+	//} 
 	
 	public LinkedList<Hotel> getMesHotels(){ 
 		return MesHotels;
@@ -399,10 +404,30 @@ public class Joueur implements Comparable {
 	
 	public String toString(){
 		return "	Joueur "+ getNom()+"   Somme : "+getSomme()+"   Valeur immobilier : "+getValImmobilier();
-	}	
+	}
+	
+	public int getCapital(){ 
+		int capital = this.getSomme(); 
+		if(MesHotels!=null){
+			for(Hotel h : MesHotels){
+				capital = capital + h.getPrixHypotheque(); 
+			} 
+		}else if(MesMaisons!=null){
+			for(MaisonVerte m : MesMaisons){
+				capital = capital + m.getPrixHypotheque(); 
+			}
+		}else if(MesProprietes!=null){
+			for(CaseProp p : MesProprietes){
+				capital = capital + p.getPrixHypotheque(); 
+			}
+		}
+		return capital; 
+	}
+		 
+			
 	
 	public void credit(int somme){ 
-			if(this.getSomme()>1000000){ 
+			if(this.getCapital()>=1000000){ 
 				if(somme <= 1000000 ){ 
 					this.setArgent(somme); // on crédite le compte de la somme
 					double taux = 0.07;
@@ -411,7 +436,7 @@ public class Joueur implements Comparable {
 					this.setMensualite(remboursement); //le joueur doit rembourser cette somme a chaque tour
 					this.setDette(remboursement*7); //on doit rembourser en 7 tours.
 				}
-			}else if(this.getSomme()>100000){ 
+			}else if(this.getCapital()>=100000){ 
 				if (somme <= 100000){ 
 					double taux  = 0.05;         
 					int tour = 7;
@@ -421,7 +446,7 @@ public class Joueur implements Comparable {
 					this.setDette(remboursement*7); 
 					  
 				}
-			}else if(this.getSomme()>10000){ 
+			}else if(this.getCapital()>=10000){ 
 				if (somme <= 10000){ 
 					double taux = 0.03;         
 					int tour = 7;
@@ -430,7 +455,7 @@ public class Joueur implements Comparable {
 					this.setMensualite(remboursement);
 					this.setDette(remboursement*7);
 				}
-			}else if(this.getSomme()>1000){ 
+			}else if(this.getCapital()>=1000){ 
 				if (somme <= 1000){ 
 					double taux = 0.03;         
 					int tour = 7;

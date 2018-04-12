@@ -17,7 +17,7 @@ public class FenetreInterface extends JFrame{
 		public EcouteurLancerLesDes ecouteurdes ;
 		
 		
-		JPanel panelEast = new JPanel( new BorderLayout());
+		JPanel panelEast = new JPanel( new GridLayout(5,1));
 		JPanel panelSouth = new JPanel( new FlowLayout() );
 		JPanel panelNorth = new JPanel( new FlowLayout() );
 		
@@ -29,13 +29,16 @@ public class FenetreInterface extends JFrame{
 		public JButton finTour;	
 		public JButton lanceDe;	
 		public JButton abandonner;	
+		public JButton banque;
+		public JButton payerDette;	
+		
 		
 		public Joueur jcourant; 
 	
 		public AffichageDe aff = new AffichageDe( 1 , 1);
 		JPanel cadrePrincipal = new JPanel(new BorderLayout());
 		
-		private LinkedList<Joueur> ListJoueur = new LinkedList<Joueur>();
+		private LinkedList<Joueur> ListJoueur;
 		
 		//public boolean activeFin = false;
 		//public boolean acitveDes = false;
@@ -79,6 +82,9 @@ public class FenetreInterface extends JFrame{
 		finTour = new JButton(" End Turn");
 		lanceDe = new JButton(" Lancer les Des ");
 		abandonner = new JButton(" Abandonner ");
+		banque = new JButton("Banque");
+		payerDette = new JButton("Payer Credit");
+		payerDette.setEnabled(false);  
 		
 		panelTemp = p.getCases().get(0).getPanel();
 		
@@ -92,6 +98,9 @@ public class FenetreInterface extends JFrame{
 		lanceDe.addActionListener( ecouteurdes ); //est-ce que mon écouteur va bien changer son joueur quand je change le joueur de la fenêtre ? rep Aydin : non 
 		finTour.addActionListener(new EcouteurFinTour(this,jcourant, ListJoueur));
 		abandonner.addActionListener(new EcouteurAbandonner(this));
+		banque.addActionListener(new EcouteurBanque(this));
+		payerDette.addActionListener(new EcouteurPayerCredit(this));
+		
 		
 		
 		finTour.setEnabled( false);
@@ -104,11 +113,13 @@ public class FenetreInterface extends JFrame{
 		
 		
 		
+		panelEast.add(banque);	
+		panelEast.add(abandonner);
+		panelEast.add(payerDette);		
+		panelEast.add(aff);			
+		panelEast.add(lanceDe);	
 		
 		
-		panelEast.add(aff , BorderLayout.CENTER );			
-		panelEast.add(lanceDe , BorderLayout.NORTH	 );	
-		panelEast.add(abandonner , BorderLayout.SOUTH );	
 		
 		panelNorth.add(finTour);
 		
@@ -197,6 +208,14 @@ public class FenetreInterface extends JFrame{
 		
 		public PanelCase getPanelCase(int i){
 			return plateau.getPanelCase(i);
+		}
+		
+		public JLabel getL1(){ 
+			return label1; 
+		}
+		
+		public JButton getPayerDette(){ 
+			return payerDette; 
 		}
 	
 	/**

@@ -14,19 +14,21 @@ public class EcouteurCredit implements ActionListener{
 	private int MontantTransfere; 
 	private Joueur jcourant;
 	private LinkedList<Joueur> ListJoueur; 
+	private FenetreInterface fen; 
 	
 	
 	public EcouteurCredit(MenuBanque m){
 		mb = m; 
 		jcourant = mb.getJoueurCourant(); 
 		ListJoueur = m.getListJoueur(); 
+		fen = mb.getFenetre(); 
 		
 	}
 	
 	public void actionPerformed(ActionEvent ae){
 		
 		
-		MenuCredit mc = new MenuCredit(400,300,jcourant); 
+		MenuCredit mc = new MenuCredit(400,300,jcourant,fen); 
 		
 		
 		

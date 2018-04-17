@@ -19,6 +19,9 @@ public class Joueur implements Comparable {
 	//pour les transferts
 	private int sommeTransfere;
 	
+	//argument pour l'ordre des joueurs et le demarrage du jeu 
+	private boolean sonTour = false ; 
+	
 	//le joueur et son immobilier 
 	public	LinkedList<Case> immobilier = new LinkedList<Case>();
 	public  boolean estVivant = true ;
@@ -120,6 +123,8 @@ public class Joueur implements Comparable {
 	public Case getCaseCourante(){return caseCourante;}
 	 
 	public int getSommeTransfere(){return sommeTransfere;}
+	
+	public boolean getSonTour(){return sonTour;}
 	 
 	//Methode pour récupérer les propriétés 
 	public LinkedList<Hotel> getMesHotels(){ return MesHotels;}
@@ -174,6 +179,8 @@ public class Joueur implements Comparable {
     public void tuer(){estVivant = false;}
     
     public void  setMensualite(int m){mensualite = m;}
+	
+	public void setSonTour(boolean b){sonTour = b;}
 	
 	public void setAbandon(){vivre = false;}
 	

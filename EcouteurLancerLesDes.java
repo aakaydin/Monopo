@@ -1,5 +1,9 @@
 import java.awt.event.* ;
-import java.util.* ; 
+import java.util.* ;
+import java.awt.*;
+
+import javax.swing.*;
+
 
 public class EcouteurLancerLesDes implements ActionListener{
 	
@@ -8,6 +12,9 @@ public class EcouteurLancerLesDes implements ActionListener{
 	Jouer jouer ;
 	FenetreInterface fen ;
 	boolean enPrison;
+	
+	JPanel panelInfo = new JPanel();
+	
 	
 	public EcouteurLancerLesDes(Joueur jj, FenetreInterface f, Plateau p){
 		j = jj ;
@@ -22,7 +29,7 @@ public class EcouteurLancerLesDes implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent ae){
-		
+		 
 		j.lancerLesDes() ; 
 		
 		if( j.de1 != j.de2){	
@@ -32,6 +39,13 @@ public class EcouteurLancerLesDes implements ActionListener{
 		
 		}else if( j.de1 == j.de2 && enPrison == false ){
 			
+			
+			panelInfo.removeAll();
+			JLabel lab = new JLabel("Rejouez");
+			panelInfo.add(lab);
+			fen.changerPanelInfo(panelInfo);
+			fen.repaint(); 
+			fen.pack();
 			fen.finTour.setEnabled(false);
 			fen.lanceDe.setEnabled(true);
 			
@@ -55,11 +69,19 @@ public class EcouteurLancerLesDes implements ActionListener{
 		
 			
 			fen.aff.setDes(j.de1 , j.de2);
-fen.aff.repaint();
+			fen.aff.repaint();
 			if(!j.getEnPrison()){
 				int numCaseAAvancer = j.getSommeDes() ;
 				
 				j.avancer(numCaseAAvancer) ; 
+				//si il passe par la case départ il faut lui indiquer qu'il reçoit de l'argent 
+				if(j.getPassCaseDep() == true){
+					fen.changerPanelInfo(panelInfo);
+					fen.pack();
+					j.setPassCaseDep(false);
+				} else {
+					fen.changerPanelInfo(new JPanel()); 
+				}
 				//il faut redessiner la position du joueur sur le plateau 
 				
 				fen.getPanelCase(j.getPos()).dessinerJoueur(j);

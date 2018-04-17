@@ -14,6 +14,7 @@ public class Jouer{
 	JPanel panelCase ;
 	
 	JPanel lancerLesDes = new JPanel();
+	JPanel panelInfo = new JPanel(); 
 	
 	JLabel lab = new JLabel("Vous pouvez lancer les des");
 	
@@ -60,20 +61,17 @@ public class Jouer{
 		if(joueurCourant.getEnPrison() == true){
 			if(joueurCourant.getCartePrison() == true){
             
-				MaFenetreCartePrison fenCartePrison = new MaFenetreCartePrison(joueurCourant); 
-				if(!joueurCourant.getEnPrison()){
-					fen.changerPanel(sortirprison);
-				} else {
-					fen.changerPanel(panlancerdesprison);
-				}	
+				MaFenetreCartePrison fenCartePrison = new MaFenetreCartePrison(joueurCourant, fen ); 
+				
 			}else{
-				fen.changerPanel(panlancerdesprison);
+				fen.changerPanelInfo(panlancerdesprison);
+				fen.pack(); 
 			}
 		}else{
-			fen.changerPanel(lancerLesDes);
+			fen.changerPanelInfo(lancerLesDes);
+			fen.pack();
 		}
-		//rendre actif les dés 
-
+		
 	}
 
 	
@@ -132,7 +130,7 @@ public class Jouer{
         if (caseCourante instanceof CaseAllerPrison){ 
             CaseAllerPrison caseCour = (CaseAllerPrison) caseCourante;
             panelCase = caseCour.getPanel();
-            fen.changerPanel(panelCase);
+            //fen.changerPanel(panelCase);
             
             //fen.getPanelTemp().repaint();
             
@@ -151,7 +149,7 @@ public class Jouer{
             int val = caseCour.getValAPayer(); 
             caseCour.setDescriptionPanel(joueurCourant, fen);
             panelCase = caseCourante.getPanel();   
-            fen.changerPanel(panelCase);
+            //fen.changerPanel(panelCase);
             //fen.getPanelTemp().repaint();
 
             //pour getter les cases il va falloir les numéroter
@@ -163,7 +161,7 @@ public class Jouer{
             CaseCagnotte caseCour = (CaseCagnotte) caseCourante;
             caseCour.setPanel() ;
             panelCase = caseCourante.getPanel();
-            fen.changerPanel(panelCase);
+            //fen.changerPanel(panelCase);
             //fen.getPanelTemp().repaint();
             
             caseCour.recupereCagnotte(joueurCourant); 
@@ -174,7 +172,7 @@ public class Jouer{
             CarteChance carteChance = caseCour.creerCarteChance(joueurCourant, fen);
             carteChance.tirerCarte(); 
 			panelCase = carteChance.getPanel();
-			fen.changerPanel(panelCase);
+			//fen.changerPanel(panelCase);
 			//fen.getPanelTemp().repaint();
 			if(joueurCourant.getEnPrison()){
 				fen.getPanelCase(joueurCourant.getPos()).retirerJoueur(joueurCourant);
@@ -189,7 +187,7 @@ public class Jouer{
             CaseDepart caseCour = (CaseDepart) caseCourante;
             panelCase = caseCour.getPanel();
             caseCour.action(joueurCourant);
-            fen.changerPanel(panelCase);
+            //fen.changerPanel(panelCase);
             //fen.getPanelTemp().repaint();
         }
         
@@ -197,7 +195,7 @@ public class Jouer{
 			CasePrison caseCour = (CasePrison) caseCourante;
 			panelCase = caseCour.getPanel();
 			joueurCourant.setEnPrison(true);
-			fen.changerPanel(panelCase);
+			//fen.changerPanel(panelCase);
 			//fen.getPanelTemp().repaint();
 		}
         
@@ -207,11 +205,11 @@ public class Jouer{
 			panelCase = caseCour.getPanel() ; 
 			caseCour.setFenetreEcouteurAcheter(fen);
 			caseCour.setFenetreEcouteurPayerJoueur(fen);
-			fen.changerPanel(panelCase);
+			//fen.changerPanel(panelCase);
 			//fen.getPanelTemp().repaint();
 		}
             
-	
+		fen.changerPanelTemp(panelCase);
      joueurCourant.setSommeDes(0);  
      fen.repaint();
      fen.pack();

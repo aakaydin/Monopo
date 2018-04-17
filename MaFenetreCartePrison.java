@@ -10,12 +10,16 @@ public class MaFenetreCartePrison extends JFrame{
     
     private Joueur jcourant ;
     
-    public MaFenetreCartePrison(Joueur j){ //des paramètres?
+    private FenetreInterface fen ; 
+    
+    public MaFenetreCartePrison(Joueur j, FenetreInterface f){ //des paramètres?
         super("Carte Prison"); 
         
         setSize (1000 , 100); 
         
         jcourant = j;
+        
+        fen = f; 
         
         //pas de setDefaultCloseOperation, on veut forcer à appuyer sur un bouton 
         
@@ -29,12 +33,12 @@ public class MaFenetreCartePrison extends JFrame{
         //Boutons 
         btnOui = new JButton("Oui"); 
         cadrePrincipal.add(btnOui); 
-        EcouteurBtnOuiCartePrison ecouteurBtnOui = new EcouteurBtnOuiCartePrison(this); 
+        EcouteurBtnOuiCartePrison ecouteurBtnOui = new EcouteurBtnOuiCartePrison(this, fen); 
         btnOui.addActionListener(ecouteurBtnOui); 
         
         btnNon = new JButton("Non"); 
         cadrePrincipal.add(btnNon);
-        EcouteurBtnNonCartePrison ecouteurBtnNon = new EcouteurBtnNonCartePrison(this); 
+        EcouteurBtnNonCartePrison ecouteurBtnNon = new EcouteurBtnNonCartePrison(this, fen); 
         btnNon.addActionListener(ecouteurBtnNon); 
 
         

@@ -14,9 +14,11 @@ public class FenetreInterface extends JFrame{
 		
 		public JPanel panelTemp = new JPanel();
 		
+		public JPanel panelInfo = new JPanel(); 
+		
 		public EcouteurLancerLesDes ecouteurdes ;
 		
-		
+		JPanel panelWest = new JPanel( new GridLayout(2,1)); 
 		JPanel panelEast = new JPanel( new GridLayout(5,1));
 		JPanel panelSouth = new JPanel( new FlowLayout() );
 		JPanel panelNorth = new JPanel( new FlowLayout() );
@@ -88,6 +90,9 @@ public class FenetreInterface extends JFrame{
 		
 		panelTemp = p.getCases().get(0).getPanel();
 		
+		panelWest.add(panelInfo);
+		panelWest.add(panelTemp);
+		
 		aff = new AffichageDe( jcourant.de1 , jcourant.de2);
 		
 		
@@ -136,7 +141,7 @@ public class FenetreInterface extends JFrame{
 		
 		cadrePrincipal.add(plateau , BorderLayout.CENTER);
 		
-		cadrePrincipal.add(panelTemp , BorderLayout.WEST);
+		cadrePrincipal.add(panelWest , BorderLayout.WEST);
 		
 		cadrePrincipal.add(panelEast , BorderLayout.EAST);
 		
@@ -157,17 +162,33 @@ public class FenetreInterface extends JFrame{
 		public Joueur getJoueurCourant(){return jcourant;}
 		
 		//ne fonctionne pas 
-		public void changerPanel(JPanel p){
+		public void changerPanelTemp(JPanel p){
 			
-			cadrePrincipal.remove(panelTemp);
+			panelWest.removeAll();
 			
-			panelTemp = p ;	
+			panelTemp = p ;
+				
 				
 			//panelTemp.repaint();
 			
-			cadrePrincipal.add(panelTemp, BorderLayout.WEST);	
+			panelWest.add(panelInfo);
+			panelWest.add(panelTemp);	
+			 
 			
 		}
+		
+		public void changerPanelInfo(JPanel p){
+			panelWest.removeAll();
+			
+			panelInfo = p ;
+				
+				
+			//panelTemp.repaint();
+			
+			panelWest.add(panelInfo); 
+			panelWest.add(panelTemp);	
+		}
+			
 		
 		public Joueur getJoueur(){
 			return jcourant;

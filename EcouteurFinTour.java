@@ -1,5 +1,8 @@
 import java.awt.event.*;
 import java.util.*;
+import java.awt.*;
+import javax.swing.*;
+
 
 public class EcouteurFinTour implements ActionListener {
 	
@@ -25,6 +28,7 @@ public class EcouteurFinTour implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e){ 
 		
+		fen.changerPanelTemp(new JPanel()); 
 		fen.finTour.setEnabled( false );
 		fen.lanceDe.setEnabled( true );
 		
@@ -48,7 +52,9 @@ public class EcouteurFinTour implements ActionListener {
 		fen.changerJoueurEcouteurDe(jcourant);
 		//fen.panelEast.repaint();
 		fen.changerPanelJoueur(jcourant);
+		fen.pack();
 		jouer.testerPrison();
+		
 	
 	 
 	}

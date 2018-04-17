@@ -195,8 +195,10 @@ public class Joueur implements Comparable {
 		if(position > 27){
 			position = position - 28;
 			//quand on passe par la case départ on reçoit de l'argent 
-			this.setArgent(10000); //moitier de ce qu'on recoit quand on tombe sur la case départ
-			passageCaseDep = true ; 
+			if(position !=0){
+				this.setArgent(10000); //moitier de ce qu'on recoit quand on tombe sur la case départ
+				passageCaseDep = true ; 
+			}
 		} //on ne peut pas dépasser le numéro de case 27 et notre première case est la case numéro 0
 	}
 	

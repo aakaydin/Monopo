@@ -13,12 +13,13 @@ public class FenetreInterface extends JFrame{
 		//private Joueur JC = new Joueur("Camille",0,0);
 		
 		public JPanel panelTemp = new JPanel();
+		public JPanel panelInfo = new JPanel(new GridLayout(3,1)) ; 
 		
-		public JPanel panelInfo = new JPanel(); 
+		public JLabel labInfo = new JLabel() ;
 		
 		public EcouteurLancerLesDes ecouteurdes ;
 		
-		JPanel panelWest = new JPanel( new GridLayout(2,1)); 
+		JPanel panelWest = new JPanel( new GridLayout(2,1));
 		JPanel panelEast = new JPanel( new GridLayout(5,1));
 		JPanel panelSouth = new JPanel( new FlowLayout() );
 		JPanel panelNorth = new JPanel( new FlowLayout() );
@@ -53,6 +54,7 @@ public class FenetreInterface extends JFrame{
 		
 		super(" Monopoly");
 		
+		
 		p = pl ;
 		this.jcourant = jcourant; 
 		ListJoueur = LJ;
@@ -84,14 +86,17 @@ public class FenetreInterface extends JFrame{
 		finTour = new JButton(" End Turn");
 		lanceDe = new JButton(" Lancer les Des ");
 		abandonner = new JButton(" Abandonner ");
-		banque = new JButton("Banque");
-		payerDette = new JButton("Payer Credit");
+		banque = new JButton(" Banque");
+		payerDette = new JButton(" Payer Credit");
 		payerDette.setEnabled(false);  
 		
 		panelTemp = p.getCases().get(0).getPanel();
 		
+		panelInfo.add(new JLabel("	INFORMATION TOUR"));
+		panelInfo.add(labInfo);
+		
 		panelWest.add(panelInfo);
-		panelWest.add(panelTemp);
+		panelWest.add(panelTemp); 
 		
 		aff = new AffichageDe( jcourant.de1 , jcourant.de2);
 		
@@ -177,18 +182,11 @@ public class FenetreInterface extends JFrame{
 			
 		}
 		
-		public void changerPanelInfo(JPanel p){
-			panelWest.removeAll();
+		public void setTextInfo(String s){
 			
-			panelInfo = p ;
+			labInfo.setText(s);
 				
-				
-			//panelTemp.repaint();
-			
-			panelWest.add(panelInfo); 
-			panelWest.add(panelTemp);	
 		}
-			
 		
 		public Joueur getJoueur(){
 			return jcourant;

@@ -10,35 +10,50 @@ public class Joueur implements Comparable {
 	private String nom;
 	private int position;
 	private int somme;
+	
+	//ce qui concerne la banque :
+	//pour savoir si le joueur est endette 
 	private  int dette;
 	private boolean endette;
+	private int mensualite = 0;      //remboursement du credit par tour; 
+	//pour les transferts
+	private int sommeTransfere;
+	
+	//le joueur et son immobilier 
 	public	LinkedList<Case> immobilier = new LinkedList<Case>();
 	public  boolean estVivant = true ;
-	public  boolean sonTour;
+	
+	//pour savoir si le joueur est en prison 
 	public  boolean enPrison =false;
-	public  boolean cartePrison = false ; //a changer
-	public  boolean passerSonTour = false;
+	public  boolean cartePrison = false; 
+	//il faut calculer le nombre de tours qu'il passe en prison car il doit sortir au bout de 3
 	public  int nbToursEnPrison = 0;
+	
+	//récupération du score aux dés du joueur 
 	public  int de1;
 	public  int de2;
 	private  int sommeDes; 
+	
+	//repérage du passage par la case départ du joueur 
 	public boolean passageCaseDep = false ; 
-	private JLabel label ;
-	private int sommeTransfere;
+	
+	//permet de récupérer la case sur laquelle se trouve le joueur 
+	private Case caseCourante;
+	
+	//ce qui concerne l'immobilier avec les terrains, les maisons et les hotels que le joueur possède 
 	private LinkedList<Hotel> MesHotels; 
 	private LinkedList<MaisonVerte> MesMaisons;  
 	private LinkedList<CaseProp> MesProprietes;  
-	private boolean vivre = true; 
-	private int mensualite = 0;      //remboursement du credit par tour; 
 	
-	private Case caseCourante;
+	//permet de tuer le joueur ce qui met fin à la partie
+	private boolean vivre = true; 
+	
+	
+	//permet de placer le joueur sur le plateau pour l'affichage graphique 
+	private JLabel label ;
+	//permet d'associer le joueur à une couleur pour l'affichage graphique 
 	public Color col ;
 	
-	
-	//private avatar
-	
-		
-		
 	// Constructeur avec nom + somme + position	
 	public Joueur( String name , int mani, int pos){
 		
@@ -80,226 +95,130 @@ public class Joueur implements Comparable {
 	
 	public boolean getCarteSortirPrison(){return cartePrison;}
 	
-	public String getNom(){
-		
-		
-		return nom;
-		
-		}
+	public String getNom(){return nom;}
 	
-	public void addCase(Case c){
-		
-		immobilier.add(c);
-	}
+	public int getPos(){return position;}
 	
-	public int getPos(){
-		
-		
-		return position;
-		
-		}
+	public int getSomme(){return somme;}
 	
-	public int getSomme(){
-		
-		
-		return somme;
-		
-		}
+	public int getDette(){return dette;}
 	
-	public int getDette(){
-		
-		
-		return dette;
-		
-		}
+	public int getSommeDes(){return de1 + de2 ;}
 	
-	public void setPos( int newpos){
-		
-		
-		 position =newpos ;
-		
-		}
-	
-	public int getSommeDes(){
-		return de1 + de2 ;
-	}
-	
-	public void setCarteSortirPrison(boolean b){
-		cartePrison = b ;
-	}
-	
-	// Methode pour ajouter/retirer d'argent du joueur
-	public void setArgent( int mani){
-		
-		somme = somme + mani;
-		
-		}
-		
 	public boolean estVivant(){return estVivant;}
 	
-	public void setEndette(boolean b){
-		
-		endette = b;
-		
-		
+	public boolean getEnPrison(){return enPrison; }
+	
+	public boolean getCartePrison(){return cartePrison;}
+	
+	public int getDe1(){return de1;}
+	
+	public int getDe2(){return de2;}
+	
+	public int getNbToursEnPrison(){return nbToursEnPrison;}
+	
+	public Case getCaseCourante(){return caseCourante;}
+	 
+	public int getSommeTransfere(){return sommeTransfere;}
+	 
+	//Methode pour récupérer les propriétés 
+	public LinkedList<Hotel> getMesHotels(){ return MesHotels;}
+	public LinkedList<MaisonVerte> getMesMaisons(){ return MesMaisons;}
+	public LinkedList<CaseProp> getMesProprietes(){ return MesProprietes;}
+	public LinkedList<Case> getCases(){return immobilier ;} //il ne faut laisser que un des deux parceque là c'est inutile
+	
+	public int  getMensualite(){return mensualite;}
+	
+	public boolean getPassCaseDep(){return passageCaseDep;}
+	
+	//Methode qui calcul le capital du joueur 
+	public int getCapital(){ 
+		int capital = this.getSomme(); 
+		if(MesHotels!=null){
+			for(Hotel h : MesHotels){
+				capital = capital + h.getPrixHypotheque(); 
+			} 
+		}else if(MesMaisons!=null){
+			for(MaisonVerte m : MesMaisons){
+				capital = capital + m.getPrixHypotheque(); 
+			}
+		}else if(MesProprietes!=null){
+			for(CaseProp p : MesProprietes){
+				capital = capital + p.getPrixHypotheque(); 
+			}
 		}
-	
-	
-	public void setDette( int mani){
-		
-		dette = dette + mani;
-		
+		return capital; 
 	}
-	
-	
-	public boolean getEnPrison(){
-        	return enPrison; 
-    	}
-    
-	
-    	public void setEnPrison(boolean b){
-        	enPrison = b; 
-    	}
-    
-	
-    	public boolean getCartePrison(){
-        	return cartePrison; 
-    	}
-    
-	
-    	public int getDe1(){
-        	return de1;
-    	}
-    
-	
-    	public int getDe2(){
-        	return de2;
-    	}
-    
-	
-    	public void setSommeDes(int val){
-        	sommeDes = 0; 
-    	}
-        
-    
-    	public int getNbToursEnPrison(){
-        	return nbToursEnPrison;
-    	}
-    
-	
-    	public Case getCaseCourante(){
-        	return caseCourante;
-    	}
-    
-	
-    	public void setSonTour(boolean b){
-        	sonTour = b; 
-    	}
-    	
-    	public boolean getSonTour(){return sonTour;}
+	 
+	 
+	//Setteurs
+	public void addCase(Case c){immobilier.add(c);}
 
+	public void setPos( int newpos){position =newpos ;}
 	
+	public void setCarteSortirPrison(boolean b){cartePrison = b ;}
 	
-	// Methode inecessairement complique pour deplacer un par un 
-	public void teleporter( int newpos){
+	// Methode pour ajouter/retirer d'argent du joueur
+	public void setArgent(int mani){somme = somme + mani;}
 		
-		
-		if( newpos > position){ 
-		
-		while(position != newpos){
-			
-			
-			position++;
-			
-			
-			}
-		
-		}else{ 
-			
-			while(position != 0){
-			passageCaseDep = true ; 
-			
-			position++;
-			
-			
-			}
-			
-			for(int i = 0; i < newpos ;i++  ){
-			
-			position++;
-			
-			
-			}
-			}
-		
-		
-		}
+	public void setEndette(boolean b){endette = b;}
 	
+	public void setDette( int mani){dette = dette + mani;}
 	
+    public void setEnPrison(boolean b){enPrison = b;}
+    
+    public void setSommeDes(int val){sommeDes = val;}
+    
+    public void setSommeTransfert(int somme){ sommeTransfere = somme ;}
+    
+    public void tuer(){estVivant = false;}
+    
+    public void  setMensualite(int m){mensualite = m;}
+	
+	public void setAbandon(){vivre = false;}
+	
+	public void setPassCaseDep(boolean b){passageCaseDep = b;}
+        
+
+		//Methodes pour faire avancer le joueur 
 	public void avancer (int nbCases){
+		
 		position = position + nbCases;
+		//il faut prendre en compte le fait qu'on puisse revenir au début du plateau 
 		if(position > 27){
 			position = position - 28;
+			//quand on passe par la case départ on reçoit de l'argent 
 			this.setArgent(10000); //moitier de ce qu'on recoit quand on tombe sur la case départ
 			passageCaseDep = true ; 
 		} //on ne peut pas dépasser le numéro de case 27 et notre première case est la case numéro 0
 	}
 	
-	
-	public void recevoirArgentDep(){
-		passageCaseDep = false ;
-		somme = somme + 200 ;
-	}
-	
+	//Methode qui fait lancer les des au joueur, les des prennent une valeur aléatoire 
 	public void lancerLesDes(){
 		
 		de1 = (int)(Math.random()*6+1);
 		de2 = (int)(Math.random()*6+1);
 	}
 	
-	// Methode pour ded 
-	public void tuer(){
-		
-		estVivant = false;
-		
-		
-	}
-	
-	
+	//Methode qui envoie le joueur en prison
 	public void allerEnPrison(){
+		//modification de son état
 		enPrison = true ;
+		//modification de sa position
 		this.setPos(7);
 		//il faut redessiner le joueur 
 	}
 	
-	
+	//Methode quand le joueur passe un tour en prison et qui compte le nombre de tours passés en prison
 	public void resteEnPrison(){
         	nbToursEnPrison = nbToursEnPrison + 1;
     	}
     
-    public void setSommeTransfert(int somme){ 
-		sommeTransfere =somme; 
-	}
-	public int getSommeTransfere(){
-		return sommeTransfere; 
-	}
+    
+	//Methode qui permet de faire un transfert d'argent entre deux joueurs 
     public void transfere(Joueur j2){ 
 		j2.setArgent(this.getSommeTransfere()); 
 		this.setArgent(-(this.getSommeTransfere())); 
-	}
-	//public void payerCredit(int mensualite){
-		//this.setDette(-(mensualite)); 
-		//this.setArgent(-(mensualite));
-	//} 
-	
-	public LinkedList<Hotel> getMesHotels(){ 
-		return MesHotels;
-	}
-	public LinkedList<MaisonVerte> getMesMaisons(){ 
-		return MesMaisons;
-	}
-	public LinkedList<CaseProp> getMesProprietes(){ 
-		return MesProprietes;
 	}
 	
 	public boolean avoirHotel(){ 				 //vérifie si j'ai des hotels
@@ -310,7 +229,7 @@ public class Joueur implements Comparable {
 		}
 	}
 	
-	
+	//les méthodes suivantes sont utilisées pour les hypothèques et les demandes de crédit 
 	public boolean avoirMaison(){                 //vérifie si j'ai des maisons
 		if(this.getMesMaisons()!=null){ 
 			return true; 
@@ -360,25 +279,12 @@ public class Joueur implements Comparable {
 		return P; 
 	}
 	
+	//methode qui compte les remboursements 
 	public void remboursementTour(int remboursement){
 		somme = somme-remboursement;
 	}
 	
-	public int  getMensualite(){
-		return mensualite;
-	}
-	public void  setMensualite(int m){
-		mensualite = m;
-	}
-	
-	public void setAbandon(){ 
-		vivre = false; 
-	}
 		
-		 	
-	public LinkedList<Case> getCases(){
-		return immobilier ;
-	}
 	
 	public int getValImmobilier(){
 		int somme = 0;
@@ -406,30 +312,12 @@ public class Joueur implements Comparable {
 		}
 	}
 	
+	//Methode pour afficher le joueur 
 	public String toString(){
 		return "	Joueur "+ getNom()+"   Somme : "+getSomme()+"   Valeur immobilier : "+getValImmobilier();
 	}
 	
-	public int getCapital(){ 
-		int capital = this.getSomme(); 
-		if(MesHotels!=null){
-			for(Hotel h : MesHotels){
-				capital = capital + h.getPrixHypotheque(); 
-			} 
-		}else if(MesMaisons!=null){
-			for(MaisonVerte m : MesMaisons){
-				capital = capital + m.getPrixHypotheque(); 
-			}
-		}else if(MesProprietes!=null){
-			for(CaseProp p : MesProprietes){
-				capital = capital + p.getPrixHypotheque(); 
-			}
-		}
-		return capital; 
-	}
-		 
-			
-	
+	//Methode pour le crédit 
 	public void credit(int somme){ 
 			if(this.getCapital()>=1000000){ 
 				if(somme <= 1000000 ){ 
@@ -472,16 +360,8 @@ public class Joueur implements Comparable {
 				}
 			}
 			this.setEndette(true); 
-		} 
-		
-		public boolean getPassCaseDep(){return passageCaseDep;}
-		
-		public void setPassCaseDep(boolean b){
-			passageCaseDep = b;
-		}
-		 
-			 
-	}
+	} 		 
+}
 	
 	
 

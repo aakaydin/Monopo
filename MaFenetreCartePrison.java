@@ -10,7 +10,7 @@ public class MaFenetreCartePrison extends JFrame{
     
     private Joueur jcourant ;
     
-    private FenetreInterface fen ; 
+    FenetreInterface fen ; 
     
     public MaFenetreCartePrison(Joueur j, FenetreInterface f){ //des paramètres?
         super("Carte Prison"); 
@@ -18,7 +18,6 @@ public class MaFenetreCartePrison extends JFrame{
         setSize (1000 , 100); 
         
         jcourant = j;
-        
         fen = f; 
         
         //pas de setDefaultCloseOperation, on veut forcer à appuyer sur un bouton 

@@ -1,6 +1,6 @@
 import java.awt.event.*;
 import java.util.*;
-import java.awt.*;
+import java.awt.* ;
 import javax.swing.*;
 
 
@@ -8,6 +8,10 @@ public class EcouteurFinTour implements ActionListener {
 	
 	private FenetreInterface fen; 
 	private Joueur jcourant; 
+	
+	JPanel lancerLesDes = new JPanel();
+	
+	JLabel lab = new JLabel("Vous pouvez lancer les des");
 	
 	private LinkedList<Joueur> ListJoueur = new LinkedList<Joueur>();
 	
@@ -23,12 +27,16 @@ public class EcouteurFinTour implements ActionListener {
 		ListJoueur = lj ; 
 		nbJoueur = ListJoueur.size();
 		
+		lancerLesDes.add(lab); 
+		
 		
 	} 
 	
 	public void actionPerformed(ActionEvent e){ 
 		
+		//on efface le panel de la case sur laquelle on se trouve 
 		fen.changerPanelTemp(new JPanel()); 
+		
 		fen.finTour.setEnabled( false );
 		fen.lanceDe.setEnabled( true );
 		
@@ -52,9 +60,7 @@ public class EcouteurFinTour implements ActionListener {
 		fen.changerJoueurEcouteurDe(jcourant);
 		//fen.panelEast.repaint();
 		fen.changerPanelJoueur(jcourant);
-		fen.pack();
 		jouer.testerPrison();
-		
 	
 	 
 	}

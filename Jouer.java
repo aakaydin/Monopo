@@ -4,50 +4,28 @@ import java.util.*;
 
 public class Jouer{
     
+    //à chaque nouveau tour on crée un objet jouer qui va executer ses différentes méthodes 
     
-    int position;
-    //boolean joueEncore = true;  
-    boolean rejouera = false; 
-    Case caseCourante = new Case(0,"c","a");
-	
-	
-	JPanel panelCase ;
-	
-	JPanel lancerLesDes = new JPanel();
-	JPanel panelInfo = new JPanel(); 
-	
-	JLabel lab = new JLabel("Vous pouvez lancer les des");
-	
-	JLabel labprison = new JLabel("Vous sortez de prison, lancez les des");
-	
-	JPanel sortirprison = new JPanel();
-	
-	JPanel panlancerdesprison = new JPanel();
-	
-	JLabel lablancerdesprison = new JLabel("Faites un double pour sortir de prison");
-	
-	JPanel panpayersortirprison = new JPanel();
-	
-	JLabel labpayersortirprison = new JLabel("3 tours en prison : payez 50000 et oust");
-	
-	//voir comment faire un JPanel de commentaires spéciaux 
-	
-	
-	
-	//Partie partie ;
-	Plateau plateau ; 
+    //liste des cases de la partie 
+    Plateau plateau ; 
+    //fenêtre d'intéreaction avec les joeurs 
 	FenetreInterface fen ;
 	
-    Joueur joueurCourant ; 
+	//à chaque tour il y a un joueur courant : le joueur dont c'est le  tour de jouer 
+	Joueur joueurCourant ; 
+    
+    int position;
+     
+    //on a un attribut qui est la case courante, c'est à dire la case sur laquelle se trouve le joueur 
+    Case caseCourante = new Case(0,"c","a");
+	//on récupère le panel de la case du joueur pour l'affichage graphique 
+	JPanel panelCase ;
     
     //Constructeur 
     public Jouer(Plateau p, FenetreInterface f, Joueur j){
         joueurCourant = j;
         plateau = p;
         joueurCourant = j;
-        lancerLesDes.add(lab);
-        sortirprison.add(labprison);
-        panlancerdesprison.add(lablancerdesprison);
         
         fen = f ;
      
@@ -61,17 +39,16 @@ public class Jouer{
 		if(joueurCourant.getEnPrison() == true){
 			if(joueurCourant.getCartePrison() == true){
             
-				MaFenetreCartePrison fenCartePrison = new MaFenetreCartePrison(joueurCourant, fen ); 
+				MaFenetreCartePrison fenCartePrison = new MaFenetreCartePrison(joueurCourant, fen); 
 				
 			}else{
-				fen.changerPanelInfo(panlancerdesprison);
-				fen.pack(); 
+				fen.setTextInfo("Faites un double pour sortir de prison");
 			}
 		}else{
-			fen.changerPanelInfo(lancerLesDes);
-			fen.pack();
+			fen.setTextInfo("Vous pouvez lancer les des");
 		}
-		
+		//rendre actif les dés 
+
 	}
 
 	
@@ -83,13 +60,14 @@ public class Jouer{
 			//appel méthode traitementCasefen.getPanelCase(j.getPos()).dessinerJoueur(j);
 			fen.getPanelCase(joueurCourant.getPos()).dessinerJoueur(joueurCourant);
 			//fen.getPanelPlateau().repaint();
-			
+			fen.setTextInfo("Vous avez fait un double et sortez!");
 			
 			this.Tour();
                  
 		}else if(joueurCourant.getDe1() != joueurCourant.getDe2() && joueurCourant.getNbToursEnPrison() >= 3){
 			joueurCourant.setArgent(-50000); //est-ce la somme que l'on choisit?
 			joueurCourant.setEnPrison(false); 
+			fen.setTextInfo("3 tours en prison : payez 50000 et oust");
                     
             joueurCourant.avancer(joueurCourant.getDe1() + joueurCourant.getDe2()); //fait avancer
 			//appel méthode traitementCasefen.getPanelCase(j.getPos()).dessinerJoueur(j);
@@ -101,6 +79,7 @@ public class Jouer{
 			joueurCourant.resteEnPrison();
 			fen.getPanelCase(joueurCourant.getPos()).dessinerJoueur(joueurCourant);
 			//fen.getPanelPlateau().repaint();
+			fen.setTextInfo("Vous restez en prison"); 
                     
                     
 		}
@@ -130,9 +109,7 @@ public class Jouer{
         if (caseCourante instanceof CaseAllerPrison){ 
             CaseAllerPrison caseCour = (CaseAllerPrison) caseCourante;
             panelCase = caseCour.getPanel();
-            //fen.changerPanel(panelCase);
-            
-            //fen.getPanelTemp().repaint();
+           
             
             fen.getPanelCase(joueurCourant.getPos()).retirerJoueur(joueurCourant);
             
@@ -149,8 +126,7 @@ public class Jouer{
             int val = caseCour.getValAPayer(); 
             caseCour.setDescriptionPanel(joueurCourant, fen);
             panelCase = caseCourante.getPanel();   
-            //fen.changerPanel(panelCase);
-            //fen.getPanelTemp().repaint();
+            
 
             //pour getter les cases il va falloir les numéroter
             
@@ -161,10 +137,10 @@ public class Jouer{
             CaseCagnotte caseCour = (CaseCagnotte) caseCourante;
             caseCour.setPanel() ;
             panelCase = caseCourante.getPanel();
-            //fen.changerPanel(panelCase);
-            //fen.getPanelTemp().repaint();
+           
             
             caseCour.recupereCagnotte(joueurCourant); 
+            fen.changerPanelJoueur(joueurCourant);
         }
         
         if(caseCourante instanceof CaseChance){ 
@@ -172,13 +148,12 @@ public class Jouer{
             CarteChance carteChance = caseCour.creerCarteChance(joueurCourant, fen);
             carteChance.tirerCarte(); 
 			panelCase = carteChance.getPanel();
-			//fen.changerPanel(panelCase);
-			//fen.getPanelTemp().repaint();
+			
 			if(joueurCourant.getEnPrison()){
 				fen.getPanelCase(joueurCourant.getPos()).retirerJoueur(joueurCourant);
 				joueurCourant.setPos(7);
 				fen.getPanelCase(joueurCourant.getPos()).dessinerJoueur(joueurCourant);
-				//fen.getPanelPlateau().repaint(); 
+				
 			}
         }
         
@@ -187,16 +162,14 @@ public class Jouer{
             CaseDepart caseCour = (CaseDepart) caseCourante;
             panelCase = caseCour.getPanel();
             caseCour.action(joueurCourant);
-            //fen.changerPanel(panelCase);
-            //fen.getPanelTemp().repaint();
+            
         }
         
         if(caseCourante instanceof CasePrison){
 			CasePrison caseCour = (CasePrison) caseCourante;
 			panelCase = caseCour.getPanel();
 			joueurCourant.setEnPrison(true);
-			//fen.changerPanel(panelCase);
-			//fen.getPanelTemp().repaint();
+			
 		}
         
         if(caseCourante instanceof CaseProp){
@@ -205,11 +178,11 @@ public class Jouer{
 			panelCase = caseCour.getPanel() ; 
 			caseCour.setFenetreEcouteurAcheter(fen);
 			caseCour.setFenetreEcouteurPayerJoueur(fen);
-			//fen.changerPanel(panelCase);
-			//fen.getPanelTemp().repaint();
+			
+			
 		}
             
-		fen.changerPanelTemp(panelCase);
+	fen.changerPanelTemp(panelCase); 
      joueurCourant.setSommeDes(0);  
      fen.repaint();
      fen.pack();

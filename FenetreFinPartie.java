@@ -29,6 +29,7 @@ public class FenetreFinPartie extends JFrame{
 		for(int i = 0; i < nbJoueurs; i ++){
 			panel.add(new JLabel(lesjoueurs.get(i).toString()));
 		}
+		panel.add(partieagain);
 		this.setContentPane(panel);
 		this.setVisible(true);
 	}

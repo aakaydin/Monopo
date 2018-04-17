@@ -162,6 +162,7 @@ public class Jouer{
             CaseDepart caseCour = (CaseDepart) caseCourante;
             panelCase = caseCour.getPanel();
             caseCour.action(joueurCourant);
+		fen.changerPanelJoueur(joueurCourant);
             
         }
         

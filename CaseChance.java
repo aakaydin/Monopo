@@ -12,9 +12,5 @@ public class CaseChance extends Case {
 		CarteChance cartelucky = new CarteChance(j,f);
 		return cartelucky; 
 	}
-	
-	public void tirerCarte(Joueur j, FenetreInterface f){
-		CarteChance cartelucky = new CarteChance(j,f);
-		cartelucky.tirerCarte();
-	}
+
 }

@@ -53,14 +53,23 @@ public class EcouteurFinTour implements ActionListener {
 		} else {
 			rangJoueur = rangJoueur + 1 ;
 		}
-		System.out.println(""+rangJoueur); 
+		
+		System.out.println("Rang Joueur :"+rangJoueur); 
 		jcourant = ListJoueur.get(rangJoueur);
+		System.out.println(" Fin tour ");
 		Jouer jouer = new Jouer(fen.getPlateau(), fen, jcourant);
 		fen.setJoueur(jcourant);
 		fen.changerJoueurEcouteurDe(jcourant);
 		//fen.panelEast.repaint();
 		fen.changerPanelJoueur(jcourant);
 		jouer.testerPrison();
+		
+		if( jcourant.getNom() == "Bob"){
+			
+			IA bob = new IA( fen);
+			bob.perform();
+			
+			}
 	
 	 
 	}

@@ -18,6 +18,10 @@ public class FenetreInterface extends JFrame{
 		public JLabel labInfo = new JLabel() ;
 		
 		public EcouteurLancerLesDes ecouteurdes ;
+		public EcouteurFinTour	ecouterfintour;
+		public EcouteurAbandonner ecouteurabandonner;
+		public EcouteurBanque ecouteurbanque;
+		public EcouteurPayerCredit ecouteurpayercredit;
 		
 		JPanel panelWest = new JPanel( new GridLayout(2,1));
 		JPanel panelEast = new JPanel( new GridLayout(5,1));
@@ -60,7 +64,10 @@ public class FenetreInterface extends JFrame{
 		ListJoueur = LJ;
 		
 		ecouteurdes = new EcouteurLancerLesDes(jcourant, this, p);
-		
+		ecouterfintour = new EcouteurFinTour(this,jcourant, ListJoueur);
+		ecouteurabandonner = new EcouteurAbandonner(this);
+		ecouteurbanque = new EcouteurBanque(this);
+		ecouteurpayercredit =  new EcouteurPayerCredit(this);
 		
 		this.setSize(new Dimension(longue,large));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
@@ -106,10 +113,14 @@ public class FenetreInterface extends JFrame{
 		
 		
 		lanceDe.addActionListener( ecouteurdes ); //est-ce que mon écouteur va bien changer son joueur quand je change le joueur de la fenêtre ? rep Aydin : non 
-		finTour.addActionListener(new EcouteurFinTour(this,jcourant, ListJoueur));
-		abandonner.addActionListener(new EcouteurAbandonner(this));
-		banque.addActionListener(new EcouteurBanque(this));
-		payerDette.addActionListener(new EcouteurPayerCredit(this));
+		finTour.addActionListener( ecouterfintour);
+		abandonner.addActionListener(ecouteurabandonner);
+		banque.addActionListener( ecouteurbanque );
+		payerDette.addActionListener( ecouteurpayercredit );
+		
+		//Object obj = new Object();	
+		//ActionEvent AE  = new ActionEvent( obj ,  0,  "lol");
+		//ecouteurdes.actionPerformed( AE);
 		
 		
 		

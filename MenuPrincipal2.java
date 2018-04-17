@@ -48,6 +48,10 @@ public class MenuPrincipal2 extends JFrame{
 		return nbJoueur; 
 	}
 	
+	public int getNbIA(){ 
+		return nbIA; 
+	}
+	
 	public LinkedList<JTextField> getTextField(){ 
 		if(fenetreFinie == true){								//si le ma fenetre est finie alors je renvoie mes texts, ce qui sera toujours le cas ici
 		 return text; 

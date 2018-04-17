@@ -9,6 +9,7 @@ public class EcouteurDebuterPartie implements ActionListener {
 	private LinkedList<String> Nom = new LinkedList<String>();  
 	private LinkedList<JTextField> text;// = new LinkedList<JTextField>();  
 	private int nbJoueur; 
+	private int nbIA; 
 	private LinkedList<Joueur> ListJoueur= new LinkedList<Joueur>();
 	private Joueur jcourant; 
 	 
@@ -16,23 +17,38 @@ public class EcouteurDebuterPartie implements ActionListener {
 	
 	public EcouteurDebuterPartie(MenuPrincipal2 f){ 
 		m2=f; 
-		nbJoueur = m2.getNbJoueur(); 
+		//nbJoueur = m2.getNbJoueur();
+		//nbIA = m2.getNbIA();
 		
+		//System.out.println(nbIA+ " LOL");
+		//System.out.println(nbJoueur+ " LOL");
 	} 
 	
 	public LinkedList<Joueur> getListJoueur(){return ListJoueur;}
 	
 	public void actionPerformed(ActionEvent e){ 
+		
+		nbJoueur = m2.getNbJoueur();
+		nbIA = m2.getNbIA();
+		//System.out.println(nbIA+ " LOL");
+		//System.out.println(nbJoueur+ " LOL");
+		
 		//créaton de l'interface à compléter : 
 		text = m2.getTextField(); 
 		for(JTextField t : text){							//je complète le tableau des noms des joueurs
-			Nom.add(t.getText()); 
+			Nom.add(t.getText());
+				 
+		}
+		
+		for( int i =0 ; i < nbIA ; i++){
+			Nom.add("Bob");	
 		}
 		
 		for(String nom : Nom){ 
 			ListJoueur.add(new Joueur(nom,100000,0));
 			System.out.println(nom); 
 		}
+		
 		
 		
 		
@@ -47,6 +63,7 @@ public class EcouteurDebuterPartie implements ActionListener {
 		//afficage du jeu
 		Plateau plateau = new Plateau() ; 
 		FenetreInterface fen = new FenetreInterface(1200,600,plateau,jcourant, ListJoueur) ; 
+			
 		
 		//on fait un while tant que joueurCourant est vivant
 		

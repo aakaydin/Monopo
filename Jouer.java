@@ -12,7 +12,12 @@ public class Jouer{
 	FenetreInterface fen ;
 	
 	//à chaque tour il y a un joueur courant : le joueur dont c'est le  tour de jouer 
-	Joueur joueurCourant ; 
+	private  Joueur joueurCourant ; 
+    
+    // 
+    
+    
+    
     
     int position;
      
@@ -23,12 +28,13 @@ public class Jouer{
     
     //Constructeur 
     public Jouer(Plateau p, FenetreInterface f, Joueur j){
+        
         joueurCourant = j;
         plateau = p;
-        joueurCourant = j;
-        
         fen = f ;
      
+		System.out.println(" LOL");
+    
     }
     
     public void testerPrison(){
@@ -162,7 +168,6 @@ public class Jouer{
             CaseDepart caseCour = (CaseDepart) caseCourante;
             panelCase = caseCour.getPanel();
             caseCour.action(joueurCourant);
-		fen.changerPanelJoueur(joueurCourant);
             
         }
         

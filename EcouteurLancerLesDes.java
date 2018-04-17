@@ -23,6 +23,9 @@ public class EcouteurLancerLesDes implements ActionListener{
 	
 	public void actionPerformed(ActionEvent ae){
 		//il faut enlever le panel qui dit qu'on peut lancer les dés 
+		
+		System.out.println("des");
+		
 		fen.setTextInfo(""); 
 		j.lancerLesDes() ; 
 		

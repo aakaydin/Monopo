@@ -7,8 +7,7 @@ public class CaseDepart extends Case {
 	private int x ;
 	//priavet String texetAffiche ; affichage du texte sur le plateau 
 	//si toutes les cases ont un prix alors il faut aussi :
-	private int prix = 0;
-	private final int position = 0; 
+	
 	
 	//à chaque case on va associer un JPanel descriptif
 	JPanel panel = new JPanel();

@@ -60,9 +60,6 @@ public class EcouteurFinTour implements ActionListener {
 		Jouer jouer = new Jouer(fen.getPlateau(), fen, jcourant);
 		fen.setJoueur(jcourant);
 		fen.changerJoueurEcouteurDe(jcourant);
-		//fen.panelEast.repaint();
-		fen.changerPanelJoueur(jcourant);
-		jouer.testerPrison();
 		
 		if( jcourant.getNom() == "Bob"){
 			
@@ -70,6 +67,14 @@ public class EcouteurFinTour implements ActionListener {
 			bob.perform();
 			
 			}
+		//fen.panelEast.repaint();
+		
+		if( jcourant.getNom() != "Bob")  fen.changerPanelJoueur(jcourant);
+		jouer.testerPrison();
+		
+		
+			
+		
 	
 	 
 	}

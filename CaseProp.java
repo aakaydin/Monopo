@@ -52,7 +52,9 @@ public class CaseProp extends Case{
 	
 	public int getPrix(){return prix;}
 	
+	public boolean getAchete(){return achete;}
 
+	public Joueur getPropri(){return propri;}
 		
 	public void setDescriptionPanel(Joueur j){
 		joueurcase = j ;

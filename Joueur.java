@@ -278,7 +278,7 @@ public class Joueur implements Comparable {
 	}
 	
 	public CaseProp getProprietePlusChere(){ 
-		CaseProp P = new CaseProp(0,"coucou",0); 
+		CaseProp P = new CaseProp(0,"coucou",0,0); 
 		for(int i = 0; i<MesMaisons.size(); i++){
 			CaseProp p = MesProprietes.get(i);
 			if(P.getPrixHypotheque()<p.getPrixHypotheque()){ 
@@ -370,6 +370,15 @@ public class Joueur implements Comparable {
 			}
 			this.setEndette(true); 
 	} 		 
+    
+    //Methodes pour les achats de maisons et d'hotel 
+    public void ajouterMaison(MaisonVerte m){
+        MesMaisons.add(m); 
+    }
+    
+    public void ajouterHotel(Hotel h){
+        MesHotels.add(h); 
+    }
 }
 	
 	

@@ -22,9 +22,11 @@ public class FenetreInterface extends JFrame{
 		public EcouteurAbandonner ecouteurabandonner;
 		public EcouteurBanque ecouteurbanque;
 		public EcouteurPayerCredit ecouteurpayercredit;
+        public EcouteurAchatBatiment ecouteurachatM; 
+        public EcouteurAchatBatiment ecouteurachatH; 
 		
 		JPanel panelWest = new JPanel( new GridLayout(2,1));
-		JPanel panelEast = new JPanel( new GridLayout(5,1));
+		JPanel panelEast = new JPanel( new GridLayout(7,1));
 		JPanel panelSouth = new JPanel( new FlowLayout() );
 		JPanel panelNorth = new JPanel( new FlowLayout() );
 		
@@ -37,7 +39,9 @@ public class FenetreInterface extends JFrame{
 		public JButton lanceDe;	
 		public JButton abandonner;	
 		public JButton banque;
-		public JButton payerDette;	
+		public JButton payerDette;
+        public JButton achatMaison;
+        public JButton achatHotel;	
 		
 		
 		public Joueur jcourant; 
@@ -68,6 +72,8 @@ public class FenetreInterface extends JFrame{
 		ecouteurabandonner = new EcouteurAbandonner(this);
 		ecouteurbanque = new EcouteurBanque(this);
 		ecouteurpayercredit =  new EcouteurPayerCredit(this);
+        ecouteurachatM = new EcouteurAchatBatiment(this , p , achatMaison , "Maison");
+        ecouteurachatH = new EcouteurAchatBatiment(this , p , achatHotel , "Hotel"); 
 		
 		this.setSize(new Dimension(longue,large));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
@@ -95,7 +101,10 @@ public class FenetreInterface extends JFrame{
 		abandonner = new JButton(" Abandonner ");
 		banque = new JButton(" Banque");
 		payerDette = new JButton(" Payer Credit");
-		payerDette.setEnabled(false);  
+		payerDette.setEnabled(false);
+        achatMaison = new JButton("Acheter une maison"); 
+        achatHotel = new JButton("Acheter un hotel"); 
+          
 		
 		panelTemp = p.getCases().get(0).getPanel();
 		
@@ -117,6 +126,8 @@ public class FenetreInterface extends JFrame{
 		abandonner.addActionListener(ecouteurabandonner);
 		banque.addActionListener( ecouteurbanque );
 		payerDette.addActionListener( ecouteurpayercredit );
+        achatMaison.addActionListener(ecouteurachatM);
+        achatHotel.addActionListener(ecouteurachatH); 
 		
 		//Object obj = new Object();	
 		//ActionEvent AE  = new ActionEvent( obj ,  0,  "lol");
@@ -136,7 +147,9 @@ public class FenetreInterface extends JFrame{
 		
 		panelEast.add(banque);	
 		panelEast.add(abandonner);
-		panelEast.add(payerDette);		
+		panelEast.add(payerDette);	
+        panelEast.add(achatMaison); 
+        panelEast.add(achatHotel);	
 		panelEast.add(aff);			
 		panelEast.add(lanceDe);	
 		
@@ -248,6 +261,258 @@ public class FenetreInterface extends JFrame{
 		public JButton getPayerDette(){ 
 			return payerDette; 
 		}
+        
+        
+        
+        public boolean peutAcheterMaison(){ //en general : servira notamment a l'activation du bouton 
+            
+            System.out.println("On teste peutAcheterMaison"); 
+            LinkedList<Case> immobilier = jcourant.getCases(); 
+        
+            boolean peutAcheter = false; 
+            
+            LinkedList<CaseProp> groupNoir = p.getGroupNoir(); 
+            LinkedList<CaseProp> groupCyan = p.getGroupCyan(); 
+            LinkedList<CaseProp> groupRose = p.getGroupRose(); 
+            LinkedList<CaseProp> groupOrange = p.getGroupOrange(); 
+            LinkedList<CaseProp> groupRouge = p.getGroupRouge(); 
+            LinkedList<CaseProp> groupJaune = p.getGroupJaune(); 
+            LinkedList<CaseProp> groupVert = p.getGroupVert(); 
+            LinkedList<CaseProp> groupBleu = p.getGroupBleu(); 
+            
+            //On va tester chaque liste 
+            boolean fin = false;
+            int nbProp = 0; 
+            int i = 0; 
+            
+            while(nbProp != 3 && fin == false){
+                
+                nbProp = 1;
+                for(CaseProp c : groupNoir){
+                    i = i + 1;
+                    System.out.println("On etudie la case " + i); 
+                    if(immobilier.contains(c)){
+                        nbProp = nbProp + 1;
+                        System.out.println("On est dans la boucle groupeNoir : vrai"); 
+                    }else{
+                        System.out.println("On est dans la boucle groupeNoir : faux"); 
+                    }
+                }
+                
+                nbProp = 0; 
+                for(CaseProp c : groupCyan){
+                    if(immobilier.contains(c)){
+                        nbProp = nbProp + 1;
+                    }
+                }
+                
+                nbProp = 1; 
+                for(CaseProp c : groupRose){
+                    if(immobilier.contains(c)){
+                        nbProp = nbProp + 1;
+                    }
+                }
+                
+                nbProp = 0; 
+                for(CaseProp c : groupOrange){
+                    if(immobilier.contains(c)){
+                        nbProp = nbProp + 1;
+                    }
+                }
+                
+                nbProp = 0; 
+                for(CaseProp c : groupRouge){
+                    if(immobilier.contains(c)){
+                        nbProp = nbProp + 1;
+                    }
+                }
+                
+                nbProp = 1; 
+                for(CaseProp c : groupJaune){
+                    if(immobilier.contains(c)){
+                        nbProp = nbProp + 1;
+                    }
+                }
+                
+                nbProp = 0; 
+                for(CaseProp c : groupVert){
+                    if(immobilier.contains(c)){
+                        nbProp = nbProp + 1;
+                    }
+                }
+                
+                nbProp = 1; 
+                for(CaseProp c : groupBleu){
+                    if(immobilier.contains(c)){
+                        nbProp = nbProp + 1;
+                    }
+                }
+                
+                fin = true;
+                
+            }
+            
+            if(nbProp == 3){
+                peutAcheter = true; 
+            }
+            
+            if(peutAcheter == true){
+                System.out.println("peutAcheter est vrai"); 
+            }else{
+                System.out.println("peutAcheter est faux"); 
+            }
+            
+            return peutAcheter;
+        }
+        
+        
+        public boolean peutAcheterCetteMaison(int num){ //sur cette propriete en particulier en comparaison avec les autres proprietes de son groupe couleur 
+            boolean peutAcheter = false; 
+            
+            Case pr = p.getCaseAchatBatiment(num); 
+            if(pr instanceof CaseProp){
+                CaseProp prop = (CaseProp) pr; 
+                Color color = this.getPanelCase(num).getCouleur();
+                LinkedList<CaseProp> groupe = new LinkedList<CaseProp>();
+                
+                if(color == Color.BLACK){
+                    groupe = p.getGroupNoir(); 
+                }else if(color == Color.CYAN){
+                    groupe = p.getGroupCyan(); 
+                }else if(color == Color.PINK){
+                    groupe = p.getGroupRose(); 
+                }else if(color == Color.ORANGE){
+                    groupe = p.getGroupOrange(); 
+                }else if(color == Color.RED){
+                    groupe = p.getGroupRouge(); 
+                }else if(color == Color.YELLOW){
+                    groupe = p.getGroupJaune(); 
+                }else if(color == Color.GREEN){
+                    groupe = p.getGroupVert(); 
+                }else if(color == Color.BLUE){
+                    groupe = p.getGroupBleu(); 
+                }
+                
+                
+                int nbMaisons = prop.getNbMaisons(); 
+                //S'il n'y a pas encore de maison sur cette case 
+                for(CaseProp c : groupe){
+                    int nb = c.getNbMaisons(); 
+                    if(nb == nbMaisons || nb == nbMaisons + 1){
+                        peutAcheter = true; 
+                    }
+                }
+            }
+            
+            return peutAcheter; 
+        } 
+                
+        
+        
+        public void achatMaison(int num){
+            Case pr = p.getCaseAchatBatiment(num);
+            System.out.println(pr.getNom());
+                        
+            //On verifie que la case demandee repond aux differents criteres 
+            if(!(pr instanceof CaseProp)){ //on verifie que c'est bien une case propriete 
+                FenetreErreurAchatBatiment fen = new FenetreErreurAchatBatiment(1); 
+            }
+            else{  
+                CaseProp prop = (CaseProp) pr;  
+                
+                if(prop.getNbHotel() == 1){
+                    FenetreErreurAchatBatiment fen = new FenetreErreurAchatBatiment(8);
+                }
+                
+                else{                   
+                    Joueur propri = prop.getPropri(); 
+                    
+                    if(propri != jcourant){ //on verifie que notre joueur est proprietaire de cette case 
+                        FenetreErreurAchatBatiment fen = new FenetreErreurAchatBatiment(2);
+                    }
+                    
+                    else{
+                        boolean maison = this.peutAcheterMaison(); 
+                        if(maison == false){ //on verifie qu'il possede bien toutes les proprietes de cette couleur 
+                            FenetreErreurAchatBatiment fen = new FenetreErreurAchatBatiment(3); 
+                            System.out.println("Vous n'avez pas toutes les proprietes de cette couleur"); 
+                        }
+                        
+                        else{
+                            if(prop.getNbMaisons() == 4){
+                                FenetreErreurAchatBatiment fen = new FenetreErreurAchatBatiment(4); 
+                            }
+                            
+                            else{
+                                if(this.peutAcheterCetteMaison(num) == false){
+                                    FenetreErreurAchatBatiment fen = new FenetreErreurAchatBatiment(5); 
+                                }
+                                
+                                else{
+                                    System.out.println("La prop avant achat maison est de " + prop.getPrix());
+                                    
+                                    propri.setArgent(-prop.getPrixBatiment()); 
+                                    
+                                    prop.ajoutMaison();  
+                                    
+                                    System.out.println("Le prop est " + propri + "\n On a ajoute une maison et la case vaut maintenant " + prop.getPrix()); 
+                                    
+                                    //On doit ajouter l'affichage graphique de la maison 
+                                    this.getPanelCase(num).dessinerMaison(prop.getNbMaisons()); 
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            
+            public void achatHotel(int num){
+                Case pr = p.getCaseAchatBatiment(num);
+                System.out.println(pr.getNom());
+                            
+                //On verifie que la case demandee repond aux differents criteres 
+                if(!(pr instanceof CaseProp)){ //on verifie que c'est bien une case propriete 
+                    FenetreErreurAchatBatiment fen = new FenetreErreurAchatBatiment(1); 
+                }
+                
+                else{  
+                    CaseProp prop = (CaseProp) pr;  
+                    
+                    if(prop.getNbMaisons() != 4){
+                        FenetreErreurAchatBatiment fen = new FenetreErreurAchatBatiment(6); 
+                    }
+                    
+                    else{
+                        if(prop.getNbHotel() == 1){
+                            FenetreErreurAchatBatiment fen = new FenetreErreurAchatBatiment(7); 
+                        }
+                        else{
+                            Joueur propri = prop.getPropri(); 
+                        
+                            if(propri != jcourant){ //on verifie que notre joueur est proprietaire de cette case 
+                                FenetreErreurAchatBatiment fen = new FenetreErreurAchatBatiment(2);
+                            }
+                            
+                            else{
+                                System.out.println("La prop avant achat hotel est de " + prop.getPrix());
+                                        
+                                propri.setArgent(-prop.getPrixBatiment()); 
+                                
+                                
+                                prop.ajoutHotel();  
+                                
+                                System.out.println("Le prop est " + propri + "\n On a ajoute un hotel et la case vaut maintenant " + prop.getPrix()); 
+                                
+                                //On doit ajouter l'affichage graphique de la maison 
+                                this.getPanelCase(num).dessinerHotel(); 
+                            }
+                        }
+                    }
+                }
+                            
+            }
 	
 	/**
 		

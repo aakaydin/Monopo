@@ -10,8 +10,10 @@ public class CaseProp extends Case{
 	private Joueur joueurcase ;
 	private int couleur;
 	private boolean achete = false;
+    private int prixBat; 
+
 	
-	//k=j'ai déjà créer l'écouteur payer 
+	//j'ai déjà créé l'écouteur payer 
 	private JPanel panel = new JPanel(new BorderLayout());
 	
 	private JLabel labavantachat ;
@@ -23,23 +25,24 @@ public class CaseProp extends Case{
 	private JLabel danspropri ;
 	
 	private int PrixHypotheque =(int)(prix*0.5); 
+    
+    private int nbMaisons = 0; 
+    private int nbHotel = 0; 
 	
 	EcouteurAcheter ecouteurAcheter ;
 	EcouteurPayerJoueur ecouteurPayerJoueur ;
 	
 	
 
-	
-	
-		
 		
 	
-	public CaseProp( int pos, String name, int prix){
+	public CaseProp( int pos, String name, int prix, int prixBatiment){
 		
 		super(pos, name);
 		this.prix = prix;
 		propri = new Joueur("a",0,0) ; //joueur aléatoire juste pour l'instanciation
-
+        prixBat = prixBatiment;
+        
 	}
 		
 	
@@ -50,12 +53,14 @@ public class CaseProp extends Case{
 		propri = j;
 	}
 	
+	public Joueur getPropri(){return propri;}
+    
 	public int getPrix(){return prix;}
+    public int getPrixBatiment(){return prixBat;}
 	
 	public boolean getAchete(){return achete;}
 
-	public Joueur getPropri(){return propri;}
-		
+
 	public void setDescriptionPanel(Joueur j){
 		joueurcase = j ;
 		ecouteurAcheter = new EcouteurAcheter(j, this, acheter) ;
@@ -95,6 +100,35 @@ public class CaseProp extends Case{
 	public int getPrixHypotheque(){ 
 		return PrixHypotheque; 
 	}
+    
+    
+    public int getNbMaisons(){ return nbMaisons; }
+    public int getNbHotel(){ return nbHotel; }
+    
+    public void ajoutMaison(){
+        nbMaisons = nbMaisons + 1; 
+        if(nbMaisons == 1){ //en moyennant par rapport aux variations du "vrai" jeu 
+            prix = prix * 5; 
+        }
+        else if (nbMaisons == 2){
+            prix = prix * 3; 
+        }
+        else if (nbMaisons == 3){
+            prix = (int) (prix * 2.5); 
+        }
+        else if (nbMaisons == 4){
+            prix = (int) (prix * 1.3); 
+        }
+    }
+    
+    public void ajoutHotel(){
+        nbHotel = nbHotel + 1; 
+        nbMaisons = 0; 
+        prix = (int) (prix * 1.25); 
+    }
+    
+    
+    
 
 
 	}

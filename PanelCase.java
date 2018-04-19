@@ -27,16 +27,16 @@ public class PanelCase extends JPanel {
 		c = col ;
 		nom = n ;
 		fen = f;
-		this.setLayout(new BorderLayout()); 
+		this.setLayout(new GridLayout(4 , 1 , 3 , 3)); 
 		JPanel p = new JPanel();
 		p.setOpaque(true);
 		p.setBackground(c);
-		this.add(p, BorderLayout.NORTH);
-		this.add(nom, BorderLayout.CENTER);
+		this.add(p/*, BorderLayout.NORTH*/);
+		this.add(nom/*, BorderLayout.CENTER*/);
 		LineBorder blackline = new LineBorder(Color.BLACK, 1);
 		this.setBorder(blackline);
 		
-		this.add(affichageJoueur, BorderLayout.SOUTH);
+		this.add(affichageJoueur/*, BorderLayout.SOUTH*/);
 	}
 	
 	protected void paintComponent(Graphics g){
@@ -49,6 +49,7 @@ public class PanelCase extends JPanel {
 	//deux méthode pour les test car Joueur n'est pas encore fonctionnel 
 	
 	public int getPlace(){return place;}
+    public Color getCouleur(){return c;}
 	
 	public void dessinerJoueur(Joueur j){
 		//Color c = j.getCouleur() ; en commentaire pour pouvoir faire les tests
@@ -80,10 +81,41 @@ public class PanelCase extends JPanel {
 	
 	public void setCouleurProp( Color c){
 		
-		
 			nom.setForeground(c);
-	
 		
-		}
+    }
+    
+    
+    //Pour l'ajout de maison 
+    public void dessinerMaison(int nb){
+        JPanel pan = new JPanel(new GridLayout(1 , 3 , 5 , 1));
+        
+        for(int j = 1 ; j <= nb ; j++){
+            JPanel maison = new JPanel(); 
+            Color c = new Color(0x16B84E);
+            maison.setBackground(c); 
+            
+            pan.add(maison);
+            
+            System.out.println("Je dessine la " + j + "-eme maison sur cette case numero " + place); 
+        } 
+        
+        this.add(pan /*, BorderLayout.SOUTH*/); 
+        
+        this.repaint();
+    }
+    
+    
+    public void dessinerHotel(){
+        JPanel hotel = new JPanel(); 
+        Color c = new Color(0xB82010); 
+        hotel.setBackground(c); 
+        
+        System.out.println("Je dessine l'hotel"); 
+        
+        this.add(hotel /*, BorderLayout.SOUTH*/); 
+        
+        this.repaint();
+    }
 	
 }

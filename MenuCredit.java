@@ -65,5 +65,8 @@ public class MenuCredit extends JFrame{
 	public FenetreInterface getFenetre(){ 
 		return fen; 
 	}
+	public JButton getValiderCredit(){ 
+		return b1; 
+	}
 	
 }

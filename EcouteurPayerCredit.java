@@ -15,6 +15,10 @@ public class EcouteurPayerCredit implements ActionListener{
 		
 	}
 	
+	public void changerJoueur(Joueur j){ 
+		jcourant = j; 
+	}
+	
 	public void actionPerformed(ActionEvent ae){
 		if(jcourant.getDette() !=0){
 			System.out.println("mon joueur est : "+jcourant.getNom()); 
@@ -30,7 +34,8 @@ public class EcouteurPayerCredit implements ActionListener{
 		}
 		//fen.getL1().setText("Somme : "+jcourant.getSomme());     //j'affiche la somme du joueur 
 		//il faut plutôt utiliser la méthode changer panel joueur 
-		fen.changerPanelJoueur(jcourant); 
+		fen.changerPanelJoueur(jcourant);
+		fen.getPayerDette().setEnabled(false);  
 		
 	}
 }

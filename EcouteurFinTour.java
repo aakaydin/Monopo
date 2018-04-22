@@ -8,6 +8,8 @@ public class EcouteurFinTour implements ActionListener {
 	
 	private FenetreInterface fen; 
 	private Joueur jcourant; 
+	private int dette = 0; 
+	private LinkedList<Integer> detteTourAvant = new LinkedList<Integer>(); 
 	
 	JPanel lancerLesDes = new JPanel();
 	
@@ -26,6 +28,7 @@ public class EcouteurFinTour implements ActionListener {
 		this.jcourant = jcourant; 
 		ListJoueur = lj ; 
 		nbJoueur = ListJoueur.size();
+		 
 		
 		lancerLesDes.add(lab); 
 		
@@ -39,7 +42,11 @@ public class EcouteurFinTour implements ActionListener {
 		
 		fen.finTour.setEnabled( false );
 		fen.lanceDe.setEnabled( true );
+		detteTourAvant.get(rangJoueur) = dette;
+		dette = jcourant.getDette();
 		
+		
+			
 		//on met la méthode j.getSomme en début de tour car on autorise un tour d'endettement 
 		if(!jcourant.estVivant() || jcourant.getSomme() < 0){
 			fen.dispose();
@@ -54,27 +61,71 @@ public class EcouteurFinTour implements ActionListener {
 			rangJoueur = rangJoueur + 1 ;
 		}
 		
+		System.out.println("la dette du joueur avant est : "+detteTourAvant); 
+		System.out.println("la dette du joueur est : "+jcourant.getDette());
+		
+		
+		if(dette == detteTourAvant(rangJoueur) && dette!=0){ 
+			
+		 //en cas d'impayé il faut un indicateur pour actionner l'hypotheque
+			
+			if(jcourant.avoirHotel() == true && dette >0){ //il faut une liste d'hotel et savoir si le joeur en a encore
+				while(jcourant.getMesHotels() != null){ 
+				dette = dette - jcourant.getHotelPlusChere().getPrixHypotheque(); // j'enlève à la dette le prix de l'hypotheque d'un hotel
+				jcourant.getMesHotels().remove(jcourant.getMesHotels().indexOf(jcourant.getHotelPlusChere())); // j'enlève l'hotel de la liste
+				}
+				
+			}else if(jcourant.avoirMaison()== true && dette >0){ 
+				while(jcourant.getMesMaisons()!= null){ 
+				dette = dette - jcourant.getMaisonPlusChere().getPrixHypotheque(); // j'enlève à la dette le prix de l'hypotheque d'une maison
+				jcourant.getMesMaisons().remove(jcourant.getMesMaisons().indexOf(jcourant.getMaisonPlusChere())); // j'enlève la maison de la liste
+				}
+			}else if(jcourant.avoirPropriete()== true && dette >0){ 
+				while(jcourant.getMesProprietes()!= null){ 
+				dette = dette - jcourant.getProprietePlusChere().getPrixHypotheque(); 
+				jcourant.getMesProprietes().remove(jcourant.getMesProprietes().indexOf(jcourant.getProprietePlusChere()));
+				}
+			}else if(dette >0){ // si la dette n'est toujours pas nulle il faut prélever sur le compte
+				jcourant.setArgent(jcourant.getSomme()-dette); 
+				if(jcourant.getSomme()<0){ //s'il n'y a plus d'argent le joueur a perdu
+					jcourant.setAbandon(); 
+					System.out.println("joueur"+jcourant.getNom()+"a perdu"); 
+				} 
+			}
+			
+					 
+		
+		}
+		 
 		System.out.println("Rang Joueur :"+rangJoueur); 
-		jcourant = ListJoueur.get(rangJoueur);
+		jcourant = ListJoueur.get(rangJoueur);							//on change de joueur; 
 		System.out.println(" Fin tour ");
 		Jouer jouer = new Jouer(fen.getPlateau(), fen, jcourant);
 		fen.setJoueur(jcourant);
 		fen.changerJoueurEcouteurDe(jcourant);
+		//fen.panelEast.repaint();
+		fen.changerPanelJoueur(jcourant);
+		jouer.testerPrison();
+		dette = jcourant.getDette();
+		
+		// je rend disponible de bouton PayerCredit
+		
+		fen.getEcouteurPayerCredit().changerJoueur(jcourant);
+		if(jcourant.getDette()!=0){ 
+			fen.getPayerDette().setEnabled(true); 
+		}else{ 
+			fen.getPayerDette().setEnabled(false);
+		}
 		
 		if( jcourant.getNom() == "Bob"){
 			
 			IA bob = new IA( fen);
 			bob.perform();
 			
-			}
-		//fen.panelEast.repaint();
-		
-		if( jcourant.getNom() != "Bob")  fen.changerPanelJoueur(jcourant);
-		jouer.testerPrison();
+		}
 		
 		
-			
-		
+		 
 	
 	 
 	}

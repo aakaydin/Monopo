@@ -36,7 +36,7 @@ public class EcouteurValiderCredit implements ActionListener{
 		fen.changerPanelJoueur(mc.getJoueurCourant());
 		
 		fen.getPayerDette().setEnabled(true); 											//je rend disponible le bouton payer credit
-		
+		mc.getValiderCredit().setEnabled(false); 
 		
 		
 		

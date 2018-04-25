@@ -19,6 +19,8 @@ public class PanelCase extends JPanel {
 	
 	private JPanel affichageJoueur = new JPanel() ;
 	int place ;
+    
+    private JPanel affichageBatiments = new JPanel(); 
 	
 	public PanelCase(Color col, JLabel n, PanelPlateau f, int i ){
 		super();
@@ -37,6 +39,7 @@ public class PanelCase extends JPanel {
 		this.setBorder(blackline);
 		
 		this.add(affichageJoueur/*, BorderLayout.SOUTH*/);
+        this.add(affichageBatiments); 
 	}
 	
 	protected void paintComponent(Graphics g){
@@ -100,20 +103,28 @@ public class PanelCase extends JPanel {
             System.out.println("Je dessine la " + j + "-eme maison sur cette case numero " + place); 
         } 
         
-        this.add(pan /*, BorderLayout.SOUTH*/); 
+        for(int j = 1 ; j <= 3 - nb ; j++){
+            JPanel vide = new JPanel(); 
+            
+            pan.add(vide); 
+        }
+        
+        affichageBatiments.add(pan /*, BorderLayout.SOUTH*/); 
         
         this.repaint();
     }
     
     
     public void dessinerHotel(){
+        
+        affichageBatiments.removeAll();
         JPanel hotel = new JPanel(); 
         Color c = new Color(0xB82010); 
         hotel.setBackground(c); 
         
         System.out.println("Je dessine l'hotel"); 
         
-        this.add(hotel /*, BorderLayout.SOUTH*/); 
+        affichageBatiments.add(hotel /*, BorderLayout.SOUTH*/); 
         
         this.repaint();
     }

@@ -44,9 +44,9 @@ public class Joueur implements Comparable {
 	private Case caseCourante;
 	
 	//ce qui concerne l'immobilier avec les terrains, les maisons et les hotels que le joueur possède 
-	private LinkedList<Hotel> MesHotels; 
-	private LinkedList<MaisonVerte> MesMaisons;  
-	private LinkedList<CaseProp> MesProprietes;  
+	private LinkedList<Hotel> MesHotels = new LinkedList<Hotel>(); 
+	private LinkedList<MaisonVerte> MesMaisons = new LinkedList<MaisonVerte>();  
+	private LinkedList<CaseProp> MesProprietes = new LinkedList<CaseProp>();  
 	
 	//permet de tuer le joueur ce qui met fin à la partie
 	private boolean vivre = true; 

@@ -10,7 +10,7 @@ public class CaseProp extends Case{
 	private Joueur joueurcase ;
 	private int couleur;
 	private boolean achete = false;
-    private int prixBat; 
+    	private int prixHypotheque; 
 
 	
 	//j'ai déjà créé l'écouteur payer 
@@ -24,10 +24,9 @@ public class CaseProp extends Case{
 	private JLabel labpropri = new JLabel("Vous etes chez vous");
 	private JLabel danspropri ;
 	
-	private int PrixHypotheque =(int)(prix*0.5); 
-    
-    private int nbMaisons = 0; 
-    private int nbHotel = 0; 
+	
+   	private int nbMaisons = 0; 
+    	private int nbHotel = 0; 
 	
 	EcouteurAcheter ecouteurAcheter ;
 	EcouteurPayerJoueur ecouteurPayerJoueur ;
@@ -41,7 +40,7 @@ public class CaseProp extends Case{
 		super(pos, name);
 		this.prix = prix;
 		propri = new Joueur("a",0,0) ; //joueur aléatoire juste pour l'instanciation
-        prixBat = prixBatiment;
+       		prixHypotheque = prixBatiment;
         
 	}
 		
@@ -56,7 +55,6 @@ public class CaseProp extends Case{
 	public Joueur getPropri(){return propri;}
     
 	public int getPrix(){return prix;}
-    public int getPrixBatiment(){return prixBat;}
 	
 	public boolean getAchete(){return achete;}
 
@@ -98,7 +96,7 @@ public class CaseProp extends Case{
 	}
 	
 	public int getPrixHypotheque(){ 
-		return PrixHypotheque; 
+		return prixHypotheque; 
 	}
     
     

@@ -84,8 +84,9 @@ public class PanelCase extends JPanel {
 	
 	public void setCouleurProp( Color c){
 		
-			nom.setForeground(c);
-		
+		LineBorder line = new LineBorder( c, 3);
+		this.setBorder(line);		
+				
     }
     
     

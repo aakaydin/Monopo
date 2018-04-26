@@ -56,19 +56,30 @@ public class Joueur implements Comparable {
 	private JLabel label ;
 	//permet d'associer le joueur à une couleur pour l'affichage graphique 
 	public Color col ;
+	public static int c = 0;
+	
 	
 	// Constructeur avec nom + somme + position	
 	public Joueur( String name , int mani, int pos){
+		
+		
 		
 		nom = name;
 		somme = mani;
 		position = pos;
 		label = new JLabel(nom);
 		label.setOpaque(true);
-		label.setForeground(Color.BLACK);
+		
+		
+		if( c == 0 ) col = Color.RED; 
+		if( c == 1 ) col = Color.BLUE;
+		if( c == 2 ) col = Color.GREEN;
+		if( c == 3 ) col = Color.ORANGE;
+		
+		label.setForeground(col);
 		label.setBackground(Color.WHITE);
 		
-		col = Color.BLACK; 
+		c++;
 	}
 	
 	// Constructeur avec nom + somme 

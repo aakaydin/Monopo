@@ -23,8 +23,9 @@ public class Joueur implements Comparable {
 	private boolean sonTour = false ; 
 	
 	//le joueur et son immobilier 
-	public	LinkedList<Case> immobilier = new LinkedList<Case>();
-	public  boolean estVivant = true ;
+	private LinkedList<Hotel> MesHotels = new LinkedList<Hotel>(); 
+	private LinkedList<MaisonVerte> MesMaisons = new LinkedList<MaisonVerte>();  
+	private LinkedList<CaseProp> MesProprietes = new LinkedList<CaseProp>();  
 	
 	//pour savoir si le joueur est en prison 
 	public  boolean enPrison =false;
@@ -43,13 +44,8 @@ public class Joueur implements Comparable {
 	//permet de récupérer la case sur laquelle se trouve le joueur 
 	private Case caseCourante;
 	
-	//ce qui concerne l'immobilier avec les terrains, les maisons et les hotels que le joueur possède 
-	private LinkedList<Hotel> MesHotels = new LinkedList<Hotel>(); 
-	private LinkedList<MaisonVerte> MesMaisons = new LinkedList<MaisonVerte>();  
-	private LinkedList<CaseProp> MesProprietes = new LinkedList<CaseProp>();  
-	
 	//permet de tuer le joueur ce qui met fin à la partie
-	private boolean vivre = true; 
+	public  boolean estVivant = true ;
 	
 	
 	//permet de placer le joueur sur le plateau pour l'affichage graphique 
@@ -142,7 +138,6 @@ public class Joueur implements Comparable {
 	public LinkedList<Hotel> getMesHotels(){ return MesHotels;}
 	public LinkedList<MaisonVerte> getMesMaisons(){ return MesMaisons;}
 	public LinkedList<CaseProp> getMesProprietes(){ return MesProprietes;}
-	public LinkedList<Case> getCases(){return immobilier ;} //il ne faut laisser que un des deux parceque là c'est inutile
 	
 	public int  getMensualite(){return mensualite;}
 	
@@ -151,15 +146,15 @@ public class Joueur implements Comparable {
 	//Methode qui calcul le capital du joueur 
 	public int getCapital(){ 
 		int capital = this.getSomme(); 
-		if(MesHotels!=null){
+		if(MesHotels.size() > 0 ){
 			for(Hotel h : MesHotels){
 				capital = capital + h.getPrixHypotheque(); 
 			} 
-		}else if(MesMaisons!=null){
+		}else if(MesMaisons.size() > 0){
 			for(MaisonVerte m : MesMaisons){
 				capital = capital + m.getPrixHypotheque(); 
 			}
-		}else if(MesProprietes!=null){
+		}else if(MesProprietes.size() > 0){
 			for(CaseProp p : MesProprietes){
 				capital = capital + p.getPrixHypotheque(); 
 			}
@@ -169,7 +164,6 @@ public class Joueur implements Comparable {
 	 
 	 
 	//Setteurs
-	public void addCase(Case c){immobilier.add(c);}
 
 	public void setPos( int newpos){position =newpos ;}
 	
@@ -182,19 +176,17 @@ public class Joueur implements Comparable {
 	
 	public void setDette( int mani){dette = dette + mani;}
 	
-    public void setEnPrison(boolean b){enPrison = b;}
+   	public void setEnPrison(boolean b){enPrison = b;}
     
-    public void setSommeDes(int val){sommeDes = val;}
+    	public void setSommeDes(int val){sommeDes = val;}
     
-    public void setSommeTransfert(int somme){ sommeTransfere = somme ;}
+    	public void setSommeTransfert(int somme){ sommeTransfere = somme ;}
     
-    public void tuer(){estVivant = false;}
+    	public void tuer(){estVivant = false;}
     
-    public void  setMensualite(int m){mensualite = m;}
+    	public void  setMensualite(int m){mensualite = m;}
 	
 	public void setSonTour(boolean b){sonTour = b;}
-	
-	public void setAbandon(){vivre = false;}
 	
 	public void setPassCaseDep(boolean b){passageCaseDep = b;}
         
@@ -243,7 +235,7 @@ public class Joueur implements Comparable {
 	}
 	
 	public boolean avoirHotel(){ 				 //vérifie si j'ai des hotels
-		if(this.getMesHotels()!=null){ 
+		if(this.getMesHotels().size() > 0){ 
 			return true; 
 		}else{ 
 			return false; 
@@ -252,7 +244,7 @@ public class Joueur implements Comparable {
 	
 	//les méthodes suivantes sont utilisées pour les hypothèques et les demandes de crédit 
 	public boolean avoirMaison(){                 //vérifie si j'ai des maisons
-		if(this.getMesMaisons()!=null){ 
+		if(this.getMesMaisons().size() > 0){ 
 			return true; 
 		}else{ 
 			return false; 
@@ -260,7 +252,7 @@ public class Joueur implements Comparable {
 	}
 	
 	public boolean avoirPropriete(){                 //vérifie si j'ai des maisons
-		if(this.getMesProprietes()!=null){ 
+		if(this.getMesProprietes().size() > 0){ 
 			return true; 
 		}else{ 
 			return false; 
@@ -275,7 +267,11 @@ public class Joueur implements Comparable {
 				H = h; 
 			} 
 		}
-		return H; 
+		if(MesHotels.size() > 0){
+			return H; 
+		} else {
+			return null ;
+		}
 	}
 	
 	public MaisonVerte getMaisonPlusChere(){ 
@@ -286,18 +282,27 @@ public class Joueur implements Comparable {
 				M = m; 
 			} 
 		}
-		return M; 
+		if(MesMaisons.size() > 0){
+			return M; 
+		} else {
+			return null ;
+		}
+		
 	}
 	
 	public CaseProp getProprietePlusChere(){ 
 		CaseProp P = new CaseProp(0,"coucou",0,0); 
-		for(int i = 0; i<MesMaisons.size(); i++){
+		for(int i = 0; i<MesPropriete.size(); i++){
 			CaseProp p = MesProprietes.get(i);
 			if(P.getPrixHypotheque()<p.getPrixHypotheque()){ 
 				P = p; 
 			} 
 		}
-		return P; 
+		if(MesPropriete.size() > 0){
+			return P; 
+		} else {
+			return null ;
+		}
 	}
 	
 	//methode qui compte les remboursements 
@@ -309,9 +314,8 @@ public class Joueur implements Comparable {
 	
 	public int getValImmobilier(){
 		int somme = 0;
-		for(Case c : immobilier){
-			CaseProp cp = (CaseProp)c;
-			somme = somme + cp.getPrix() ;
+		for(CaseProp c : MesProprietes){
+			somme = somme + c.getPrix() ;
 		}
 		return somme ;
 	}

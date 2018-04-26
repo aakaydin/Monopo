@@ -13,27 +13,24 @@ public class EcouteurPayerJoueur implements ActionListener{
 		j = jj ;
 		proprietaire = prop ; 
 		c = cas ;
-		
 	}
 	
-		public void setJoueur(Joueur jj){
+	
+	public void setJoueur(Joueur jj){
 		j = jj;
 	}
 		
-	
 	public void setFenetreInterface(FenetreInterface f){
 		fen = f ;
 	}
 	
+	
 	public void disableButton(){
-		
 		fen.finTour.setEnabled(false);
-		
-		}
+	}
+	
 	
 	public void actionPerformed(ActionEvent ae){
-		
-		
 		c.payer.setEnabled(false);
 		fen.finTour.setEnabled(true);
 		

@@ -31,7 +31,9 @@ public class FenetreErreurAchatBatiment extends JFrame{
             text = new JLabel("Vous ne pouvez avoir qu'un hotel par case"); 
         }else if(erreur == 8){
             text = new JLabel("Vous ne pouvez pas avoir de maison sur une case avec un hotel"); 
-        }
+        }else if(erreur == 9){
+			text = new JLabel ("Vous devez inscrire un numero de propriete.");
+		}
             
         text.setForeground(Color.RED); 
 

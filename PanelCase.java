@@ -21,6 +21,9 @@ public class PanelCase extends JPanel {
 	int place ;
     
     private JPanel affichageBatiments = new JPanel(); 
+    
+    private int nbMaisons ; 
+    
 	
 	public PanelCase(Color col, JLabel n, PanelPlateau f, int i ){
 		super();
@@ -92,6 +95,8 @@ public class PanelCase extends JPanel {
     
     //Pour l'ajout de maison 
     public void dessinerMaison(int nb){
+        nbMaisons = nb ; 
+        affichageBatiments.removeAll() ; 
         JPanel pan = new JPanel(new GridLayout(1 , 3 , 5 , 1));
         
         for(int j = 1 ; j <= nb ; j++){
@@ -115,6 +120,13 @@ public class PanelCase extends JPanel {
         this.repaint();
     }
     
+    public void effacerMaison(){
+        //on change le nombre de maison 
+        nbMaisons = nbMaisons - 1 ;
+        this.dessinerMaison(nbMaisons);
+        this.repaint() ; 
+    }
+        
     
     public void dessinerHotel(){
         
@@ -129,5 +141,10 @@ public class PanelCase extends JPanel {
         
         this.repaint();
     }
+    
+    public void effacerHotel(){
+        affichageBatiments.removeAll();
+    }
+        
 	
 }

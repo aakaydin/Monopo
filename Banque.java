@@ -33,7 +33,7 @@ public class Banque {
 			}else if(dette >0){ // si la dette n'est toujours pas nulle il faut prélever sur le compte
 				j.setArgent(j.getSomme()-dette); 
 				if(j.getSomme()<0){ //s'il n'y a plus d'argent le joueur a perdu
-					j.setAbandon(); 
+					j.tuer(); 
 					System.out.println("joueur"+j.getNom()+"a perdu"); 
 				} 
 			}

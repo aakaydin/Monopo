@@ -10,7 +10,10 @@ public class CaseProp extends Case{
 	private Joueur joueurcase ;
 	private int couleur;
 	private boolean achete = false;
-    	private int prixHypotheque; 
+    //prix d'hypotheque du terrain
+    private int prixHypotheque; 
+    //prix d une maison
+    private int prixBatiment ;
 
 	
 	//j'ai déjà créé l'écouteur payer 
@@ -39,8 +42,9 @@ public class CaseProp extends Case{
 		
 		super(pos, name);
 		this.prix = prix;
+        this.prixBatiment = prixBatiment ;
 		propri = new Joueur("a",0,0) ; //joueur aléatoire juste pour l'instanciation
-       		prixHypotheque = prixBatiment;
+        prixHypotheque = (int)prix/2 ;
         
 	}
 		
@@ -52,6 +56,8 @@ public class CaseProp extends Case{
 		propri = j;
 	}
 	
+    public int getPrixBatiment(){ return prixBatiment;}
+    
 	public Joueur getPropri(){return propri;}
     
 	public int getPrix(){return prix;}
@@ -125,6 +131,16 @@ public class CaseProp extends Case{
         prix = (int) (prix * 1.25); 
     }
     
+    public void vendre(){
+        //on garde le proprietaire precedent et il sera changé au prochain achat 
+        achete = false ;
+        nbMaisons = 0 ;
+        nbHotel = 0;
+    }
+    
+    public void retirerMaison(){nbMaisons --;}
+    public void retirerHotel(){nbHotel --;}
+        
     
     
 

@@ -59,6 +59,7 @@ public class MaFenetreAchatBatiment extends JFrame{
     public boolean getEntreeNumNature(){
 		boolean res = false; 
         String entree = entreeNum.getText();  
+        //il faut faire un catch exception 
         if(this.estUnEntier(entree) == true){
 			res = true;
 		}
@@ -69,6 +70,15 @@ public class MaFenetreAchatBatiment extends JFrame{
 		String entree = entreeNum.getText();
 		int res = Integer.parseInt(entree); 
 		return res; 
+	}
+    
+    public boolean estUnEntier(String chaine) { //J'ai recupere cette methode sur internet (dans un forum)
+        try {
+            Integer.parseInt(chaine);
+        } catch (NumberFormatException e){
+            return false;
+        }
+        return true;
 	}
        
    public void setNumPropri(int n){

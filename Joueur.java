@@ -175,6 +175,8 @@ public class Joueur implements Comparable {
 	public void setEndette(boolean b){endette = b;}
 	
 	public void setDette( int mani){dette = dette + mani;}
+    
+    public void setDette2(int i){dette = i;}
 	
    	public void setEnPrison(boolean b){enPrison = b;}
     
@@ -292,13 +294,13 @@ public class Joueur implements Comparable {
 	
 	public CaseProp getProprietePlusChere(){ 
 		CaseProp P = new CaseProp(0,"coucou",0,0); 
-		for(int i = 0; i<MesPropriete.size(); i++){
+		for(int i = 0; i<MesProprietes.size(); i++){
 			CaseProp p = MesProprietes.get(i);
 			if(P.getPrixHypotheque()<p.getPrixHypotheque()){ 
 				P = p; 
 			} 
 		}
-		if(MesPropriete.size() > 0){
+		if(MesProprietes.size() > 0){
 			return P; 
 		} else {
 			return null ;

@@ -8,6 +8,8 @@ public class EcouteurFinTour implements ActionListener {
 	
 	private FenetreInterface fen; 
 	private Joueur jcourant; 
+    private Plateau plateau ;
+    private PanelPlateau panelPlateau ;
 	 
 	
 	
@@ -29,6 +31,9 @@ public class EcouteurFinTour implements ActionListener {
 	public EcouteurFinTour(FenetreInterface f,Joueur jcourant, LinkedList<Joueur> lj){ 
 		
 		fen = f; 
+        plateau = fen.getPlateau();
+        panelPlateau = fen.getPanelPlateau() ; 
+        
 		this.jcourant = jcourant; 
 		ListJoueur = lj ; 
 		nbJoueur = ListJoueur.size();
@@ -69,6 +74,7 @@ public class EcouteurFinTour implements ActionListener {
 		
 		
 		dette = jcourant.getDette();
+        System.out.println("dette "+dette);
 		if(dette == detteTourAvant[rangJoueur] && dette!=0){ 
 			
 		 //en cas d'impayé il faut un indicateur pour actionner l'hypotheque
@@ -89,9 +95,10 @@ public class EcouteurFinTour implements ActionListener {
 				//il faut enlever une maison à la case prop correspondante 
 				}
 			}else if(jcourant.avoirPropriete()== true && dette >0){ 
+                System.out.println("dans boucle propriete");
 				while(jcourant.getMesProprietes().size() > 0 && dette > 0){ 
 				dette = dette - jcourant.getProprietePlusChere().getPrixHypotheque(); 
-				jcourant.getMesProprietes().remove(indexOf(jcourant.getProprietePlusChere());
+				jcourant.getMesProprietes().remove(jcourant.getProprietePlusChere());
 				//il faut retirer le propriétaire de la case, remettre la case dans son état initial
 				}
 			}else if(dette >0){ // si la dette n'est toujours pas nulle il faut prélever sur le compte
@@ -110,7 +117,7 @@ public class EcouteurFinTour implements ActionListener {
                 	dette = 0; 
             	}
 		//on règle la nouvelle dette du joueur 
-           	jcourant.setDette(dette); 	
+           	jcourant.setDette2(dette); 	
 		//on met à jour la dette tour avant du joueur 						   
 		detteTourAvant[rangJoueur] = dette;
 		

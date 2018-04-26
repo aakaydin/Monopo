@@ -139,7 +139,7 @@ public class IA{
 		if( c.getAchete() == false && b){
 		
 		J.setArgent(-c.getPrix());
-		J.addCase(c);
+		J.getMesProprietes().add(c);
 		c.setProprietaire(J);
 		c.setAchete(true);
 		fen.plateau.getPanelCase( J.getPos()).setCouleurProp( J.col);

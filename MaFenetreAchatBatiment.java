@@ -56,11 +56,20 @@ public class MaFenetreAchatBatiment extends JFrame{
         
     }
     
-    public int getEntreeNum(){
-        String entree = entreeNum.getText(); 
-        int res = Integer.parseInt(entree);
-        return res;
+    public boolean getEntreeNumNature(){
+		boolean res = false; 
+        String entree = entreeNum.getText();  
+        if(this.estUnEntier(entree) == true){
+			res = true;
+		}
+		return res; 
     }
+    
+    public int getEntreeNumInt(){
+		String entree = entreeNum.getText();
+		int res = Integer.parseInt(entree); 
+		return res; 
+	}
        
    public void setNumPropri(int n){
         numeroP = n;

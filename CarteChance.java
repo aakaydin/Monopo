@@ -95,6 +95,8 @@ public class CarteChance {
 	
 	public void carteRelancerDes(){
 		description = "Vous pouvez rejouer !";
+		fen.lanceDe.setEnabled(true);
+		fen.finTour.setEnabled(false);
 		//rend actif le bouton pour relancer les des 
 		
 	}

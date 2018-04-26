@@ -64,6 +64,15 @@ public class EcouteurLancerLesDes implements ActionListener{
 				int numCaseAAvancer = j.getSommeDes() ;
 				
 				j.avancer(numCaseAAvancer) ; 
+				
+				if( fen.p.getCases().get(j.getPos()) instanceof CaseProp){
+					
+					CaseProp cp = (CaseProp) fen.p.getCases().get(j.getPos());
+					
+					if( cp.getAchete() && cp.getPropri() != j) fen.finTour.setEnabled(false);
+					
+					}
+				
 				if(j.getPassCaseDep() == true){
 					fen.setTextInfo("Vous passez par la case depart, recevez 10000");
 					j.setPassCaseDep(false);

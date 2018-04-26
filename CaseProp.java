@@ -22,8 +22,8 @@ public class CaseProp extends Case{
 	private JLabel labavantachat ;
 	private JLabel apresachat ;
 	private JButton acheter = new JButton("Acheter"); 
+	public JButton payer ;
 	
-	private JButton payer ;
 	private JLabel labpropri = new JLabel("Vous etes chez vous");
 	private JLabel danspropri ;
 	
@@ -80,7 +80,9 @@ public class CaseProp extends Case{
 		} else if(j == propri){
 			panel.add(labpropri, BorderLayout.NORTH);
 		} else {
-			danspropri = new JLabel("Vous etes chez "+propri.getNom()+", vous lui devez "+prix);
+			
+			//ecouteurPayerJoueur.disableButton();
+			danspropri = new JLabel("Vous etes chez "+propri.getNom()+", vous lui devez "+prix/10);
 			panel.add(danspropri, BorderLayout.NORTH);
 			payer = new JButton("Payer");
 			payer.addActionListener(ecouteurPayerJoueur);
@@ -99,6 +101,7 @@ public class CaseProp extends Case{
 	
 	public void setFenetreEcouteurPayerJoueur(FenetreInterface f){
 		ecouteurPayerJoueur.setFenetreInterface(f);
+		
 	}
 	
 	public int getPrixHypotheque(){ 

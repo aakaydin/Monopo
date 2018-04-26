@@ -147,7 +147,7 @@ public class IA{
 		
 		}else if( c.getAchete() ){
 			
-		int prix = c.getPrix() ;
+		int prix = c.getPrix()/10 ;
 		J.setArgent(-prix);
 		c.getPropri().setArgent(prix) ;
 		

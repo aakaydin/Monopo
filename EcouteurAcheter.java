@@ -6,7 +6,7 @@ public class EcouteurAcheter implements ActionListener{
 	
 	Joueur j ; 
 	CaseProp c ;
-	FenetreInterface fen ;
+	public FenetreInterface fen ;
 	JButton but;
 	
 	public EcouteurAcheter(Joueur jj, CaseProp cas , JButton button){

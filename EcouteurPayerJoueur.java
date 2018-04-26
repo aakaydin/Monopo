@@ -25,8 +25,19 @@ public class EcouteurPayerJoueur implements ActionListener{
 		fen = f ;
 	}
 	
+	public void disableButton(){
+		
+		fen.finTour.setEnabled(false);
+		
+		}
+	
 	public void actionPerformed(ActionEvent ae){
-		int prix = c.getPrix() ;
+		
+		
+		c.payer.setEnabled(false);
+		fen.finTour.setEnabled(true);
+		
+		int prix = c.getPrix()/ 10;
 		j.setArgent(-prix);
 		
 		proprietaire.setArgent(prix) ;

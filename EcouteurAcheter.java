@@ -31,7 +31,7 @@ public class EcouteurAcheter implements ActionListener{
 		but.setEnabled(false);
 		
 		j.setArgent(-c.getPrix());
-		j.addCase(c);
+		j.getMesProprietes.add(c); 
 		c.setProprietaire(j);
 		c.setAchete(true);
 		fen.changerPanelJoueur(j);

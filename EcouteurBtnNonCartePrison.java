@@ -18,7 +18,7 @@ public class EcouteurBtnNonCartePrison implements ActionListener{
     }
         
     public void actionPerformed(ActionEvent ae){
-        fi.setTextInfo("Lancez les des et faite un double pour sortir");
+        fi.setTextInfo("Lancez les des et faites un double pour sortir");
         fi.pack() ;
         fen.dispose();
     }

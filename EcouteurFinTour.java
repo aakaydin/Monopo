@@ -18,8 +18,8 @@ public class EcouteurFinTour implements ActionListener {
 	JLabel lab = new JLabel("Vous pouvez lancer les des");
 	
 	private LinkedList<Joueur> ListJoueur = new LinkedList<Joueur>();
-	private int[] detteTourAvant;
-	private int dette = 0; 
+	//private int[] detteTourAvant;
+	//private int dette = 0; 
 	
 	
 	
@@ -37,11 +37,11 @@ public class EcouteurFinTour implements ActionListener {
 		this.jcourant = jcourant; 
 		ListJoueur = lj ; 
 		nbJoueur = ListJoueur.size();
-		detteTourAvant = new int[ListJoueur.size()]; 
+		//detteTourAvant = new int[ListJoueur.size()]; 
 		
-		for(int i =0; i<detteTourAvant.length; i++){ 
+		/*for(int i =0; i<detteTourAvant.length; i++){ 
 			detteTourAvant[i] =0; 
-		}
+		}*/ 
 		 
 		
 		lancerLesDes.add(lab); 
@@ -58,7 +58,7 @@ public class EcouteurFinTour implements ActionListener {
 		fen.lanceDe.setEnabled( true );
 		
 		
-		System.out.println("taille tableau"+detteTourAvant.length); 
+		//System.out.println("taille tableau"+detteTourAvant.length); 
 			
 		//on met la méthode j.getSomme en début de tour car on autorise un tour d'endettement 
 		if(!jcourant.estVivant() || jcourant.getSomme() < 0){
@@ -69,11 +69,11 @@ public class EcouteurFinTour implements ActionListener {
 		}
 	
 		
-		System.out.println("la dette du joueur avant est : "+detteTourAvant[rangJoueur]); 
-		System.out.println("la dette du joueur est : "+jcourant.getDette());
+		//System.out.println("la dette du joueur avant est : "+detteTourAvant[rangJoueur]); 
+		//System.out.println("la dette du joueur est : "+jcourant.getDette());
 		
 		
-		dette = jcourant.getDette();
+		/*dette = jcourant.getDette();
         System.out.println("dette "+dette);
 		if(dette == detteTourAvant[rangJoueur] && dette!=0){ 
 			
@@ -101,25 +101,26 @@ public class EcouteurFinTour implements ActionListener {
 				jcourant.getMesProprietes().remove(jcourant.getProprietePlusChere());
 				//il faut retirer le propriétaire de la case, remettre la case dans son état initial
 				}
-			}else if(dette >0){ // si la dette n'est toujours pas nulle il faut prélever sur le compte
+			}else if(dette >0 && jcourant.avoirPropriete()!= true){ // si la dette n'est toujours pas nulle il faut prélever sur le compte
 				jcourant.setArgent(jcourant.getSomme()-dette); 
+				System.out.println(jcourant.getSomme());
 				if(jcourant.getSomme()<0){ //s'il n'y a plus d'argent le joueur a perdu
 					jcourant.tuer(); 
 					System.out.println("joueur"+jcourant.getNom()+"a perdu"); 
-				} 
+				} //peut être à cause de cette ligne que le jeu s'arrête parfois 
 			}
 			
 					 
 		
-		}
+		}*/ 
 		//on remet à 0 la dette du joueur si celle-ci était négtive, oui il peut perdre de l'argent dans ce cas						  
-		if(dette<0){ 
+		/*if(dette<0){ 
                 	dette = 0; 
             	}
 		//on règle la nouvelle dette du joueur 
            	jcourant.setDette2(dette); 	
 		//on met à jour la dette tour avant du joueur 						   
-		detteTourAvant[rangJoueur] = dette;
+		detteTourAvant[rangJoueur] = dette;*/ 
 		
 		System.out.println(""+rangJoueur); 
 		if(rangJoueur + 1 >= nbJoueur ){

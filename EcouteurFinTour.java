@@ -67,32 +67,37 @@ public class EcouteurFinTour implements ActionListener {
 		System.out.println("la dette du joueur avant est : "+detteTourAvant[rangJoueur]); 
 		System.out.println("la dette du joueur est : "+jcourant.getDette());
 		
-		dette = jcourant.getDette();
 		
+		dette = jcourant.getDette();
 		if(dette == detteTourAvant[rangJoueur] && dette!=0){ 
 			
 		 //en cas d'impayé il faut un indicateur pour actionner l'hypotheque
 			
 			if(jcourant.avoirHotel() == true && dette >0){ //il faut une liste d'hotel et savoir si le joeur en a encore
-				while(jcourant.getMesHotels() != null){ 
+				while(jcourant.getMesHotels().size() > 0 && dette > 0){ 
 				dette = dette - jcourant.getHotelPlusChere().getPrixHypotheque(); // j'enlève à la dette le prix de l'hypotheque d'un hotel
-				jcourant.getMesHotels().remove(jcourant.getMesHotels().indexOf(jcourant.getHotelPlusChere())); // j'enlève l'hotel de la liste
+				jcourant.getMesHotels().remove(jcourant.getHotelPlusChere()); // j'enlève l'hotel de la liste
+				//il faut effacer l'hotel du plateau 
+				//il faut enlever un hotel à la CaseProp correspondante 
 				}
 				
 			}else if(jcourant.avoirMaison()== true && dette >0){ 
-				while(jcourant.getMesMaisons()!= null){ 
+				while(jcourant.getMesMaisons().size() > 0 && dette > 0){ 
 				dette = dette - jcourant.getMaisonPlusChere().getPrixHypotheque(); // j'enlève à la dette le prix de l'hypotheque d'une maison
-				jcourant.getMesMaisons().remove(jcourant.getMesMaisons().indexOf(jcourant.getMaisonPlusChere())); // j'enlève la maison de la liste
+				jcourant.getMesMaisons().remove(jcourant.getMaisonPlusChere()); // j'enlève la maison de la liste
+				//il faut effacer la maison du plateau 
+				//il faut enlever une maison à la case prop correspondante 
 				}
 			}else if(jcourant.avoirPropriete()== true && dette >0){ 
-				while(jcourant.getMesProprietes()!= null){ 
+				while(jcourant.getMesProprietes().size() > 0 && dette > 0){ 
 				dette = dette - jcourant.getProprietePlusChere().getPrixHypotheque(); 
-				jcourant.getMesProprietes().remove(jcourant.getMesProprietes().indexOf(jcourant.getProprietePlusChere()));
+				jcourant.getMesProprietes().remove(indexOf(jcourant.getProprietePlusChere());
+				//il faut retirer le propriétaire de la case, remettre la case dans son état initial
 				}
 			}else if(dette >0){ // si la dette n'est toujours pas nulle il faut prélever sur le compte
 				jcourant.setArgent(jcourant.getSomme()-dette); 
 				if(jcourant.getSomme()<0){ //s'il n'y a plus d'argent le joueur a perdu
-					jcourant.setAbandon(); 
+					jcourant.tuer(); 
 					System.out.println("joueur"+jcourant.getNom()+"a perdu"); 
 				} 
 			}
@@ -100,6 +105,13 @@ public class EcouteurFinTour implements ActionListener {
 					 
 		
 		}
+		//on remet à 0 la dette du joueur si celle-ci était négtive, oui il peut perdre de l'argent dans ce cas						  
+		if(dette<0){ 
+                	dette = 0; 
+            	}
+		//on règle la nouvelle dette du joueur 
+           	jcourant.setDette(dette); 	
+		//on met à jour la dette tour avant du joueur 						   
 		detteTourAvant[rangJoueur] = dette;
 		
 		System.out.println(""+rangJoueur); 

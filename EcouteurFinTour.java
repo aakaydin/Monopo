@@ -8,18 +8,22 @@ public class EcouteurFinTour implements ActionListener {
 	
 	private FenetreInterface fen; 
 	private Joueur jcourant; 
-	private int dette = 0; 
-	private LinkedList<Integer> detteTourAvant = new LinkedList<Integer>(); 
+	 
+	
 	
 	JPanel lancerLesDes = new JPanel();
 	
 	JLabel lab = new JLabel("Vous pouvez lancer les des");
 	
 	private LinkedList<Joueur> ListJoueur = new LinkedList<Joueur>();
+	private int[] detteTourAvant;
+	private int dette = 0; 
+	
+	
 	
 	int rangJoueur =0 ;
 	int nbJoueur = 0;
-	 
+	  
 
 	
 	public EcouteurFinTour(FenetreInterface f,Joueur jcourant, LinkedList<Joueur> lj){ 
@@ -28,6 +32,11 @@ public class EcouteurFinTour implements ActionListener {
 		this.jcourant = jcourant; 
 		ListJoueur = lj ; 
 		nbJoueur = ListJoueur.size();
+		detteTourAvant = new int[ListJoueur.size()]; 
+		
+		for(int i =0; i<detteTourAvant.length; i++){ 
+			detteTourAvant[i] =0; 
+		}
 		 
 		
 		lancerLesDes.add(lab); 
@@ -42,10 +51,9 @@ public class EcouteurFinTour implements ActionListener {
 		
 		fen.finTour.setEnabled( false );
 		fen.lanceDe.setEnabled( true );
-		detteTourAvant.get(rangJoueur) = dette;
-		dette = jcourant.getDette();
 		
 		
+		System.out.println("taille tableau"+detteTourAvant.length); 
 			
 		//on met la méthode j.getSomme en début de tour car on autorise un tour d'endettement 
 		if(!jcourant.estVivant() || jcourant.getSomme() < 0){
@@ -54,18 +62,14 @@ public class EcouteurFinTour implements ActionListener {
 			//creer une fenêtre fin de la partie
 			FenetreFinPartie finpartie = new FenetreFinPartie(ListJoueur);
 		}
-		System.out.println(""+rangJoueur); 
-		if(rangJoueur + 1 >= nbJoueur ){
-			rangJoueur = (rangJoueur + 1)%nbJoueur ;
-		} else {
-			rangJoueur = rangJoueur + 1 ;
-		}
+	
 		
-		System.out.println("la dette du joueur avant est : "+detteTourAvant); 
+		System.out.println("la dette du joueur avant est : "+detteTourAvant[rangJoueur]); 
 		System.out.println("la dette du joueur est : "+jcourant.getDette());
 		
+		dette = jcourant.getDette();
 		
-		if(dette == detteTourAvant(rangJoueur) && dette!=0){ 
+		if(dette == detteTourAvant[rangJoueur] && dette!=0){ 
 			
 		 //en cas d'impayé il faut un indicateur pour actionner l'hypotheque
 			
@@ -96,7 +100,14 @@ public class EcouteurFinTour implements ActionListener {
 					 
 		
 		}
-		 
+		detteTourAvant[rangJoueur] = dette;
+		
+		System.out.println(""+rangJoueur); 
+		if(rangJoueur + 1 >= nbJoueur ){
+			rangJoueur = (rangJoueur + 1)%nbJoueur ;
+		} else {
+			rangJoueur = rangJoueur + 1 ;
+		}
 		System.out.println("Rang Joueur :"+rangJoueur); 
 		jcourant = ListJoueur.get(rangJoueur);							//on change de joueur; 
 		System.out.println(" Fin tour ");
@@ -106,7 +117,7 @@ public class EcouteurFinTour implements ActionListener {
 		//fen.panelEast.repaint();
 		fen.changerPanelJoueur(jcourant);
 		jouer.testerPrison();
-		dette = jcourant.getDette();
+		
 		
 		// je rend disponible de bouton PayerCredit
 		

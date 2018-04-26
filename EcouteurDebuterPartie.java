@@ -45,8 +45,13 @@ public class EcouteurDebuterPartie implements ActionListener {
 		}
 		
 		for(String nom : Nom){ 
+			
+			
+			
 			ListJoueur.add(new Joueur(nom,100000,0));
 			System.out.println(nom); 
+			
+			if( nom == "Bob") ListJoueur.getLast().estIA = true;
 		}
 		
 		

@@ -33,8 +33,6 @@ public class Jouer{
         plateau = p;
         fen = f ;
      
-		System.out.println(" LOL");
-    
     }
     
     public void testerPrison(){

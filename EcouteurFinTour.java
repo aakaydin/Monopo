@@ -148,7 +148,7 @@ public class EcouteurFinTour implements ActionListener {
 			fen.getPayerDette().setEnabled(false);
 		}
 		
-		if( jcourant.getNom() == "Bob"){
+		if( jcourant.estIA ){
 			
 			IA bob = new IA( fen);
 			bob.perform();

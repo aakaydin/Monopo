@@ -46,7 +46,7 @@ public class Joueur implements Comparable {
 	
 	//permet de tuer le joueur ce qui met fin à la partie
 	public  boolean estVivant = true ;
-	
+	public  boolean estIA;
 	
 	//permet de placer le joueur sur le plateau pour l'affichage graphique 
 	private JLabel label ;

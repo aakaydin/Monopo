@@ -103,7 +103,7 @@ public class CarteChance {
 		
 		description = "Versez 1000 M au systeme de collecte des factures.";
 		JButton payer = new JButton("Payer");
-		ecouteurTaxe = new EcouteurPayerTaxe(joueur, -1000, fen);
+		ecouteurTaxe = new EcouteurPayerTaxe(joueur, -1000, fen, payer);
 		payer.addActionListener(ecouteurTaxe);
 		panelCarteChance.add(payer, BorderLayout.SOUTH); //problème, ce bouton ne s'affiche pas 
 		panelCarteChance.repaint();

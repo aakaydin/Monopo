@@ -28,7 +28,7 @@ public class CaseTaxe extends Case{
 		JLabel lab = new JLabel("TAXE ! Vous devez payer "+valAPayer);
         panel.add(lab, BorderLayout.NORTH);
         JButton payer = new JButton("Payer");
-        payer.addActionListener(new EcouteurPayerTaxe(j, -valAPayer, f));
+        payer.addActionListener(new EcouteurPayerTaxe(j, -valAPayer, f,payer));
         panel.add(payer, BorderLayout.SOUTH);
         panel.repaint();
 	}

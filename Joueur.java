@@ -70,6 +70,7 @@ public class Joueur implements Comparable {
 		label = new JLabel(nom);
 		label.setOpaque(true);
 		
+		c = c%4;
 		
 		if( c == 0 ) col = Color.RED; 
 		if( c == 1 ) col = Color.BLUE;

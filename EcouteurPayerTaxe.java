@@ -1,16 +1,20 @@
 import java.awt.event.* ;
 import java.util.* ; 
+import javax.swing.*;
 
 public class EcouteurPayerTaxe implements ActionListener{
 	
 	Joueur j ; 
 	int somme ;
 	FenetreInterface fen ;
+	JButton but;
 	
-	public EcouteurPayerTaxe(Joueur jj, int somme, FenetreInterface f){
+	public EcouteurPayerTaxe(Joueur jj, int somme, FenetreInterface f, JButton button){
 		j = jj ;
 		this.somme = somme ;
 		fen = f ;
+		but = button;
+		fen.finTour.setEnabled(false);
 		
 	}
 	
@@ -19,6 +23,11 @@ public class EcouteurPayerTaxe implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent ae){
+		
+		
+		fen.finTour.setEnabled(true);
+		but.setEnabled(false);
+		
 		//peut être que le code de cette méthode peut se touver comme c'est déjà fait dans le programme jouer 
 		j.setArgent(somme);
 		fen.changerPanelJoueur(j);

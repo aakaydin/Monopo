@@ -60,136 +60,136 @@ public class FenetreInterface extends JFrame{
 	public FenetreInterface( int longue , int large, Plateau pl, Joueur jcourant, LinkedList<Joueur> LJ){
 
 
-	super(" Monopoly");
+		super(" Monopoly");
 
 
-	p = pl ;
-	this.jcourant = jcourant; 
-	ListJoueur = LJ;
+		p = pl ;
+		this.jcourant = jcourant; 
+		ListJoueur = LJ;
 
-	ecouteurdes = new EcouteurLancerLesDes(jcourant, this, p);
-	ecouterfintour = new EcouteurFinTour(this,jcourant, ListJoueur);
-	ecouteurabandonner = new EcouteurAbandonner(this);
-	ecouteurbanque = new EcouteurBanque(this);
-	ecouteurpayercredit =  new EcouteurPayerCredit(this);
-	ecouteurachatM = new EcouteurAchatBatiment(this , p , achatMaison , "Maison");
-	ecouteurachatH = new EcouteurAchatBatiment(this , p , achatHotel , "Hotel"); 
+		ecouteurdes = new EcouteurLancerLesDes(jcourant, this, p);
+		ecouterfintour = new EcouteurFinTour(this,jcourant, ListJoueur);
+		ecouteurabandonner = new EcouteurAbandonner(this);
+		ecouteurbanque = new EcouteurBanque(this);
+		ecouteurpayercredit =  new EcouteurPayerCredit(this);
+		ecouteurachatM = new EcouteurAchatBatiment(this , p , achatMaison , "Maison");
+		ecouteurachatH = new EcouteurAchatBatiment(this , p , achatHotel , "Hotel"); 
 
-	this.setSize(new Dimension(longue,large));
-	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-
-
-
-	// 
-
-	cadrePrincipal.setBackground(Color.CYAN);
-	panelSouth.setBackground(Color.CYAN);
-	panelNorth.setBackground(Color.CYAN);
-
-	this.setContentPane(cadrePrincipal);
-
-	//Creation des widgets
-
-
-	label = new JLabel (" Joueur : " + jcourant.getNom());
-	label1 = new JLabel(" Somme: " +jcourant.getSomme() );	
-	label2 = new JLabel(" ");	
-
-
-	finTour = new JButton(" End Turn");
-	lanceDe = new JButton(" Lancer les Des ");
-	abandonner = new JButton(" Abandonner ");
-	banque = new JButton(" Banque");
-	payerDette = new JButton(" Payer Credit");
-	payerDette.setEnabled(false);
-	achatMaison = new JButton("Acheter une maison"); 
-	achatHotel = new JButton("Acheter un hotel"); 
-
-
-	panelTemp = p.getCases().get(0).getPanel();
-
-	panelInfo.add(new JLabel("	INFORMATION TOUR"));
-	panelInfo.add(labInfo);
-
-	panelWest.add(panelInfo);
-	panelWest.add(panelTemp); 
-
-	aff = new AffichageDe( jcourant.de1 , jcourant.de2);
+		this.setSize(new Dimension(longue,large));
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 
 
 
-	// Lien entre les buttons et les listeners
+		// 
+
+		cadrePrincipal.setBackground(Color.CYAN);
+		panelSouth.setBackground(Color.CYAN);
+		panelNorth.setBackground(Color.CYAN);
+
+		this.setContentPane(cadrePrincipal);
+
+		//Creation des widgets
 
 
-	lanceDe.addActionListener( ecouteurdes ); //est-ce que mon écouteur va bien changer son joueur quand je change le joueur de la fenêtre ? rep Aydin : non 
-	finTour.addActionListener( ecouterfintour);
-	abandonner.addActionListener(ecouteurabandonner);
-	banque.addActionListener( ecouteurbanque );
-	payerDette.addActionListener( ecouteurpayercredit );
-	achatMaison.addActionListener(ecouteurachatM);
-	achatHotel.addActionListener(ecouteurachatH); 
-
-	//Object obj = new Object();	
-	//ActionEvent AE  = new ActionEvent( obj ,  0,  "lol");
-	//ecouteurdes.actionPerformed( AE);
+		label = new JLabel (" Joueur : " + jcourant.getNom());
+		label1 = new JLabel(" Somme: " +jcourant.getSomme() );	
+		label2 = new JLabel(" ");	
 
 
+		finTour = new JButton(" End Turn");
+		lanceDe = new JButton(" Lancer les Des ");
+		abandonner = new JButton(" Abandonner ");
+		banque = new JButton(" Banque");
+		payerDette = new JButton(" Payer Credit");
+		payerDette.setEnabled(false);
+		achatMaison = new JButton("Acheter une maison"); 
+		achatHotel = new JButton("Acheter un hotel"); 
 
-	finTour.setEnabled( false);
-	lanceDe.setEnabled( true);
 
+		panelTemp = p.getCases().get(0).getPanel();
 
+		panelInfo.add(new JLabel("	INFORMATION TOUR"));
+		panelInfo.add(labInfo);
 
-	// Ajout des Gadgets dans les panels
+		panelWest.add(panelInfo);
+		panelWest.add(panelTemp); 
 
-
-
-
-	panelEast.add(banque);	
-	panelEast.add(abandonner);
-	panelEast.add(payerDette);	
-	panelEast.add(achatMaison); 
-	panelEast.add(achatHotel);	
-	panelEast.add(aff);			
-	panelEast.add(lanceDe);	
+		aff = new AffichageDe( jcourant.de1 , jcourant.de2);
 
 
 
-	panelNorth.add(finTour);
-
-	panelSouth.add(label1 );
-	panelSouth.add(label);
-	//panelSouth.add(abandonner);	
+		// Lien entre les buttons et les listeners
 
 
-	//ligne de test
-	plateau.getPanelCase(jcourant.getPos()).dessinerJoueur(jcourant);
+		lanceDe.addActionListener( ecouteurdes ); //est-ce que mon écouteur va bien changer son joueur quand je change le joueur de la fenêtre ? rep Aydin : non 
+		finTour.addActionListener( ecouterfintour);
+		abandonner.addActionListener(ecouteurabandonner);
+		banque.addActionListener( ecouteurbanque );
+		payerDette.addActionListener( ecouteurpayercredit );
+		achatMaison.addActionListener(ecouteurachatM);
+		achatHotel.addActionListener(ecouteurachatH); 
+
+		//Object obj = new Object();	
+		//ActionEvent AE  = new ActionEvent( obj ,  0,  "lol");
+		//ecouteurdes.actionPerformed( AE);
 
 
-	// Ajout des panels avec tout les widgets dans un case de borderLayout
 
-	cadrePrincipal.add(plateau , BorderLayout.CENTER);
+		finTour.setEnabled( false);
+		lanceDe.setEnabled( true);
 
-	cadrePrincipal.add(panelWest , BorderLayout.WEST);
 
-	cadrePrincipal.add(panelEast , BorderLayout.EAST);
 
-	cadrePrincipal.add(panelSouth , BorderLayout.SOUTH);
+		// Ajout des Gadgets dans les panels
 
-	cadrePrincipal.add(panelNorth , BorderLayout.NORTH);
 
-	//Test affichage maisons 
-	this.getPanelCase(1).dessinerMaison(1);
-	this.getPanelCase(5).dessinerHotel(); 
-	this.getPanelCase(2).dessinerMaison(2);
-    this.getPanelCase(2).dessinerMaison(3);
-	//this.getPanelCase(2).dessinerHotel();
-	this.getPanelCase(8).dessinerMaison(3);
-    this.getPanelCase(9).dessinerMaison(3);
-	this.getPanelCase(9).dessinerMaison(0);
- 
 
-	 this.setVisible(true);
+
+		panelEast.add(banque);	
+		panelEast.add(abandonner);
+		panelEast.add(payerDette);	
+		panelEast.add(achatMaison); 
+		panelEast.add(achatHotel);	
+		panelEast.add(aff);			
+		panelEast.add(lanceDe);	
+
+
+
+		panelNorth.add(finTour);
+
+		panelSouth.add(label1 );
+		panelSouth.add(label);
+		//panelSouth.add(abandonner);	
+
+
+		//ligne de test
+		plateau.getPanelCase(jcourant.getPos()).dessinerJoueur(jcourant);
+
+
+		// Ajout des panels avec tout les widgets dans un case de borderLayout
+
+		cadrePrincipal.add(plateau , BorderLayout.CENTER);
+
+		cadrePrincipal.add(panelWest , BorderLayout.WEST);
+
+		cadrePrincipal.add(panelEast , BorderLayout.EAST);
+
+		cadrePrincipal.add(panelSouth , BorderLayout.SOUTH);
+
+		cadrePrincipal.add(panelNorth , BorderLayout.NORTH);
+
+		//Test affichage maisons 
+		this.getPanelCase(1).dessinerMaison(1);
+		this.getPanelCase(5).dessinerHotel(); 
+		this.getPanelCase(2).dessinerMaison(2);
+	    this.getPanelCase(2).dessinerMaison(3);
+		//this.getPanelCase(2).dessinerHotel();
+		this.getPanelCase(8).dessinerMaison(3);
+	    this.getPanelCase(9).dessinerMaison(3);
+		this.getPanelCase(9).dessinerMaison(0);
+
+
+		 this.setVisible(true);
 
 
 	}
@@ -203,8 +203,7 @@ public class FenetreInterface extends JFrame{
 
 	//ne fonctionne pas 
 	public void changerPanelTemp(JPanel p){
-
-		panelWest.removeAll();
+	panelWest.removeAll();
 
 		panelTemp = p ;
 
@@ -213,30 +212,27 @@ public class FenetreInterface extends JFrame{
 
 		panelWest.add(panelInfo);
 		panelWest.add(panelTemp);	
-
-
 	}
 
+	
+	
+	public Joueur getJoueur(){return jcourant;}
+	public LinkedList<Joueur> getLesJoueurs(){return ListJoueur ;}
+
+	
+	public void setJoueur(Joueur j){
+
+		jcourant = j;
+
+	}
+	
 	public void setTextInfo(String s){
 
 		labInfo.setText(s);
 
 	}
 
-	public Joueur getJoueur(){
-		return jcourant;
-	}
-
-	public LinkedList<Joueur> getLesJoueurs(){
-		return ListJoueur ;
-	}
-
-	public void setJoueur(Joueur j){
-
-		jcourant = j;
-
-	}
-
+	
 	public void changerPanelJoueur(Joueur j){
 
 		//ce code fonctionne
@@ -257,25 +253,13 @@ public class FenetreInterface extends JFrame{
 		/*ecouteurdes.setJoueur(j);
 		panelEast.repaint();*/
 
-
-
 	}
 
-	public PanelCase getPanelCase(int i){
-		return plateau.getPanelCase(i);
-	}
-
-	public JLabel getL1(){ 
-		return label1; 
-	}
-
-	public JButton getPayerDette(){ 
-		return payerDette; 
-	}
-        
-        public EcouteurPayerCredit getEcouteurPayerCredit(){ 
-			return ecouteurpayercredit; 
-		}
+	
+	public PanelCase getPanelCase(int i){return plateau.getPanelCase(i);}
+	public JLabel getL1(){return label1;}
+	public JButton getPayerDette(){return payerDette;}
+        public EcouteurPayerCredit getEcouteurPayerCredit(){ return ecouteurpayercredit;}
         
         
         public boolean peutAcheterMaison(){ //en general : servira notamment a l'activation du bouton 

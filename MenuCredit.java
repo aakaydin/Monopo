@@ -8,7 +8,7 @@ public class MenuCredit extends JFrame{
 	private JButton b2 = new JButton("Finir transaction"); 
 	private JTextField t1= new JTextField(10); 
 	private JLabel l1= new JLabel("Montant du credit"); 
-	private JLabel l2=new JLabel("affichage du resultat"); ;
+	private JLabel l2=new JLabel("affichage du resultat"); 
 	private JPanel cadrePrincipal;
 	private JPanel commande1; 
 	private JPanel commande2;

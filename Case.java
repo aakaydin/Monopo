@@ -9,13 +9,12 @@ public class Case{
 	private String desc;
 	private JPanel panel;
 
+	
 	// Constructeur avec position + nom  
 	public Case( int pos , String name, String desc ){
-		
 		nom = name;
 		position = pos;
 		this.desc = desc;
-		
 	}
 	
 	//Constructeur avec position et nom 
@@ -26,30 +25,16 @@ public class Case{
 		
 	// Constructeur avec position	
 	public Case( int pos){
-		
-		
 		position = pos;
-		
-		
-		}
+	}
 	
 	
 	
 	// Getteurs
 	
-	public String getNom(){
-		
-		
-		return nom;
-		
-		}
+	public String getNom(){return nom;}
 	
-	public int getPos(){
-		
-		
-		return position;
-		
-		}
+	public int getPos(){return position;}
 	
 	public JPanel getPanel(){return panel;}
 	

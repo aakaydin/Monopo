@@ -10,10 +10,10 @@ public class CaseProp extends Case{
 	private Joueur joueurcase ;
 	private int couleur;
 	private boolean achete = false;
-    //prix d'hypotheque du terrain, pas util dans notre version 
-    private int prixHypotheque; 
-    //prix d une maison
-    private int prixBatiment ;
+    	//prix d'hypotheque du terrain, pas util dans notre version 
+    	private int prixHypotheque; 
+    	//prix d une maison et d'un hotel
+    	private int prixBatiment ;
 
 	
 	//j'ai déjà créé l'écouteur payer 
@@ -42,9 +42,9 @@ public class CaseProp extends Case{
 		
 		super(pos, name);
 		this.prix = prix;
-        this.prixBatiment = prixBatiment ;
+        	this.prixBatiment = prixBatiment ;
 		propri = new Joueur("a",0,0) ; //joueur aléatoire juste pour l'instanciation
-        prixHypotheque = (int)prix/2 ;
+        	prixHypotheque = (int)prix/2 ;
         
 	}
 		
@@ -52,19 +52,18 @@ public class CaseProp extends Case{
 	
 	public JPanel getPanel(){return panel ;}
 	
-	public void setProprietaire(Joueur j){
-		propri = j;
-	}
-	
-    public int getPrixBatiment(){ return prixBatiment;}
+   	public int getPrixBatiment(){ return prixBatiment;}
     
 	public Joueur getPropri(){return propri;}
     
 	public int getPrix(){return prix;}
 	
 	public boolean getAchete(){return achete;}
+	
 
-
+	public void setProprietaire(Joueur j){propri = j;}
+	
+	
 	public void setDescriptionPanel(Joueur j){
 		joueurcase = j ;
 		ecouteurAcheter = new EcouteurAcheter(j, this, acheter) ;
@@ -92,7 +91,7 @@ public class CaseProp extends Case{
 	}		
 	
 	public void setAchete(boolean b){
-		achete = b ;
+		achete = b;
 	}		
 	
 	public void setFenetreEcouteurAcheter(FenetreInterface f){

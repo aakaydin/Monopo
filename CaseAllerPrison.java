@@ -8,7 +8,7 @@ public class CaseAllerPrison extends Case{
     
     //Constructeur 
     public CaseAllerPrison(){
-        super(21 , "Allez en prison!" ); 
+        super(21 , "Allez en prison!"); 
         JLabel prison = new JLabel("Vous vous retrouvez en prison");
         panel.add(prison); 
     }

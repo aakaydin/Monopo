@@ -7,22 +7,23 @@ import javax.swing.*;
 public class EcouteurFinTour implements ActionListener {
 	
 	private FenetreInterface fen; 
+	//joueur qui appuie sur le bouton
 	private Joueur jcourant; 
     private Plateau plateau ;
     private PanelPlateau panelPlateau ;
-	 
 	
+	//panel pour le panel de la fenêtre 
+	private JPanel lancerLesDes = new JPanel();
+	private JLabel lab = new JLabel("Vous pouvez lancer les des");
 	
-	JPanel lancerLesDes = new JPanel();
-	
-	JLabel lab = new JLabel("Vous pouvez lancer les des");
-	
+	//liste des joeurs de ma aprtie 
 	private LinkedList<Joueur> ListJoueur = new LinkedList<Joueur>();
+	
+	//code util pour le traitement du crédit  mais qui est une partie que nous n'avons pas fini de développer et qui n'est pas opérationnelle 
 	//private int[] detteTourAvant;
 	//private int dette = 0; 
 	
-	
-	
+	//va prendre le rang du joueur courant dans la linkedlist
 	int rangJoueur =0 ;
 	int nbJoueur = 0;
 	  
@@ -54,13 +55,12 @@ public class EcouteurFinTour implements ActionListener {
 		//on efface le panel de la case sur laquelle on se trouve 
 		fen.changerPanelTemp(new JPanel()); 
 		
+		//on change l'activation des boutons pour que le joueur ne fasse pas ce qu'il veut 
 		fen.finTour.setEnabled( false );
 		fen.lanceDe.setEnabled( true );
-		
-		
-		//System.out.println("taille tableau"+detteTourAvant.length); 
 			
-		//on met la méthode j.getSomme en début de tour car on autorise un tour d'endettement 
+		//on met la méthode j.getSomme en début de tour car on autorise un tour d'endettement donc on peut être un tour en négatif 
+		//test si le joeur est mort ou n'a plus d'argent 
 		if(!jcourant.estVivant() || jcourant.getSomme() < 0){
 			fen.dispose();
 			//fin de la partie
@@ -68,7 +68,7 @@ public class EcouteurFinTour implements ActionListener {
 			FenetreFinPartie finpartie = new FenetreFinPartie(ListJoueur);
 		}
 	
-		
+		//partie qui permet de tester si le joueur a bien payer son crédit et sinon de le pénaliser en hypothéquent en conséquence, partie non fonctionnelle pour l'instant 
 		//System.out.println("la dette du joueur avant est : "+detteTourAvant[rangJoueur]); 
 		//System.out.println("la dette du joueur est : "+jcourant.getDette());
 		
@@ -122,25 +122,27 @@ public class EcouteurFinTour implements ActionListener {
 		//on met à jour la dette tour avant du joueur 						   
 		detteTourAvant[rangJoueur] = dette;*/ 
 		
-		System.out.println(""+rangJoueur); 
+		
+		//changement du joueur dont c'est le tour 
 		if(rangJoueur + 1 >= nbJoueur ){
 			rangJoueur = (rangJoueur + 1)%nbJoueur ;
 		} else {
 			rangJoueur = rangJoueur + 1 ;
 		}
-		System.out.println("Rang Joueur :"+rangJoueur); 
+		
+		//changement du joueur couant 
 		jcourant = ListJoueur.get(rangJoueur);							//on change de joueur; 
-		System.out.println(" Fin tour ");
-		Jouer jouer = new Jouer(fen.getPlateau(), fen, jcourant);
+		
+		
+		//changements liés à la fenêtre 
 		fen.setJoueur(jcourant);
 		fen.changerJoueurEcouteurDe(jcourant);
 		//fen.panelEast.repaint();
 		fen.changerPanelJoueur(jcourant);
-		jouer.testerPrison();
+	
 		
 		
-		// je rend disponible de bouton PayerCredit
-		
+		//changement du joueur pour le bouton payer credit qui doit être adapté au joueur courant 
 		fen.getEcouteurPayerCredit().changerJoueur(jcourant);
 		if(jcourant.getDette()!=0){ 
 			fen.getPayerDette().setEnabled(true); 
@@ -148,16 +150,18 @@ public class EcouteurFinTour implements ActionListener {
 			fen.getPayerDette().setEnabled(false);
 		}
 		
-		if( jcourant.estIA ){
+		//si c'est le tour de l'intelligence artificielle est Bob alors le tour lancé est différent 
+		if( jcourant.getNom() == "Bob"){
 			
 			IA bob = new IA( fen);
 			bob.perform();
 			
-		}
-		
-		
-		 
-	
+		} 
+		//et si c'est son tour on laisse quand même ça Aydin ?? 
+			//création d'un nouvel objet jouer qui va permettre d'effcetuer en cascade les méthodes d'un tour 
+			Jouer jouer = new Jouer(fen.getPlateau(), fen, jcourant);
+			//méthode à partir de laquelle vont s'effectuer en cascade les autres méthodes
+			jouer.testerPrison();
 	 
 	}
 }

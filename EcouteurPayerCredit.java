@@ -10,30 +10,22 @@ public class EcouteurPayerCredit implements ActionListener{
 	public EcouteurPayerCredit(FenetreInterface f){
 		fen = f;
 		jcourant = fen.getJoueur();
-		
-		
-		
+
 	}
 	
+	//pour changer le joueur associé à ce bouton et donc prélever l'argent sur le bon joueur 
 	public void changerJoueur(Joueur j){ 
 		jcourant = j; 
 	}
 	
 	public void actionPerformed(ActionEvent ae){
 		if(jcourant.getDette() !=0){
-			System.out.println("mon joueur est : "+jcourant.getNom()); 
-			System.out.println("ma dette avant : "+jcourant.getDette()); 
-			System.out.println("mon argent : "+jcourant.getSomme());
-			System.out.println("mensualité "  + mensualite); 
-			System.out.println("mesualite du joueur"+jcourant.getMensualite()); 
+			//changement de la somme et de la dette du joueur 
 			jcourant.setDette(-jcourant.getMensualite()); 
 			jcourant.setArgent(-jcourant.getMensualite());
-			System.out.println("mon argent"+jcourant.getSomme());
-			System.out.println("ma mensualite"+jcourant.getMensualite());
-			System.out.println("ma dette"+jcourant.getDette()); 
+			
 		}
-		//fen.getL1().setText("Somme : "+jcourant.getSomme());     //j'affiche la somme du joueur 
-		//il faut plutôt utiliser la méthode changer panel joueur 
+		
 		fen.changerPanelJoueur(jcourant);
 		fen.getPayerDette().setEnabled(false);  
 		

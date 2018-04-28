@@ -4,14 +4,17 @@ import java.awt.*;
 
 public class MenuPrincipal extends JFrame{
 	
+	//zones où est rentré le nombre de joueurs et le nombre d'IA (qui ne peut être que un) 
 	private JTextField t1 = new JTextField(20); 
 	private JTextField t2 = new JTextField(20);
 	private JLabel l1 = new JLabel("nombre de joueur");
 	private JLabel l2 = new JLabel("nombre d'IA");
+	//bouton qui va permettre d'afficher la case suivante
 	private JButton b1 = new JButton("Suivant"); 
+	//ecouteur associé 
 	private EcouteurSuivant1 e1; 
+	//autre fenêtre avec un ecouteur associé, fenêtre de champ de saisi du nom des joueurs 
 	private MenuPrincipal2 m2 = new MenuPrincipal2(400,300); 
-	 
 	
 	public MenuPrincipal(int longueur, int largeur){ 
 
@@ -33,8 +36,9 @@ public class MenuPrincipal extends JFrame{
 		commande1.add(l2); 
 		commande1.add(t2);
 		t2.setText("0"); 
-		
 		commande2.add(b1);
+		
+		//on va créer un ecouteur qui permettra de créer la nouvelle fenêtre pour lancer le nom des jouerus 
 		e1 = new EcouteurSuivant1(this,m2);
 		b1.addActionListener(e1);  
 		

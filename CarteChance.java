@@ -15,16 +15,14 @@ public class CarteChance {
 	public EcouteurPayerTaxe ecouteurTaxe ;
 	
 	public FenetreInterface fen ;
-	public Joueur joueur ;
 	
+	public Joueur joueur ;
 	//liste d'entiers qui permet de faire le tirage au sort de la méthode qui va s'appliquer au tirage 
 	ArrayList<Integer> listCart = new ArrayList<Integer>() ; 
-	
 	int i = 0 ; //va donner la valeur de la méthode utilisée 
 	
-	//quand un joueur arrive sur une case il va créer une carte chance avec en attribut ce joueur pour que les méthodes puissent s'executer 
+	//quand un joueur arrive sur une case il va créer une carte chance avec en attribut se joueur pour que les méthodes puisse s'executer 
 	public CarteChance(Joueur j, FenetreInterface f){
-		
 		description = "" ; 
 		joueur = j ;
 		fen = f ;
@@ -52,20 +50,22 @@ public class CarteChance {
 		 }
 	}
 	
-	public void setJoueur(Joueur j){joueur = j ;}
+	public void setJoueur(Joueur j){
+		joueur = j ;
+	}
 	
-	public Joueur getJoueur(){return joueur ;}
+	public Joueur getJoueur(){
+		return joueur ;
+	}
 	
-	public String getDescription(){return description ;}
-	
-	public JPanel getPanel(){return panelCarteChance;}
+	public String getDescription(){
+		return description ;
+	}
 	
 	
 	public int tirerCarte(){
-		
 		int random = (int)(Math.random()*listCart.size()) ;
 		i = listCart.get(random); 
-		
 		if(i ==1){
 			this.carteAllerEnPrison();
 		} else if(i == 2){
@@ -77,7 +77,6 @@ public class CarteChance {
 		} else {
 			this.carteMourir();
 		}
-		
 		//ajout de la description associée 
 		JLabel d2 = new JLabel(description);
 		JLabel d1 = new JLabel(texteAffiche) ;
@@ -85,22 +84,17 @@ public class CarteChance {
 		panelCarteChance.add(d2, BorderLayout.CENTER);
 		
 		return i;
-		
 	}
 	
 	//une méthode par type de carte chance 
+	//pour l'instant les méthode s'executent toutes seuls mais on pourra peut être faire 
 	public void carteAllerEnPrison(){
-		
 		description = "Direction la prison !";
-		joueur.setEnPrison(true);
-		
+		joueur.setEnPrison(true) ;
 	}
 	
 	public void carteRelancerDes(){
-		
 		description = "Vous pouvez rejouer !";
-		fen.lanceDe.setEnabled(true);
-		fen.finTour.setEnabled(false);
 		//rend actif le bouton pour relancer les des 
 		
 	}
@@ -113,26 +107,26 @@ public class CarteChance {
 		payer.addActionListener(ecouteurTaxe);
 		panelCarteChance.add(payer, BorderLayout.SOUTH); //problème, ce bouton ne s'affiche pas 
 		panelCarteChance.repaint();
-		
 	}
-	
 	public void carteSortirPrison(){
-		
 		description = "Carte sortir de prison";
-		joueur.setCarteSortirPrison(true);
 		
+		joueur.setCarteSortirPrison(true) ;
 	}
 	
 	public void carteMourir(){
-		
 		description = "Fin de la partie ! :(";
-		joueur.tuer(); 
+		joueur.tuer() ; 
 		fen.dispose();
 		FenetreFinPartie finpartie = new FenetreFinPartie(fen.getLesJoueurs());
 		//devrait se faire ouvrir une fenêtre fin de partie
-		//ou alors faire changer une variable et en début du tour suivant si cette variable est vraie alors ecouteur fin tour ouvre fenetre fin jeu
-	
+		//ou alors faire changer une variable et en début du tour suivant si cette variable est vrai alors ecouteur fin tour ouvre fenetre fin jeu
 	}
+	
+	public JPanel getPanel(){
+		return panelCarteChance ;
+	}
+	
 	
 	//une méthode tirerCarte qui va sélectionner une méthode parmi les autres ; il faut que les méthodes aient des possibilités différentes de sortir, on fait une liste d'entiers avec 5 valeurs différentes, chacune de ces 5 valeurs correspond à une méthode 
 

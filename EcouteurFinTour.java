@@ -151,7 +151,7 @@ public class EcouteurFinTour implements ActionListener {
 		}
 		
 		//si c'est le tour de l'intelligence artificielle est Bob alors le tour lancé est différent 
-		if( jcourant.getNom() == "Bob"){
+		if( jcourant.estIA){
 			
 			IA bob = new IA( fen);
 			bob.perform();

@@ -5,7 +5,7 @@ public class CaseChance extends Case {
 		
 		super(pos, name);
 		
-		}
+	}
 	
 	//première méthode inutile, juste au cas où
 	public CarteChance creerCarteChance(Joueur j, FenetreInterface f){

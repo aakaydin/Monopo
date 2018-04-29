@@ -5,7 +5,7 @@ public class EcouteurNouvellePartie implements ActionListener {
 	
 	FenetreFinPartie fen;
 	
-	public EcouteurNouvellePartie(FenetreFinPartie ffp){
+	public EcouteurNouvellePartie(FenetreFinPartie ffp){ //Permet de commencer une nouvelle partie après arrêt d'une autre partie (sans réexecuter Principal) par le biais de FenetreFinPartie
 		fen = ffp;
 	}
 	

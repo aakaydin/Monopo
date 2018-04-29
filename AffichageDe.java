@@ -5,21 +5,23 @@ import java.util.LinkedList;
 
 public class AffichageDe extends JPanel{
 
+		//valeur des dés
 		private int de1;
 		private int de2;
 		
-		
+		//dimension du dé et des points 
 		private int cote = 50;
 		private int rayon = cote/5;
 		
 		
 	public AffichageDe( int d1 , int d2){
 		
-	
+		//valeur des deux dés 
 		setDes( d1 , d2);
 		
 		}
-
+	
+	//méthode qui va créer un carré blanc avec des point snoirs en fonction du score du dé 
 	 protected void paintComponent( Graphics g){
 		
 		

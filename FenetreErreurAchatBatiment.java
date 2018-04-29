@@ -1,6 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 
+//fenêtre qui va s'afficher lorsque les données entrées dans les champs d'achat ne sont pas correctes 
 public class FenetreErreurAchatBatiment extends JFrame{
 
     private JLabel text;
@@ -15,6 +16,7 @@ public class FenetreErreurAchatBatiment extends JFrame{
         JPanel cadrePrincipal  = new JPanel(); 
         this.setContentPane(cadrePrincipal);
         
+	    //le texte s'adapte en fonction de l'erreur qui a été commise 
         if(erreur == 1){
             text = new JLabel("La case demandee n'est pas une propriete!");
         }else if(erreur == 2){

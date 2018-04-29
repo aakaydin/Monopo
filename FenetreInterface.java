@@ -287,7 +287,7 @@ public class FenetreInterface extends JFrame{
             int i = 0; 
             int nbGroupesOk = 0; 
             
-            while(nbGroupesOk == 0 || fin == false){
+            while(nbGroupesOk == 0 && fin == false){
                 
                 nbProp = 1;
                 for(CaseProp c : groupNoir){

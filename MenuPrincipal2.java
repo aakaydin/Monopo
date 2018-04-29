@@ -23,7 +23,7 @@ public class MenuPrincipal2 extends JFrame{
 	private int nbJoueur; 
 	private int nbIA; 
 
-	private LinkedList<JTextField> text = new LinkedList<JTextField>(); 
+	private LinkedList<JTextField> text = new LinkedList<JTextField>(); 			//permet de stocker les noms des joueurs
 	private EcouteurDebuterPartie e2; 
 	private JPanel cadrePrincipal; 
 	
@@ -56,8 +56,7 @@ public class MenuPrincipal2 extends JFrame{
 	}
 	
 	public LinkedList<JTextField> getTextField(){ 
-		if(fenetreFinie == true){								//si le ma fenetre est finie alors je renvoie mes texts, ce qui sera toujours le cas ici
-		 return text; 
+		if(fenetreFinie == true){								//si ma fenetre est finie alors je renvoie mes texts, ce qui sera toujours le cas ici		 return text; 
 		}else{ 
 			return null;
 		} 
@@ -123,7 +122,7 @@ public class MenuPrincipal2 extends JFrame{
 			cadrePrincipal.add(b2);
 		} 
 		
-		fenetreFinie = true;
+		fenetreFinie = true;				//cela permet d'indiquer que la fenetre a bien été finie, et que les noms sont bien stockés dans text, pour éviter les erreurs de pointeur null lorsque j'utilise text pour la création des joueurs, dans l'écouteur débuterPartie
 		return fenetreFinie;  
 	}
 		

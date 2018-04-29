@@ -180,17 +180,17 @@ public class FenetreInterface extends JFrame{
 
 		//Test affichage maisons 
 		
-		/**
 		
-		this.getPanelCase(1).dessinerMaison(1);
+		
+		/*this.getPanelCase(1).dessinerMaison(1);
 		this.getPanelCase(5).dessinerHotel(); 
 		this.getPanelCase(2).dessinerMaison(2);
 	    this.getPanelCase(2).dessinerMaison(3);
 		this.getPanelCase(8).dessinerMaison(3);
 	    this.getPanelCase(9).dessinerMaison(3);
-		this.getPanelCase(9).dessinerMaison(0);
+		this.getPanelCase(9).dessinerMaison(0);*/
 
-		*/
+		
 		
 		 this.setVisible(true);
 
@@ -285,8 +285,9 @@ public class FenetreInterface extends JFrame{
             boolean fin = false;
             int nbProp = 0; 
             int i = 0; 
+            int nbGroupesOk = 0; 
             
-            while(nbProp != 3 && fin == false){
+            while(nbGroupesOk == 0 || fin == false){
                 
                 nbProp = 1;
                 for(CaseProp c : groupNoir){
@@ -295,65 +296,137 @@ public class FenetreInterface extends JFrame{
                     if(immobilier.contains(c)){
                         nbProp = nbProp + 1;
                         System.out.println("On est dans la boucle groupeNoir : vrai"); 
+                        System.out.println("NbProp : " + nbProp); 
                     }else{
                         System.out.println("On est dans la boucle groupeNoir : faux"); 
+                        System.out.println("NbProp : " + nbProp);
                     }
+                } 
+                
+                if(nbProp == 3){
+                    nbGroupesOk = nbGroupesOk + 1; 
                 }
                 
                 nbProp = 0; 
                 for(CaseProp c : groupCyan){
                     if(immobilier.contains(c)){
                         nbProp = nbProp + 1;
+                        System.out.println("On est dans la boucle groupeCyan : vrai");
+                        System.out.println("NbProp : " + nbProp); 
+                    }else{
+                        System.out.println("On est dans la boucle groupeCyan : faux"); 
+                        System.out.println("NbProp : " + nbProp);
                     }
+                }
+                
+                
+                if(nbProp == 3){
+                    nbGroupesOk = nbGroupesOk + 1; 
                 }
                 
                 nbProp = 1; 
                 for(CaseProp c : groupRose){
                     if(immobilier.contains(c)){
                         nbProp = nbProp + 1;
+                        System.out.println("On est dans la boucle groupeRose : vrai");
+                        System.out.println("NbProp : " + nbProp); 
+                    }else{
+                        System.out.println("On est dans la boucle groupeRose : faux"); 
+                        System.out.println("NbProp : " + nbProp);
                     }
+                }
+                
+                if(nbProp == 3){
+                    nbGroupesOk = nbGroupesOk + 1; 
                 }
                 
                 nbProp = 0; 
                 for(CaseProp c : groupOrange){
                     if(immobilier.contains(c)){
                         nbProp = nbProp + 1;
+                        System.out.println("On est dans la boucle groupeOrange : vrai"); 
+                        System.out.println("NbProp : " + nbProp);
+                    }else{
+                        System.out.println("On est dans la boucle groupeOrange : faux"); 
+                        System.out.println("NbProp : " + nbProp);
                     }
+                }
+                
+                if(nbProp == 3){
+                    nbGroupesOk = nbGroupesOk + 1; 
                 }
                 
                 nbProp = 0; 
                 for(CaseProp c : groupRouge){
                     if(immobilier.contains(c)){
                         nbProp = nbProp + 1;
+                        System.out.println("On est dans la boucle groupeRouge : vrai"); 
+                        System.out.println("NbProp : " + nbProp);
+                    }else{
+                        System.out.println("On est dans la boucle groupeRouge : faux");
+                        System.out.println("NbProp : " + nbProp); 
                     }
+                }
+                
+                if(nbProp == 3){
+                    nbGroupesOk = nbGroupesOk + 1; 
                 }
                 
                 nbProp = 1; 
                 for(CaseProp c : groupJaune){
                     if(immobilier.contains(c)){
                         nbProp = nbProp + 1;
+                        System.out.println("On est dans la boucle groupeJaune : vrai"); 
+                        System.out.println("NbProp : " + nbProp);
+                    }else{
+                        System.out.println("On est dans la boucle groupeJaune : faux");
+                        System.out.println("NbProp : " + nbProp); 
                     }
+                }
+                
+                if(nbProp == 3){
+                    nbGroupesOk = nbGroupesOk + 1; 
                 }
                 
                 nbProp = 0; 
                 for(CaseProp c : groupVert){
                     if(immobilier.contains(c)){
                         nbProp = nbProp + 1;
+                        System.out.println("On est dans la boucle groupeVert : vrai"); 
+                        System.out.println("NbProp : " + nbProp);
+                    }else{
+                        System.out.println("On est dans la boucle groupeVert : faux"); 
+                        System.out.println("NbProp : " + nbProp);
                     }
+                }
+                
+                if(nbProp == 3){
+                    nbGroupesOk = nbGroupesOk + 1; 
                 }
                 
                 nbProp = 1; 
                 for(CaseProp c : groupBleu){
                     if(immobilier.contains(c)){
                         nbProp = nbProp + 1;
+                        System.out.println("On est dans la boucle groupeBleu : vrai"); 
+                        System.out.println("NbProp : " + nbProp);
+                    }else{
+                        System.out.println("On est dans la boucle groupeBleu : faux");
+                        System.out.println("NbProp : " + nbProp); 
                     }
                 }
+                
+                if(nbProp == 3){
+                    nbGroupesOk = nbGroupesOk + 1; 
+                }
+                
+                System.out.println("nbGroupesOk : " + nbGroupesOk); 
                 
                 fin = true;
                 
             }
             
-            if(nbProp == 3){
+            if(nbGroupesOk != 0){
                 peutAcheter = true; 
             }
             
@@ -459,7 +532,9 @@ public class FenetreInterface extends JFrame{
                                     System.out.println("Le prop est " + propri + "\n On a ajoute une maison et la case vaut maintenant " + prop.getPrix()); 
                                     
                                     //On doit ajouter l'affichage graphique de la maison 
-                                    this.getPanelCase(num).dessinerMaison(prop.getNbMaisons()); 
+                                    this.getPanelCase(num).dessinerMaison(prop.getNbMaisons());
+                                    //plateau.repaint(); 
+                                    this.repaint();  
                                     }
                                 }
                             }

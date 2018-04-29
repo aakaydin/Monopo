@@ -41,8 +41,10 @@ public class EcouteurValiderCredit implements ActionListener{
 			label.setText("vous n'avez pas assez de capital pour emprunter");
 		}
 		label.setVisible(true);
+		//changement de l'affichage graphique sur l'interface 
 		fen.changerPanelJoueur(mc.getJoueurCourant());
 		
+		//activation et desactivation des boutons 
 		fen.getPayerDette().setEnabled(true); 											//je rend disponible le bouton payer credit
 		mc.getValiderCredit().setEnabled(false); 
 		

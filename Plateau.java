@@ -18,13 +18,12 @@ public class Plateau  {
 
 	int nbCases = 28 ; 
 
-	//objet qui va seulement servir à initialiser les rapports entre plateau et case 
-
-	
 	public Plateau(){
-		
-		cases = new LinkedList<Case>();
 
+		//on crée une nouvelle link list de cases qui seront les cases de notre jeu, on les rentre dans l'ordre du plateau 
+		cases = new LinkedList<Case>();
+		
+		//on regroupe les cases propriétés dans différents groupes de couleur 
 		groupNoir = new LinkedList<CaseProp>(); 
 		groupCyan = new LinkedList<CaseProp>(); 
 		groupRose = new LinkedList<CaseProp>(); 
@@ -35,6 +34,8 @@ public class Plateau  {
 		groupBleu = new LinkedList<CaseProp>(); 
 
 		//On instancie une à une et dans l'ordre les 28 cases du plateau 
+		//il faut rentre les noms, l'indice de position, leprix et le prix du batiment 
+		//pour ne pas avoir trop d'objets CaseProp on en crée un qu'on renouvelle tout le temps pour ajouter la nouvelle case propriété à la liste 
 		CaseDepart cdep = new CaseDepart();
 		cases.add(cdep);
 		CaseProp p = new CaseProp(1, "Belleville", 6000, 50);
@@ -129,6 +130,7 @@ public class Plateau  {
 	 
 	}
 	
+	//getteurs 
 	public LinkedList<Case> getCases(){return cases;}
     
 	public LinkedList<CaseProp> getGroupNoir(){return groupNoir;}

@@ -3,7 +3,8 @@ import javax.swing.*;
 
 
 public class Case{
-
+	
+	//il faut relever la position de la case pour la relier au plateau, il y a également un panel qui est associé à chaque case et qui s'affiche sur le plateau 
 	private int position;
 	private String nom;
 	private String desc;

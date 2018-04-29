@@ -10,6 +10,7 @@ public class EcouteurRetourBanque implements ActionListener{
 		
 	}
 	
+	//la méthode de cette classe va fermer la fenêtre de la banque 
 	public void actionPerformed(ActionEvent ae){
 		mb.setVisible(false); 
 	}

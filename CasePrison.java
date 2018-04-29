@@ -4,9 +4,7 @@ import javax.swing.*;
 public class CasePrison extends Case{
 	
     JPanel panel = new JPanel();
-    Joueur j ;
-	
-    
+        
     public CasePrison(){
         super(7 , "Prison"); 
         JLabel arriveprison = new JLabel("Pas de chance, vous tombez en prison");

@@ -23,6 +23,7 @@ public class EcouteurBtnAchatMaison implements ActionListener {
         if(num == false){
             FenetreErreurAchatBatiment f = new FenetreErreurAchatBatiment(9);
             fen.dispose();
+            
         }else{
             res = fen.getEntreeNumInt(); 
             fen.setNumPropri(res); 
@@ -36,6 +37,9 @@ public class EcouteurBtnAchatMaison implements ActionListener {
 
             MaisonVerte m = new MaisonVerte(res , plateau); 
             fenInt.getJoueur().ajouterMaison(m); 
+            
+            fenInt.plateau.repaint();
+            fenInt.pack();
         }
     }
 

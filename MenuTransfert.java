@@ -1,10 +1,13 @@
 import javax.swing.*; 
 import java.awt.*; 
 import java.util.*;
+
+//fenêtre qui permet de rentrer les valeurs (nom du joueur destinataire et somme) lorsque le joueur dont c'est le tour de jouer veut effectuer un transfert 
 public class MenuTransfert extends JFrame{
 	
-	
+	//différents éléments qui seront affichés dans la fenêtre 
 	private JButton b1 = new JButton("Transferer"); 
+	//champs où doivent être entrés le nom du bénéficiaire et le montant du transfert 
 	private JTextField t1= new JTextField(10);
 	private JTextField t2= new JTextField(10);
 	private JLabel l1= new JLabel("Nom du beneficiaire"); 
@@ -13,12 +16,14 @@ public class MenuTransfert extends JFrame{
 	private JPanel commande1; 
 	private JPanel commande2; 
 	private JPanel commande3;
-	private Joueur jcourant; 
-	private LinkedList<Joueur> ListJoueur; 
-	private FenetreInterface fen ;
-	  
-	  
 	
+	//joueur qui effectue l'action
+	private Joueur jcourant; 
+	//liste des joueurs de la partie 
+	private LinkedList<Joueur> ListJoueur; 
+	//fenêtre qui gère l'affichage de la partie 
+	private FenetreInterface fen ;
+
 	public MenuTransfert(int longueur, int largeur,Joueur jcourant,LinkedList<Joueur> tab, FenetreInterface f){
 		
 		super("Menu Transfert"); 
@@ -45,6 +50,9 @@ public class MenuTransfert extends JFrame{
 		t2.setText("0"); 
 		commande3.add(b1,BorderLayout.CENTER);
 		fen = f; 
+		
+		//l'écouteur transférer est éjouté au bouton de validation du transfert, il va appeler les méthodes sur les joueurs concernés pour mettre à jour leur somme 
+		//la mise en paramètre de la fenêtre interface permet de récupérer dans l'écouteur la liste de joueur et de mettre à jour l'affichage graphique en même temps que le transfert 
 		b1.addActionListener(new EcouteurTransferer(this, fen)); 
 	
 		

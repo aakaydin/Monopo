@@ -14,6 +14,7 @@ public class EcouteurPayerTaxe implements ActionListener{
 		this.somme = somme ;
 		fen = f ;
 		but = button;
+		//on désactive le bouton de fin de tour pour que le joueur soit obligé de payer les taxes 
 		fen.finTour.setEnabled(false);
 		
 	}
@@ -22,17 +23,19 @@ public class EcouteurPayerTaxe implements ActionListener{
 		fen = f ;
 	}
 	
+	//méthode appelée lorsque le joueur appuie sur payer la taxe 
 	public void actionPerformed(ActionEvent ae){
 		
-		
+		//il peut à présent terminer son tour 
 		fen.finTour.setEnabled(true);
+		//le bouton de payer la taxe devient faux 
 		but.setEnabled(false);
 		
-		//peut être que le code de cette méthode peut se touver comme c'est déjà fait dans le programme jouer 
+		//changement de la somme du joueur 
 		j.setArgent(somme);
+		//changement de l'affichage graphique 
 		fen.changerPanelJoueur(j);
-		//il faut que l'argent soit déverser dans la classe cagnotte, fait dans méthode tour 
-		//il faudrait que ça change l'affichage de la somme du joueur dans la fenêtre
+		
 		
 	}
 }

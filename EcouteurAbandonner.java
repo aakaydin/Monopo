@@ -3,10 +3,9 @@ import java.util.*;
 
 public class EcouteurAbandonner implements ActionListener {
 	
+	//Attributs 
 	private FenetreInterface fen; 
 	private Joueur jcourant; 
-	
-	private LinkedList<Joueur> ListJoueur = new LinkedList<Joueur>();
 	
 	int rangJoueur =0 ;
 	int nbJoueur = 0;
@@ -21,15 +20,16 @@ public class EcouteurAbandonner implements ActionListener {
 		
 	} 
 	
+	//cet ecouteur devrait se faire afficher une fenetre fin de la partie
 	public void actionPerformed(ActionEvent e){ 
 		
 		fen.dispose();
 		
 		fen.jcourant.tuer();
 		
-		System.out.println("  Your ded 2 me " );
+		
 		FenetreFinPartie finpartie = new FenetreFinPartie(fen.getLesJoueurs());
-		//cet ecouteur devrait se faire afficher une fenetre fin de la partie
+		
 		
 		
 	 

@@ -3,8 +3,7 @@ import java.util.* ;
 
 public class EcouteurLancerLesDes implements ActionListener{
 	
-	Joueur j ; 
-	//il faudra récupérer jouer pour passer d'un tour à l'autre mais ne pourra être fait que quand partie aura pu être fait 
+	Joueur j ;  
 	Jouer jouer ;
 	FenetreInterface fen ;
 	boolean enPrison;
@@ -12,7 +11,6 @@ public class EcouteurLancerLesDes implements ActionListener{
 	public EcouteurLancerLesDes(Joueur jj, FenetreInterface f, Plateau p){
 		j = jj ;
 		jouer = new Jouer(p, f, j);
-		//jouer = f.getPartie().getJouer() ; 
 		fen = f;
 		enPrison = j.enPrison;
 	}
@@ -22,82 +20,74 @@ public class EcouteurLancerLesDes implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent ae){
-		//il faut enlever le panel qui dit qu'on peut lancer les dés 
 		
-		System.out.println("des");
+		//System.out.println("des");
 		
 		fen.setTextInfo(""); 
-		j.lancerLesDes() ; 
+		j.lancerLesDes(); 
 		
 		if( j.de1 != j.de2){	
 		
-		fen.finTour.setEnabled(true);
-		fen.lanceDe.setEnabled(false);
+		fen.finTour.setEnabled(true); //Si le joueur n'a pas fait de double, il peut finir son tour 
+		fen.lanceDe.setEnabled(false); //et il ne peut pas rejouer 
 		
 		}else if( j.de1 == j.de2 && enPrison == false ){
+			
 			fen.setTextInfo("Rejouez");
-			fen.finTour.setEnabled(false);
+			fen.finTour.setEnabled(false); //s'il a fait un double il est obligé de relancer les dés 
 			fen.lanceDe.setEnabled(true);
 			
-			}else if ( enPrison == true ){
-				
-				if(j.de1 == j.de2){
-					
-					fen.finTour.setEnabled(true);
-					fen.lanceDe.setEnabled(false);
-					
-					
-					}	
-				}
+		}else if ( enPrison == true ){
+
+			if(j.de1 == j.de2){ 
+
+				fen.finTour.setEnabled(true);
+				fen.lanceDe.setEnabled(false);
 		
-		//if(this.estActif() == true){
-		//dans le cas où le joueur n'est pas en prison il faut l'enlever de sa position précédente 
-		//if(!j.getEnPrison()){
-			fen.getPanelCase(j.getPos()).retirerJoueur(j);
-			fen.getPanelPlateau().repaint();
-		//}
+			}	
+		}
 		
+		
+		fen.getPanelCase(j.getPos()).retirerJoueur(j); //On efface le joueur de la position qu'il avait avant de lancer les dés
+		fen.getPanelPlateau().repaint();
+
+
+		fen.aff.setDes(j.de1 , j.de2); //On modifie l'affichage des dés dans la FenetreInterface
+		fen.aff.repaint();
+		
+		
+		if(!j.getEnPrison()){ //s'il n'est pas en prison, le joueur va avancer du nombre de cases donné par les dés 
 			
-			fen.aff.setDes(j.de1 , j.de2);
-			fen.aff.repaint();
-			if(!j.getEnPrison()){
-				int numCaseAAvancer = j.getSommeDes() ;
-				
-				j.avancer(numCaseAAvancer) ; 
-				
-				if( fen.p.getCases().get(j.getPos()) instanceof CaseProp){
-					
-					CaseProp cp = (CaseProp) fen.p.getCases().get(j.getPos());
-					
-					if( cp.getAchete() && cp.getPropri() != j) fen.finTour.setEnabled(false);
-					
-					}
-				
-				if(j.getPassCaseDep() == true){
-					fen.setTextInfo("Vous passez par la case depart, recevez 10000");
-					j.setPassCaseDep(false);
-					fen.changerPanelJoueur(j);
-				}
-				//il faut redessiner la position du joueur sur le plateau 
-				
-				fen.getPanelCase(j.getPos()).dessinerJoueur(j);
-				//fen.getPanelPlateau().repaint();
-				System.out.println(j.getSommeDes());
-				//appeler méthode traitement case dans le cas où je ne suis pas en prison 
-				jouer.Tour() ; 
-				
-				//dans la cas où le joueur atteri en prison il faut le redessiner : fait dans méthode  
-			}else{
-				//appeler méthode traitement quand je suis en prison
-				jouer.traitementEstEnPrison();
+			int numCaseAAvancer = j.getSommeDes() ;
+
+			j.avancer(numCaseAAvancer) ; 
+
+			if(fen.p.getCases().get(j.getPos()) instanceof CaseProp){
+				CaseProp cp = (CaseProp) fen.p.getCases().get(j.getPos());
+				if(cp.getAchete() && cp.getPropri() != j) fen.finTour.setEnabled(false); //si le joueur est sur une case propriété d'un adversaire, il ne pourra pas finir son tour sans payer
 			}
-			fen.repaint(); 
-			fen.pack();
-			//fen.getPanelPlateau().repaint();
-			//this.setActif(false); 
-		//}
+
+			if(j.getPassCaseDep() == true){
+				fen.setTextInfo("Vous passez par la case depart, recevez 10000");
+				j.setPassCaseDep(false); 
+				fen.changerPanelJoueur(j);
+			}
+			
+			
+			//il faut redessiner la position du joueur sur le plateau 
+			fen.getPanelCase(j.getPos()).dessinerJoueur(j);
+			
+			//System.out.println(j.getSommeDes());
+			
+			jouer.Tour(); //si le joueur n'est pas en prison, il faut appeler la méthode associée à la case sur laquelle il se trouve
+
+		}else{ //appeler méthode traitement quand je suis en prison
+			jouer.traitementEstEnPrison();
+		}
 		
-		
+		fen.repaint(); //on redessine la fenêtre
+		fen.pack(); //on redimensionne la fenêtre
+			
 	}
 	
 }

@@ -1,27 +1,31 @@
 import java.awt.* ;
 import javax.swing.*;
 import java.util.ArrayList;
-//il faudrait créer une classe CarteChance par type de carte chance 
-//méthodes avec toutes les actions et on peut faire un choix aléatoire ensuite de la méthode 
-//on peut mettre plus de poids pour certaines actions 
-//case possède un getJoueur qui donne le joueur qui se reouvent sur la case 
-//mettre méthode JPanel dans chaque actions différentes pour le panel de droite 
+
 public class CarteChance {
 	
 	public String texteAffiche = " CARTE CHANCE " ;
+	
+	//dans les cas les plus simples, la carte possède une simple description pour son panel 
 	public String description ; 
+	
+	//panel associé à la carte chance qui va s'afficher sur le plateau pour guider le joueur
 	public JPanel panelCarteChance = new JPanel(new BorderLayout());
 	
+	//ecouteur pour faire les actions pour la carte taxe 
 	public EcouteurPayerTaxe ecouteurTaxe ;
 	
+	//FenetreInterface pour mettre à jour l'affichage en fonction de la carte tirée 
 	public FenetreInterface fen ;
 	
+	//joueur qui tire la carte
 	public Joueur joueur ;
+	
 	//liste d'entiers qui permet de faire le tirage au sort de la méthode qui va s'appliquer au tirage 
 	ArrayList<Integer> listCart = new ArrayList<Integer>() ; 
 	int i = 0 ; //va donner la valeur de la méthode utilisée 
 	
-	//quand un joueur arrive sur une case il va créer une carte chance avec en attribut se joueur pour que les méthodes puisse s'executer 
+	//quand un joueur arrive sur une case on va créer une carte chance avec en attribut se joueur pour que les méthodes puisse s'executer 
 	public CarteChance(Joueur j, FenetreInterface f){
 		description = "" ; 
 		joueur = j ;
@@ -50,10 +54,7 @@ public class CarteChance {
 		 }
 	}
 	
-	public void setJoueur(Joueur j){
-		joueur = j ;
-	}
-	
+	//getteurs et setteurs 
 	public Joueur getJoueur(){
 		return joueur ;
 	}
@@ -62,7 +63,15 @@ public class CarteChance {
 		return description ;
 	}
 	
+	public JPanel getPanel(){
+		return panelCarteChance ;
+	}
 	
+	public void setJoueur(Joueur j){
+		joueur = j ;
+	}
+	
+	//méthode tirer carte qui va sélectionner une carte et effectuer la méthode associée 
 	public int tirerCarte(){
 		int random = (int)(Math.random()*listCart.size()) ;
 		i = listCart.get(random); 
@@ -95,12 +104,14 @@ public class CarteChance {
 	
 	public void carteRelancerDes(){
 		description = "Vous pouvez rejouer !";
-		//rend actif le bouton pour relancer les des 
+		//il faut désactiver fin tour et rendre actif les dés 
+		fen.finTour.setEnabled( false );
+		fen.lanceDe.setEnabled( true );
 		
 	}
 	
 	public void cartePayerFacture(){
-		
+		//creation du panel associé qui ne comporte pas une simple description
 		description = "Versez 1000 M au systeme de collecte des factures.";
 		JButton payer = new JButton("Payer");
 		ecouteurTaxe = new EcouteurPayerTaxe(joueur, -1000, fen, payer);
@@ -110,7 +121,7 @@ public class CarteChance {
 	}
 	public void carteSortirPrison(){
 		description = "Carte sortir de prison";
-		
+		//va changer l'attribut de joueur pour qu'il sorte de prison 
 		joueur.setCarteSortirPrison(true) ;
 	}
 	
@@ -123,11 +134,7 @@ public class CarteChance {
 		//ou alors faire changer une variable et en début du tour suivant si cette variable est vrai alors ecouteur fin tour ouvre fenetre fin jeu
 	}
 	
-	public JPanel getPanel(){
-		return panelCarteChance ;
-	}
 	
 	
-	//une méthode tirerCarte qui va sélectionner une méthode parmi les autres ; il faut que les méthodes aient des possibilités différentes de sortir, on fait une liste d'entiers avec 5 valeurs différentes, chacune de ces 5 valeurs correspond à une méthode 
-
+	
 }

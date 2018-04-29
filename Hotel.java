@@ -5,48 +5,41 @@ import javax.swing.*;
 
 public class Hotel{ 
 	
+	//Attributs 
+	//prix d'achat
 	private int prix;
+	//prix de vente en cas d'hypothèque 
 	private int prixHypotheque;
+	//position sur le plateau 
 	private int position;
-	//private int positionX; 
-	//private int positionY;  
-	//private CasePropriete Propriete;
-    private LinkedList<Case> listeCases;
-    private CaseProp caseAssociee;
-    JPanel dessinHotel; 
+	//liste de cases du plateau 
+	private LinkedList<Case> listeCases;
+	private CaseProp caseAssociee;
+	JPanel dessinHotel; 
 	
-	public Hotel(int position, int prix,int PHypotheque){  //propriete){
+	public Hotel(int position, int prix,int PHypotheque){  
 		this.position = position;  
 		this.prix = prix;
-		this.prixHypotheque = PHypotheque; //chaque hotel a un prix d'hypotheque different selon la propriete
-		//Propriete = propriete; //chaque hotel a un prix different selon la propriete
-	} 
-    
-    public Hotel(int position , Plateau p){
-        this.position = position; 
-        
-        listeCases = p.getCases(); 
-        Case c = listeCases.get(position); 
-        
-        if (c instanceof CaseProp){
-            caseAssociee = (CaseProp) c;
-        
-            prix = caseAssociee.getPrix()/10; 
-            prixHypotheque = prix/2; 
-            
-        }else{
-            System.out.println("On ne peut mettre de maison que sur les cases propriétés");
-        }
-    }     
-	
-	/*public int getX(){
-		return positionX; 
+		this.prixHypotheque = PHypotheque; //chaque hotel a un prix d'hypotheque different selon la propriete	
 	} 
 	
-	public int getY(){
-		return positionY; 
-	}*/
-	
+	public Hotel(int position , Plateau p){
+		this.position = position; 
+		//on récupère la liste des cases du plateau 
+		listeCases = p.getCases(); 
+		//on récupère la case à la position de l'hotel 
+		Case c = listeCases.get(position); 
+		//si il s'agit bien d'une case propriété alors on règle les prix de l'hotel en fonction de la case associée 
+		if (c instanceof CaseProp){
+			caseAssociee = (CaseProp) c;
+			prix = caseAssociee.getPrix()/10; 
+			prixHypotheque = prix/2; 
+			//sinon rien n'a lieu (le message d'erreur est pris en compte à un autre endroit dans ecouteurBtnAchatHotel 
+		}else{
+			System.out.println("On ne peut mettre de maison que sur les cases propriétés");
+		}
+	}     
+	//getteurs 
 	public int getPosition(){
 		return position; 
 	} 
@@ -59,9 +52,5 @@ public class Hotel{
 		return prix; 
 	}
 	
-	
-	
-	
-
 
 }

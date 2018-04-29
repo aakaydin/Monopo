@@ -33,7 +33,7 @@ public class EcouteurPayerJoueur implements ActionListener{
 	public void actionPerformed(ActionEvent ae){
 		c.payer.setEnabled(false);
 		fen.finTour.setEnabled(true); //On ne peut finir son tour seulement si on a payé le joueur
-		
+		//le peix à payer par le joueur qui tombe sur une propriété est 10% du prix de la propriété
 		int prix = c.getPrix()/ 10;
 		j.setArgent(-prix); //On déduit de la somme du joueur la valeur à payer 
 		

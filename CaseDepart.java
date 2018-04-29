@@ -12,6 +12,7 @@ public class CaseDepart extends Case {
 	
 	public CaseDepart(){
 		super(0, "Case depart") ; 
+		//valeur qui va être versée au joueur quand il tombe sur la case départ 
 		x = 20000 ;
 		JLabel lab = new JLabel("Vous etes sur la case depart.");
 		panel.add(lab); 
@@ -25,7 +26,7 @@ public class CaseDepart extends Case {
 		return description ;
 	}
 	
-	
+	//méthode qui va s'appliquer au joueur et lui verser l'argent 
 	public void action(Joueur j){
 		j.setArgent(x);
 	}

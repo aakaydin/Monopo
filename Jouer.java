@@ -69,9 +69,9 @@ public class Jouer{
 			this.Tour();
                  
 		}else if(joueurCourant.getDe1() != joueurCourant.getDe2() && joueurCourant.getNbToursEnPrison() >= 3){
-			joueurCourant.setArgent(-50000); //est-ce la somme que l'on choisit?
+			joueurCourant.setArgent(-5000); //est-ce la somme que l'on choisit?
 			joueurCourant.setEnPrison(false); 
-			fen.setTextInfo("3 tours en prison : payez 50000 et oust");
+			fen.setTextInfo("3 tours en prison : payez 5 000 et oust");
                     
             joueurCourant.avancer(joueurCourant.getDe1() + joueurCourant.getDe2()); //fait avancer
 			//appel méthode traitementCasefen.getPanelCase(j.getPos()).dessinerJoueur(j);

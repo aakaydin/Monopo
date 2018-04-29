@@ -2,9 +2,10 @@ import java.util.*;
 import javax.swing.*; 
 import java.awt.*; 
 
+//fenêtre où vont être entré les noms des différents joueurs de la partie 
 public class MenuPrincipal2 extends JFrame{
 	
-	
+	//difféents éléments qui seront affichés dans la fenêtre, il ya les champs à remplir et les labels associés 
 	private JTextField t1 = new JTextField(10); 
 	private JLabel l1 = new JLabel("nom du joueur1");
 	private JTextField t2 = new JTextField(10); 
@@ -17,11 +18,15 @@ public class MenuPrincipal2 extends JFrame{
 	private JLabel l6 = new JLabel("ERREUR: Attention le nombre de joueur maximum est 4 !!!");
 	private JButton b1 = new JButton("Debuter la partie");
 	private JButton b2 = new JButton("Retour");
+	
+	//attributs qui permettent d'avoir le nombre de joueurs et d'intelligence artficielle, la fenêtre va changer en fonction du nombre de joueurs qui se sont inscrits pour la partie 
 	private int nbJoueur; 
 	private int nbIA; 
+
 	private LinkedList<JTextField> text = new LinkedList<JTextField>(); 
 	private EcouteurDebuterPartie e2; 
 	private JPanel cadrePrincipal; 
+	
 	private boolean fenetreFinie =false; 						//sert pour le renvoie de ma LinkedList text qui ne doit pas être null quand je clique sur le bouton; 
 	
 	
@@ -34,12 +39,10 @@ public class MenuPrincipal2 extends JFrame{
 		cadrePrincipal = new JPanel(new GridLayout(8,2));
 		this.setContentPane(cadrePrincipal);
 		
-		
-		
+		//ecouteur qui va lancer le premier tour de ma partie lorsque l'utilisateur appuiera sur lebouton Lancer la partie 
 		e2 = new EcouteurDebuterPartie(this);
 		b1.addActionListener(e2); 
-		
-			 
+	 
 		
 		
 	}
@@ -71,6 +74,7 @@ public class MenuPrincipal2 extends JFrame{
 	public void setNbIA(int nbIA){ 
 		this.nbIA = nbIA; 
 	}
+	 
 	public boolean FinishFrame(int nbJoueur, int nbIA){ //initialise ma fenetre en fonction du nbJoueur; 
 		
 		if(nbJoueur ==1){

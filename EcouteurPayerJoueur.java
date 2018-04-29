@@ -3,16 +3,16 @@ import java.util.* ;
 
 public class EcouteurPayerJoueur implements ActionListener{
 	
-	Joueur j ; 
-	Joueur proprietaire ;
-	CaseProp c ;
-	FenetreInterface fen ;
+	Joueur j; 
+	Joueur proprietaire;
+	CaseProp c;
+	FenetreInterface fen;
 	
 	
 	public EcouteurPayerJoueur(Joueur prop, Joueur jj, CaseProp cas){
-		j = jj ;
-		proprietaire = prop ; 
-		c = cas ;
+		j = jj;
+		proprietaire = prop; 
+		c = cas;
 	}
 	
 	
@@ -21,23 +21,23 @@ public class EcouteurPayerJoueur implements ActionListener{
 	}
 		
 	public void setFenetreInterface(FenetreInterface f){
-		fen = f ;
+		fen = f;
 	}
 	
 	
-	public void disableButton(){
+	public void disableButton(){  
 		fen.finTour.setEnabled(false);
 	}
 	
 	
 	public void actionPerformed(ActionEvent ae){
 		c.payer.setEnabled(false);
-		fen.finTour.setEnabled(true);
+		fen.finTour.setEnabled(true); //On ne peut finir son tour seulement si on a payé le joueur
 		
 		int prix = c.getPrix()/ 10;
-		j.setArgent(-prix);
+		j.setArgent(-prix); //On déduit de la somme du joueur la valeur à payer 
 		
-		proprietaire.setArgent(prix) ;
+		proprietaire.setArgent(prix); //On augmente la somme du propriétaire
 		fen.changerPanelJoueur(j);
 	}
 		

@@ -9,7 +9,7 @@ public class FenetreErreurAchatBatiment extends JFrame{
     
     public FenetreErreurAchatBatiment(int erreur){
         super("Erreur"); 
-        setSize (500 , 100); 
+        setSize (750 , 100); 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
 
         

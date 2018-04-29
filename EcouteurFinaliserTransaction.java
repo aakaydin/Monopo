@@ -1,6 +1,7 @@
 import java.awt.event.* ;
 import java.util.* ; 
 
+//ecouteur qui va permettre de rendre invisible la fenêtre de femeture 
 public class EcouteurFinaliserTransaction implements ActionListener{
 	
 	private MenuCredit mc;

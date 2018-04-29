@@ -24,8 +24,8 @@ public class EcouteurSuivant1 implements ActionListener {
 			nbJoueur = Integer.parseInt(m1.getnbJoueur().getText()); 
 		} 
 		
-		if(m1.getIA().getText()!=null){
-			nbIA = Integer.parseInt(m1.getIA().getText()); 
+		if(m1.getIA()){
+			nbIA = 1; 
 		} 
 		m2.setNbJoueur(nbJoueur); 
 		m2.setNbIA(nbIA); 

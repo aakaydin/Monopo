@@ -179,16 +179,19 @@ public class FenetreInterface extends JFrame{
 		cadrePrincipal.add(panelNorth , BorderLayout.NORTH);
 
 		//Test affichage maisons 
+		
+		/**
+		
 		this.getPanelCase(1).dessinerMaison(1);
 		this.getPanelCase(5).dessinerHotel(); 
 		this.getPanelCase(2).dessinerMaison(2);
 	    this.getPanelCase(2).dessinerMaison(3);
-		//this.getPanelCase(2).dessinerHotel();
 		this.getPanelCase(8).dessinerMaison(3);
 	    this.getPanelCase(9).dessinerMaison(3);
 		this.getPanelCase(9).dessinerMaison(0);
 
-
+		*/
+		
 		 this.setVisible(true);
 
 
@@ -466,7 +469,7 @@ public class FenetreInterface extends JFrame{
             }
             
             
-            public void achatHotel(int num){
+        public void achatHotel(int num){
                 Case pr = p.getCaseAchatBatiment(num);
                 System.out.println(pr.getNom());
                             

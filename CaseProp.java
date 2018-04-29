@@ -10,9 +10,9 @@ public class CaseProp extends Case{
 	private Joueur joueurcase ;
 	private int couleur;
 	private boolean achete = false;
-    	//prix d'hypotheque du terrain, pas util dans notre version 
+    	//prix d'hypotheque du terrain, pas utile dans notre version 
     	private int prixHypotheque; 
-    	//prix d une maison et d'un hotel
+    	//prix d'une maison et d'un hotel
     	private int prixBatiment ;
 
 	

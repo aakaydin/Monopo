@@ -178,16 +178,14 @@ public class FenetreInterface extends JFrame{
 
 		cadrePrincipal.add(panelNorth , BorderLayout.NORTH);
 
+		
 		//Test affichage maisons 
-		
-		
-		
 		/*this.getPanelCase(1).dessinerMaison(1);
 		this.getPanelCase(5).dessinerHotel(); 
 		this.getPanelCase(2).dessinerMaison(2);
-	    this.getPanelCase(2).dessinerMaison(3);
+	    	this.getPanelCase(2).dessinerMaison(3);
 		this.getPanelCase(8).dessinerMaison(3);
-	    this.getPanelCase(9).dessinerMaison(3);
+	    	this.getPanelCase(9).dessinerMaison(3);
 		this.getPanelCase(9).dessinerMaison(0);*/
 
 		
@@ -441,7 +439,8 @@ public class FenetreInterface extends JFrame{
         
         
         public boolean peutAcheterCetteMaison(int num){ //sur cette propriete en particulier en comparaison avec les autres proprietes de son groupe couleur 
-            boolean peutAcheter = false; 
+            boolean peutAcheter = false;
+	    int nbCasesOk = 0; 
             
             Case pr = p.getCaseAchatBatiment(num); 
             if(pr instanceof CaseProp){
@@ -473,10 +472,21 @@ public class FenetreInterface extends JFrame{
                 for(CaseProp c : groupe){
                     int nb = c.getNbMaisons(); 
                     if(nb == nbMaisons || nb == nbMaisons + 1){
+                        nbCasesOk = nbCasesOk + 1; 
+                    }
+                }
+		
+		if(groupe == p.getGroupNoir() || groupe == p.getGroupRose() || groupe == p.getGroupJaune() || groupe == p.getGroupBleu()){
+                    if(nbCasesOk == 2){
                         peutAcheter = true; 
                     }
                 }
-            }
+                
+                if(groupe == p.getGroupCyan() || groupe == p.getGroupOrange() || groupe == p.getGroupRouge() || groupe == p.getGroupVert()){
+                    if(nbCasesOk == 3){
+                        peutAcheter = true;
+                    }
+            	}
             
             return peutAcheter; 
         } 

@@ -10,8 +10,8 @@ public class EcouteurPayerCredit implements ActionListener{
 	public EcouteurPayerCredit(FenetreInterface f){
 		fen = f;
 		jcourant = fen.getJoueur();
-
 	}
+	
 	
 	//pour changer le joueur associé à ce bouton et donc prélever l'argent sur le bon joueur 
 	public void changerJoueur(Joueur j){ 

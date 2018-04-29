@@ -34,6 +34,9 @@ public class EcouteurBtnAchatHotel implements ActionListener {
 			fenInt.achatHotel(res);
 			Hotel h = new Hotel(res , plateau); 
 			fenInt.getJoueur().ajouterHotel(h);
+			
+			fenInt.plateau.repaint();
+            		fenInt.pack();
 		}
 
 	}

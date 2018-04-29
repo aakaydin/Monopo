@@ -46,7 +46,7 @@ public class MenuCredit extends JFrame{
 		commande1.add(b1);
 		commande2.add(l2);
 		commande3.add(b2); 
-		//ajout des écouteurs qui ont les méthodes de prise de crédit et de transfert aux boutons de l'interface graphique 
+		//ajout des écouteurs qui ont les méthodes de prise de crédit et de fin de la transaction aux boutons de l'interface graphique 
 		b1.addActionListener(new EcouteurValiderCredit(this)); 
 		b2.addActionListener(new EcouteurFinaliserTransaction(this)); 
 		

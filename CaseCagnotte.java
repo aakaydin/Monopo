@@ -18,23 +18,25 @@ o	Permet de collecter tout l’argent de la cagnotte
     public CaseCagnotte(){
         super(14 , "Cagnotte"); 
         valAccumulee = 0; 
-        //setPanel(); pourquoi Aydin ?
+        
     }
     
     
     public JPanel getPanel(){ return panel;}
     
+    //permet d'ajouter une somme d'argent à la cagnotte
     public void ajoutCagnotte(int somme){
         valAccumulee = valAccumulee + somme; 
        
     }
     
-    
+    //classe qui va s'appliquer au joueur 
     public void recupereCagnotte(Joueur joueur){
-        joueur.setArgent(valAccumulee); //A FAIRE (en plus de set somme (et pourrait faire des valeurs négatives)) 
+        joueur.setArgent(valAccumulee); 
         valAccumulee = 0; 
     }
     
+    //permet de régler le panel en focntion de la valeur actuelle de la cagnotte 
     public void setPanel(){
 	    	panel.removeAll();
 		JLabel lab = new JLabel("Vous avez de la chance, vous gagnez "+valAccumulee);

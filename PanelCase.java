@@ -20,9 +20,9 @@ public class PanelCase extends JPanel {
 	private JPanel affichageJoueur = new JPanel() ;
 	int place ;
     
-    private JPanel affichageBatiments = new JPanel(); 
+    	private JPanel affichageBatiments = new JPanel(); 
     
-    private int nbMaisons ; 
+    	private int nbMaisons ; 
     
 	
 	public PanelCase(Color col, JLabel n, PanelPlateau f, int i ){
@@ -42,7 +42,7 @@ public class PanelCase extends JPanel {
 		this.setBorder(blackline);
 		
 		this.add(affichageJoueur/*, BorderLayout.SOUTH*/);
-        this.add(affichageBatiments); 
+        	this.add(affichageBatiments); 
 	}
 	
 	protected void paintComponent(Graphics g){
@@ -62,13 +62,11 @@ public class PanelCase extends JPanel {
 		
 		jc = j;
 		affichageJoueur.add(j.getLabel());
-		//this.repaint(); 
 	}
 	
 	public void retirerJoueur(Joueur j){
 		jc = j;
 		affichageJoueur.remove(j.getLabel());
-		//this.repaint(); 
 	}
 	
 	//vrai méthode pour dessiner joueur
@@ -115,16 +113,15 @@ public class PanelCase extends JPanel {
             pan.add(vide); 
         }
         
-        affichageBatiments.add(pan /*, BorderLayout.SOUTH*/); 
-        
-        this.repaint();
+        affichageBatiments.add(pan); 
+      
     }
     
     public void effacerMaison(){
         //on change le nombre de maison 
         nbMaisons = nbMaisons - 1 ;
         this.dessinerMaison(nbMaisons);
-        this.repaint() ; 
+        this.repaint(); 
     }
         
     
@@ -137,9 +134,8 @@ public class PanelCase extends JPanel {
         
         System.out.println("Je dessine l'hotel"); 
         
-        affichageBatiments.add(hotel /*, BorderLayout.SOUTH*/); 
+        affichageBatiments.add(hotel); 
         
-        this.repaint();
     }
     
     public void effacerHotel(){

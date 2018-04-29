@@ -5,11 +5,15 @@ import javax.swing.*;
 
 public class EcouteurAchatBatiment implements ActionListener{
 
+    //fenêtre de jeu 
     private FenetreInterface fen; 
+    //liste des cases 
     private Plateau plateau; 
     private int numProp;
+    //fenêtre qui permet d'acheter des batiments qui va être ouverte par cet écouteur 
     private MaFenetreAchatBatiment fenAchat;
-    private JButton btn; 
+    private JButton btn;
+    //string qui permet de savoir si on veut une maison ou un hotel 
     private String nat; 
     
     public EcouteurAchatBatiment(FenetreInterface f , Plateau pl , JButton btn , String nature){ //pas besoin de case propriete en attribut 
@@ -20,10 +24,7 @@ public class EcouteurAchatBatiment implements ActionListener{
     }
     
     public void actionPerformed(ActionEvent ae){
-        //Ne s'active que si les trois cases de la même couleur ont le même propriétaire et que ce propriétaire n'est pas null 
-        //Récupérer les propriétés d'un joueur 
-        //Vérifier qu'il ait toutes les différentes cases d'une même couleur 
-    
+       
         //Ouvre une fenêtre 
         fenAchat = new MaFenetreAchatBatiment(plateau, fen , nat);
     }
